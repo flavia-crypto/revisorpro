@@ -564,7 +564,7 @@ function renderDetailFindings(r) {
     const v=votes[f.id];
     const _stRaw=statuses[f.id]; const st=_stRaw?(typeof _stRaw==='object'?_stRaw.status:_stRaw):'pending'; const koalazAt=_stRaw&&typeof _stRaw==='object'?_stRaw.koalaz_at:null;
     const sc=STATUS_CONFIG[st]||STATUS_CONFIG.pending;
-    const clientAt=v&&v.timestamp?v.timestamp:(_stRaw&&typeof _stRaw==='object'?_stRaw.client_at:null); const ts=clientAt?`<div class="df-timestamp">👤 Cliente respondeu em \${new Date(clientAt).toLocaleString('pt-BR')}</div>`:'';
+    const clientAt=v&&v.timestamp?v.timestamp:(_stRaw&&typeof _stRaw==='object'?_stRaw.client_at:null); const ts=clientAt?('<div class="df-timestamp">👤 Cliente respondeu em '+new Date(clientAt).toLocaleString('pt-BR')+'</div>'):'';
     return `<div class="df-card ${sc.border}" id="dfc_${f.id}">
       <div class="df-card-head">
         <div class="df-tag"><span>Achado ${i+1}</span><span class="is-badge ${sc.badge}">${sc.label}</span></div>
@@ -576,9 +576,7 @@ function renderDetailFindings(r) {
         ${v.adjust_type?`<span style="font-size:12px;color:var(--gold);font-weight:600">📋 ${esc(v.adjust_type)}</span>`:''}
       </div>`:''}
       ${v&&v.comment?`<div class="comment-block"><div class="cb-lbl" style="color:${st==='agreed'?'var(--green)':st==='adjustment'?'var(--gold)':'var(--red)'}">💬 Comentário do cliente</div><p>${esc(v.comment)}</p></div>`:''}
-      \${koalazAt?`<div style='padding:6px 18px;background:#F5F4EF;border-top:1px solid var(--line);font-size:11px;color:var(--ink3)'>⚙️ Koalaz: \${new Date(koalazAt).toLocaleString("pt-BR")}</div>`:''}
-      ${koalazAt?`<div style="padding:6px 18px;background:#F5F4EF;border-top:1px solid var(--line);font-size:11px;color:var(--ink3)">⚙️ Koalaz: ${new Date(koalazAt).toLocaleString("pt-BR")}</div>`:""}
-      <div class="consultant-actions">
+      ${koalazAt?('<div style="padding:6px 18px;background:#F5F4EF;border-top:1px solid var(--line);font-size:11px;color:var(--ink3)">⚙️ Koalaz: '+new Date(koalazAt).toLocaleString('pt-BR')+'</div>'):''}\n      <div class="consultant-actions">
         <label>Status Koalaz:</label>
         <select class="status-select" onchange="updateItemStatus('${r.id}','${f.id}',this.value)">
           ${Object.entries(STATUS_CONFIG).map(([k,v])=>`<option value="${k}"${st===k?' selected':''}>${v.label}</option>`).join('')}
