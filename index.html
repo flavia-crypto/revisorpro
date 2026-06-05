@@ -14,6 +14,8 @@
   --gold:#9A6B00;--gold-tint:#FDF6E3;
   --red:#B83232;--red-tint:#FDEAEA;
   --green:#1A6B3C;--green-tint:#EAF5EE;
+  --blue:#1A4A8A;--blue-tint:#EAF0FB;
+  --purple:#5A2D8A;--purple-tint:#F0EAF9;
   --r:10px;--sh:0 1px 2px rgba(0,0,0,.05),0 4px 20px rgba(0,0,0,.06);
 }
 body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh}
@@ -55,10 +57,20 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .rt-cell{font-size:13px;color:var(--ink2)}
 .rt-empty{padding:48px;text-align:center;color:var(--ink3)}
 .rt-empty .big{font-size:36px;margin-bottom:10px}
+/* STATUS PILLS */
 .pill{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
 .pill-draft{background:#F0EFE9;color:var(--ink3)}
 .pill-sent{background:var(--gold-tint);color:var(--gold)}
 .pill-done{background:var(--green-tint);color:var(--green)}
+/* ITEM STATUS BADGES */
+.is-badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.is-pending{background:#F0EFE9;color:var(--ink3)}
+.is-agreed{background:var(--green-tint);color:var(--green)}
+.is-disagreed{background:var(--red-tint);color:var(--red)}
+.is-adjustment{background:var(--gold-tint);color:var(--gold)}
+.is-adjusted{background:var(--blue-tint);color:var(--blue)}
+.is-approved{background:var(--purple-tint);color:var(--purple)}
+/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
 .btn-primary{background:var(--accent);color:#fff}
 .btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(28,69,50,.3)}
@@ -67,8 +79,11 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-danger{background:transparent;border:1.5px solid #F5D0D0;color:var(--red)}
 .btn-danger:hover{background:var(--red-tint)}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-purple:hover{opacity:.9}
 .btn-sm{padding:6px 11px;font-size:12px}
 .btn-icon{padding:6px 8px;border-radius:6px}
+/* OVERLAY/MODAL */
 .overlay{position:fixed;inset:0;background:rgba(15,15,13,.55);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
 .overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--surface);border-radius:14px;width:100%;max-width:600px;max-height:88vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.18);transform:translateY(14px);transition:transform .25s}
@@ -80,10 +95,11 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .modal-close:hover{background:var(--line);color:var(--ink)}
 .modal-body{padding:22px 26px}
 .modal-foot{padding:0 26px 22px;display:flex;justify-content:flex-end;gap:8px}
+/* FORM */
 .fg{margin-bottom:16px}
 .fg label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:5px}
-.fg input,.fg textarea{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 12px;font-family:'Instrument Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--bg);outline:none;transition:border-color .2s}
-.fg input:focus,.fg textarea:focus{border-color:var(--accent);background:#fff}
+.fg input,.fg textarea,.fg select{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 12px;font-family:'Instrument Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--bg);outline:none;transition:border-color .2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--accent);background:#fff}
 .fg textarea{min-height:75px;resize:vertical}
 .fg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .finding-card{background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:13px;margin-bottom:8px;position:relative}
@@ -93,25 +109,34 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .fc-remove:hover{color:var(--red);background:var(--red-tint)}
 .add-finding-btn{width:100%;border:1.5px dashed var(--line);background:none;border-radius:7px;padding:9px;color:var(--ink3);font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
 .add-finding-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+/* DETAIL */
 .detail-head{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .detail-head-info{flex:1;min-width:0}
 .detail-head h1{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .detail-meta{font-size:13px;color:var(--ink3);margin-top:2px}
 .detail-body{padding:28px;display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
 .detail-findings{display:flex;flex-direction:column;gap:10px}
-.df-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+.df-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:border-color .3s}
+.df-card.is-agreed-border{border-color:var(--green)}
+.df-card.is-disagreed-border{border-color:var(--red)}
+.df-card.is-adjustment-border{border-color:var(--gold)}
+.df-card.is-adjusted-border{border-color:var(--blue)}
+.df-card.is-approved-border{border-color:var(--purple)}
 .df-card-head{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
-.df-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);margin-bottom:5px}
+.df-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);margin-bottom:5px;display:flex;align-items:center;justify-content:space-between}
 .df-title{font-size:15px;font-weight:600}
 .df-desc{font-size:13px;color:var(--ink2);margin-top:3px;line-height:1.65}
-.df-card-foot{padding:12px 18px;background:#FAFAF7;display:flex;align-items:center;gap:8px}
+.df-card-foot{padding:12px 18px;background:#FAFAF7;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .df-card-foot p{font-size:12px;color:var(--ink3);flex:1}
-.response-comment{padding:11px 18px;background:var(--red-tint);border-top:1px solid #F5D0D0}
-.rc-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--red);margin-bottom:3px}
-.response-comment p{font-size:13px;color:var(--ink2);line-height:1.6}
-.agree-comment{padding:11px 18px;background:var(--green-tint);border-top:1px solid #A8D5B5}
-.ac-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--green);margin-bottom:3px}
-.agree-comment p{font-size:13px;color:var(--ink2);line-height:1.6}
+.df-timestamp{font-size:11px;color:var(--ink4);margin-top:2px}
+.comment-block{padding:11px 18px;border-top:1px solid var(--line)}
+.comment-block .cb-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.comment-block p{font-size:13px;color:var(--ink2);line-height:1.6}
+/* CONSULTANT STATUS SELECTOR */
+.consultant-actions{padding:10px 18px;background:#F5F4EF;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.consultant-actions label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3)}
+.status-select{border:1.5px solid var(--line);border-radius:6px;padding:5px 8px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;background:var(--surface);color:var(--ink);outline:none;cursor:pointer}
+/* PANEL */
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh);margin-bottom:14px}
 .panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--line)}
 .link-box{display:flex;gap:7px;margin-bottom:10px}
@@ -144,48 +169,55 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .client-intro h1{font-family:'Fraunces',serif;font-size:28px;font-weight:500;letter-spacing:-.5px;margin-bottom:5px}
 .client-intro .sub{color:var(--ink3);font-size:13px}
 .client-intro .note{background:var(--gold-tint);border:1px solid #E8D48A;border-radius:8px;padding:11px 14px;font-size:13px;color:#7A5200;margin-top:12px;line-height:1.6}
+/* CLIENT FINDING CARD */
 .cf-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden;box-shadow:var(--sh);transition:border-color .3s}
-.cf-card.agreed{border-color:var(--green)}
-.cf-card.disagreed{border-color:var(--red)}
+.cf-card.s-agreed{border-color:var(--green)}
+.cf-card.s-disagreed{border-color:var(--red)}
+.cf-card.s-adjustment{border-color:var(--gold)}
 .cf-body{padding:20px 22px}
 .cf-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);margin-bottom:6px}
 .cf-title{font-size:16px;font-weight:600;margin-bottom:5px}
 .cf-desc{font-size:13px;color:var(--ink2);line-height:1.7}
-.cf-actions{border-top:1px solid var(--line);padding:12px 22px;background:#FAFAF7;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.cf-actions .qa{font-size:12px;color:var(--ink3);margin-right:auto}
-.vote{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:all .2s}
-.vote-y{border-color:var(--green);color:var(--green);background:#fff}
-.vote-y:hover,.vote-y.on{background:var(--green-tint)}
-.vote-n{border-color:var(--red);color:var(--red);background:#fff}
-.vote-n:hover,.vote-n.on{background:var(--red-tint)}
+/* STATUS BUTTONS */
+.cf-status-row{border-top:1px solid var(--line);padding:12px 22px;background:#FAFAF7;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cf-status-row .qa{font-size:12px;color:var(--ink3);width:100%;margin-bottom:4px}
+.svote{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:all .2s}
+.svote-agree{border-color:var(--green);color:var(--green);background:#fff}
+.svote-agree:hover,.svote-agree.on{background:var(--green-tint)}
+.svote-disagree{border-color:var(--red);color:var(--red);background:#fff}
+.svote-disagree:hover,.svote-disagree.on{background:var(--red-tint)}
+.svote-adjust{border-color:var(--gold);color:var(--gold);background:#fff}
+.svote-adjust:hover,.svote-adjust.on{background:var(--gold-tint)}
 .cf-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-left:auto;flex-shrink:0}
-.cb-y{background:var(--green-tint);color:var(--green)}
-.cb-n{background:var(--red-tint);color:var(--red)}
-.cb-p{background:var(--bg);color:var(--ink3);border:1px solid var(--line)}
+/* COMMENT AREA */
 .cf-comment{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .3s}
-.cf-comment.open{max-height:200px;padding:0 22px 16px}
+.cf-comment.open{max-height:300px;padding:0 22px 16px}
 .cf-comment-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;margin-top:12px}
-.cf-comment textarea{width:100%;border:1.5px solid #F5D0D0;border-radius:7px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--red-tint);outline:none;resize:vertical;min-height:75px;transition:border-color .2s}
+.cf-comment textarea{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);outline:none;resize:vertical;min-height:75px}
 .cf-comment textarea:focus{background:#fff}
-/* general comment box */
-.general-comment-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-bottom:14px;box-shadow:var(--sh)}
+.cf-adjust-type{margin-bottom:8px}
+.cf-adjust-type select{width:100%;border:1.5px solid var(--gold);border-radius:7px;padding:8px 10px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--gold-tint);outline:none}
+/* GENERAL COMMENT */
+.general-comment-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:8px;box-shadow:var(--sh)}
 .general-comment-box h3{font-size:14px;font-weight:600;margin-bottom:4px}
 .general-comment-box p{font-size:12px;color:var(--ink3);margin-bottom:12px}
-.general-comment-box textarea{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);outline:none;resize:vertical;min-height:90px;transition:border-color .2s}
+.general-comment-box textarea{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);outline:none;resize:vertical;min-height:80px}
 .general-comment-box textarea:focus{border-color:var(--accent);background:#fff}
+/* CLIENT BAR */
 .client-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,242,236,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:100}
 .client-bar-info{font-size:13px;color:var(--ink3)}
 .client-bar-info strong{color:var(--ink)}
+/* THANK YOU */
 .thankyou{max-width:500px;margin:0 auto;padding:72px 20px;text-align:center}
 .ty-icon{font-size:52px;margin-bottom:18px}
 .thankyou h1{font-family:'Fraunces',serif;font-size:32px;font-weight:500;letter-spacing:-.5px;margin-bottom:9px}
 .thankyou p{color:var(--ink3);font-size:14px;max-width:360px;margin:0 auto 24px}
-.ty-stats{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:24px}
+.ty-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:24px}
 .ty-stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
-.ty-stat .n{font-family:'Fraunces',serif;font-size:32px;line-height:1;margin-bottom:2px}
-.ty-stat .n.g{color:var(--green)}
-.ty-stat .n.r{color:var(--red)}
+.ty-stat .n{font-family:'Fraunces',serif;font-size:28px;line-height:1;margin-bottom:2px}
+.ty-stat .n.g{color:var(--green)} .ty-stat .n.r{color:var(--red)} .ty-stat .n.o{color:var(--gold)}
 .ty-stat .l{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+/* MISC */
 .loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;color:var(--ink3);gap:14px}
 .spinner{width:32px;height:32px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -199,6 +231,8 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
   .rt-header,.rt-row{grid-template-columns:1fr auto}
   .rt-cell:nth-child(3),.rt-cell:nth-child(4),.rt-header div:nth-child(3),.rt-header div:nth-child(4){display:none}
   .stat-grid{grid-template-columns:1fr 1fr}
+  .cf-status-row{gap:6px}
+  .svote{padding:6px 9px;font-size:11px}
 }
 </style>
 </head>
@@ -228,7 +262,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
         <div class="nav-item" onclick="renderDash()"><span class="nav-icon">📋</span> Relatórios</div>
       </nav>
       <div class="sidebar-footer">
-        <p>RevisorPro · Supabase<br>Dados em nuvem ☁️</p>
+        <p>RevisorPro · Supabase ☁️</p>
         <button onclick="doLogout()" style="background:none;border:none;color:rgba(255,255,255,.3);font-size:11px;cursor:pointer;margin-top:8px;padding:0">Sair</button>
       </div>
     </aside>
@@ -275,6 +309,10 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
       <div class="panel">
         <div class="panel-title">Progresso da Revisão</div>
         <div id="detailPanelMeta"></div>
+        <div id="approveAllWrap" style="display:none;margin-top:12px">
+          <button class="btn btn-purple btn-sm" style="width:100%;justify-content:center" onclick="approveAllAdjusted()">✅ Aprovar etapa inteira</button>
+          <p style="font-size:11px;color:var(--ink3);margin-top:6px">Aprova todos os itens marcados como "Ajustado pela Koalaz"</p>
+        </div>
       </div>
       <div class="panel" id="generalCommentPanel" style="display:none">
         <div class="panel-title">Comentário Geral do Cliente</div>
@@ -297,7 +335,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
   </div>
 </div>
 
-<!-- MODAL NEW/EDIT -->
+<!-- MODAL -->
 <div class="overlay" id="modalOverlay">
   <div class="modal">
     <div class="modal-head">
@@ -333,86 +371,58 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── CONFIG ───────────────────────────────────────────────────────────────
 const SUPABASE_URL = 'https://uwdirznolbhmazlfiqwf.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_pfNIy_2XNnvToiGCzO9wGw_6x-bR9KU';
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmt5IVhcaPAg_OEeyHpceZviv4vFSpxKFDP_D5PTHcE--i5beAjg5g3nnobgADtb-9-g/exec';
 const PANEL_PASSWORD = 'koalaz2026';
 
+// STATUS CONFIG
+const STATUS_CONFIG = {
+  pending:    { label: 'Pendente',              badge: 'is-pending',    border: '' },
+  agreed:     { label: 'Concordou',             badge: 'is-agreed',     border: 'is-agreed-border' },
+  disagreed:  { label: 'Discordou',             badge: 'is-disagreed',  border: 'is-disagreed-border' },
+  adjustment: { label: 'Ajuste solicitado',     badge: 'is-adjustment', border: 'is-adjustment-border' },
+  adjusted:   { label: 'Ajustado pela Koalaz',  badge: 'is-adjusted',   border: 'is-adjusted-border' },
+  approved:   { label: 'Aprovado final',        badge: 'is-approved',   border: 'is-approved-border' }
+};
+
 // ─── LOGIN ────────────────────────────────────────────────────────────────
 function doLogin() {
   const pass = document.getElementById('loginPass').value;
   if (pass === PANEL_PASSWORD) {
-    sessionStorage.setItem('rp_auth', '1');
-    showView('viewDash');
-    renderDash();
+    sessionStorage.setItem('rp_auth','1');
+    showView('viewDash'); renderDash();
   } else {
     document.getElementById('loginError').classList.add('on');
     document.getElementById('loginPass').value = '';
   }
 }
-function doLogout() {
-  sessionStorage.removeItem('rp_auth');
-  showView('viewLogin');
-}
+function doLogout() { sessionStorage.removeItem('rp_auth'); showView('viewLogin'); }
 
 // ─── SUPABASE ─────────────────────────────────────────────────────────────
 const sb = {
-  headers: {
-    'Content-Type': 'application/json',
-    'apikey': SUPABASE_KEY,
-    'Authorization': 'Bearer ' + SUPABASE_KEY,
-    'Prefer': 'return=representation'
-  },
-  async get() {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/reports?order=created_at.desc`, { headers: this.headers });
-    if (!r.ok) throw new Error(await r.text());
-    return r.json();
-  },
-  async getOne(id) {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/reports?id=eq.${id}`, { headers: this.headers });
-    if (!r.ok) throw new Error(await r.text());
-    const arr = await r.json();
-    return arr[0] || null;
-  },
-  async insert(data) {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/reports`, { method: 'POST', headers: this.headers, body: JSON.stringify(data) });
-    if (!r.ok) throw new Error(await r.text());
-    return r.json();
-  },
-  async update(id, data) {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/reports?id=eq.${id}`, { method: 'PATCH', headers: this.headers, body: JSON.stringify(data) });
-    if (!r.ok) throw new Error(await r.text());
-    return r.json();
-  },
-  async delete(id) {
-    const r = await fetch(`${SUPABASE_URL}/rest/v1/reports?id=eq.${id}`, { method: 'DELETE', headers: this.headers });
-    if (!r.ok) throw new Error(await r.text());
-  }
+  h: { 'Content-Type':'application/json', 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+SUPABASE_KEY, 'Prefer':'return=representation' },
+  async get() { const r=await fetch(`${SUPABASE_URL}/rest/v1/reports?order=created_at.desc`,{headers:this.h}); if(!r.ok)throw new Error(await r.text()); return r.json(); },
+  async getOne(id) { const r=await fetch(`${SUPABASE_URL}/rest/v1/reports?id=eq.${id}`,{headers:this.h}); if(!r.ok)throw new Error(await r.text()); return (await r.json())[0]||null; },
+  async insert(d) { const r=await fetch(`${SUPABASE_URL}/rest/v1/reports`,{method:'POST',headers:this.h,body:JSON.stringify(d)}); if(!r.ok)throw new Error(await r.text()); return r.json(); },
+  async update(id,d) { const r=await fetch(`${SUPABASE_URL}/rest/v1/reports?id=eq.${id}`,{method:'PATCH',headers:this.h,body:JSON.stringify(d)}); if(!r.ok)throw new Error(await r.text()); return r.json(); },
+  async delete(id) { const r=await fetch(`${SUPABASE_URL}/rest/v1/reports?id=eq.${id}`,{method:'DELETE',headers:this.h}); if(!r.ok)throw new Error(await r.text()); }
 };
 
 // ─── ROUTING ─────────────────────────────────────────────────────────────
 function checkRoute() {
   const hash = location.hash;
-  if (hash.startsWith('#review/')) {
-    loadClientView(hash.slice(8));
-  } else {
-    if (sessionStorage.getItem('rp_auth') === '1') {
-      showView('viewDash'); renderDash();
-    } else {
-      showView('viewLogin');
-    }
-  }
+  if (hash.startsWith('#review/')) { loadClientView(hash.slice(8)); }
+  else { sessionStorage.getItem('rp_auth')==='1' ? (showView('viewDash'),renderDash()) : showView('viewLogin'); }
 }
 window.addEventListener('hashchange', checkRoute);
 window.addEventListener('load', checkRoute);
 
 function showView(id) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('on'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   document.getElementById(id).classList.add('on');
-  if (id !== 'viewClient') document.getElementById('clientBar').style.display = 'none';
-  else document.getElementById('clientBar').style.display = 'flex';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.getElementById('clientBar').style.display = id==='viewClient' ? 'flex' : 'none';
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // ─── DASHBOARD ────────────────────────────────────────────────────────────
@@ -421,418 +431,383 @@ async function renderDash() {
   try {
     const reports = await sb.get();
     document.getElementById('statTotal').textContent = reports.length;
-    document.getElementById('statPending').textContent = reports.filter(r => r.status === 'sent').length;
-    document.getElementById('statDone').textContent = reports.filter(r => r.status === 'done').length;
+    document.getElementById('statPending').textContent = reports.filter(r=>r.status==='sent').length;
+    document.getElementById('statDone').textContent = reports.filter(r=>r.status==='done').length;
     const body = document.getElementById('reportsTableBody');
-    if (!reports.length) {
-      body.innerHTML = '<div class="rt-empty"><div class="big">📋</div>Nenhum relatório ainda.<br>Clique em <strong>＋ Novo Relatório</strong> para começar.</div>';
-      return;
-    }
+    if (!reports.length) { body.innerHTML='<div class="rt-empty"><div class="big">📋</div>Nenhum relatório ainda.</div>'; return; }
     body.innerHTML = reports.map(r => {
-      const answered = Object.keys(r.votes || {}).length;
-      const total = (r.findings || []).length;
-      const sc = { draft:'pill-draft', sent:'pill-sent', done:'pill-done' }[r.status] || 'pill-draft';
-      const sl = { draft:'Rascunho', sent:'Enviado', done:'Concluído' }[r.status] || 'Rascunho';
+      const answered = Object.keys(r.votes||{}).length;
+      const total = (r.findings||[]).length;
+      const sc = {draft:'pill-draft',sent:'pill-sent',done:'pill-done'}[r.status]||'pill-draft';
+      const sl = {draft:'Rascunho',sent:'Enviado',done:'Concluído'}[r.status]||'Rascunho';
       return `<div class="rt-row" onclick="openDetail('${r.id}')">
         <div><div class="rt-name">${esc(r.title)}</div><div class="rt-sub">${answered}/${total} respostas</div></div>
         <div class="rt-cell">${esc(r.client)}</div>
         <div class="rt-cell">${esc(r.date||'—')}</div>
         <div class="rt-cell"><span class="pill ${sc}">${sl}</span></div>
         <div onclick="event.stopPropagation()" style="display:flex;gap:5px">
-          <button class="btn btn-ghost btn-sm btn-icon" title="Editar" onclick="editReport('${r.id}')">✏️</button>
-          <button class="btn btn-danger btn-sm btn-icon" title="Excluir" onclick="deleteReport('${r.id}')">🗑</button>
+          <button class="btn btn-ghost btn-sm btn-icon" onclick="editReport('${r.id}')">✏️</button>
+          <button class="btn btn-danger btn-sm btn-icon" onclick="deleteReport('${r.id}')">🗑</button>
         </div>
       </div>`;
     }).join('');
-  } catch(e) {
-    document.getElementById('reportsTableBody').innerHTML = `<div class="rt-empty" style="color:var(--red)">Erro ao carregar: ${e.message}</div>`;
-  }
+  } catch(e) { document.getElementById('reportsTableBody').innerHTML=`<div class="rt-empty" style="color:var(--red)">Erro: ${e.message}</div>`; }
 }
 
 // ─── MODAL ────────────────────────────────────────────────────────────────
 let editingId = null;
-
 function openNewModal() {
-  editingId = null;
-  document.getElementById('modalTitle').textContent = 'Novo Relatório';
-  document.getElementById('mTitle').value = '';
-  document.getElementById('mClient').value = '';
-  document.getElementById('mClientEmail').value = '';
-  document.getElementById('mAuthor').value = '';
-  document.getElementById('mDate').value = '';
-  document.getElementById('mConsultantEmail').value = 'flavia@koalaz.com.br';
-  document.getElementById('mContext').value = '';
-  document.getElementById('modalFindings').innerHTML = '';
+  editingId=null;
+  ['mTitle','mClient','mClientEmail','mAuthor','mDate','mContext'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('mConsultantEmail').value='flavia@koalaz.com.br';
+  document.getElementById('modalFindings').innerHTML='';
   document.getElementById('modalError').classList.remove('on');
+  document.getElementById('modalTitle').textContent='Novo Relatório';
   addModalFinding(); addModalFinding(); addModalFinding();
   document.getElementById('modalOverlay').classList.add('open');
 }
-
 async function editReport(id) {
   try {
-    const r = await sb.getOne(id);
-    if (!r) return;
-    editingId = id;
-    document.getElementById('modalTitle').textContent = 'Editar Relatório';
-    document.getElementById('mTitle').value = r.title;
-    document.getElementById('mClient').value = r.client;
-    document.getElementById('mClientEmail').value = r.client_email || '';
-    document.getElementById('mAuthor').value = r.author || '';
-    document.getElementById('mDate').value = r.date || '';
-    document.getElementById('mConsultantEmail').value = r.consultant_email || 'flavia@koalaz.com.br';
-    document.getElementById('mContext').value = r.context || '';
-    document.getElementById('modalFindings').innerHTML = '';
+    const r = await sb.getOne(id); if(!r) return;
+    editingId=id;
+    document.getElementById('modalTitle').textContent='Editar Relatório';
+    document.getElementById('mTitle').value=r.title;
+    document.getElementById('mClient').value=r.client;
+    document.getElementById('mClientEmail').value=r.client_email||'';
+    document.getElementById('mAuthor').value=r.author||'';
+    document.getElementById('mDate').value=r.date||'';
+    document.getElementById('mConsultantEmail').value=r.consultant_email||'flavia@koalaz.com.br';
+    document.getElementById('mContext').value=r.context||'';
+    document.getElementById('modalFindings').innerHTML='';
     document.getElementById('modalError').classList.remove('on');
-    (r.findings || []).forEach(f => addModalFinding(f.title, f.desc));
+    (r.findings||[]).forEach(f=>addModalFinding(f.title,f.desc));
     document.getElementById('modalOverlay').classList.add('open');
-  } catch(e) { showToast('Erro: ' + e.message); }
+  } catch(e) { showToast('Erro: '+e.message); }
 }
-
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
-
-function addModalFinding(title='', desc='') {
-  const div = document.createElement('div');
-  div.className = 'finding-card';
-  div.innerHTML = `
-    <div class="fc-num">${document.getElementById('modalFindings').children.length + 1}</div>
+function addModalFinding(title='',desc='') {
+  const div=document.createElement('div'); div.className='finding-card';
+  div.innerHTML=`<div class="fc-num">${document.getElementById('modalFindings').children.length+1}</div>
     <input type="text" placeholder="Título do achado *" value="${esc(title)}" data-field="title">
-    <textarea placeholder="Descrição (opcional) — use Enter para listas" data-field="desc">${esc(desc)}</textarea>
+    <textarea placeholder="Descrição (opcional) — Enter para quebrar linha" data-field="desc">${esc(desc)}</textarea>
     <button class="fc-remove" onclick="removeMF(this)">✕</button>`;
-  document.getElementById('modalFindings').appendChild(div);
-  renumberMF();
+  document.getElementById('modalFindings').appendChild(div); renumberMF();
 }
-
-function removeMF(btn) {
-  if (document.getElementById('modalFindings').children.length <= 1) { showToast('Mínimo 1 achado'); return; }
-  btn.closest('.finding-card').remove(); renumberMF();
-}
-
-function renumberMF() {
-  document.querySelectorAll('.finding-card .fc-num').forEach((el,i) => el.textContent = i+1);
-}
-
+function removeMF(btn) { if(document.getElementById('modalFindings').children.length<=1){showToast('Mínimo 1 achado');return;} btn.closest('.finding-card').remove(); renumberMF(); }
+function renumberMF() { document.querySelectorAll('.finding-card .fc-num').forEach((el,i)=>el.textContent=i+1); }
 async function saveReport() {
-  const title = document.getElementById('mTitle').value.trim();
-  const client = document.getElementById('mClient').value.trim();
-  if (!title || !client) { showModalError('Preencha título e cliente'); return; }
-  const findings = [];
-  document.querySelectorAll('.finding-card').forEach(card => {
-    const t = card.querySelector('[data-field="title"]').value.trim();
-    const d = card.querySelector('[data-field="desc"]').value.trim();
-    if (t) findings.push({ id: uid(), title: t, desc: d });
+  const title=document.getElementById('mTitle').value.trim();
+  const client=document.getElementById('mClient').value.trim();
+  if(!title||!client){showModalError('Preencha título e cliente');return;}
+  const findings=[];
+  document.querySelectorAll('.finding-card').forEach(card=>{
+    const t=card.querySelector('[data-field="title"]').value.trim();
+    const d=card.querySelector('[data-field="desc"]').value.trim();
+    if(t) findings.push({id:uid(),title:t,desc:d});
   });
-  if (!findings.length) { showModalError('Adicione ao menos um achado'); return; }
-  const btn = document.getElementById('saveBtn');
-  btn.disabled = true; btn.textContent = 'Salvando...';
+  if(!findings.length){showModalError('Adicione ao menos um achado');return;}
+  const btn=document.getElementById('saveBtn');
+  btn.disabled=true; btn.textContent='Salvando...';
   try {
-    const payload = {
-      title, client,
-      client_email: document.getElementById('mClientEmail').value.trim(),
-      author: document.getElementById('mAuthor').value.trim(),
-      consultant_email: document.getElementById('mConsultantEmail').value.trim(),
-      date: document.getElementById('mDate').value.trim(),
-      context: document.getElementById('mContext').value.trim(),
-      findings, votes: {}, status: 'draft', general_comment: ''
-    };
-    if (editingId) {
-      await sb.update(editingId, payload);
-      showToast('Relatório atualizado!');
-    } else {
-      payload.id = uid();
-      await sb.insert(payload);
-      showToast('Relatório criado!');
-    }
+    const payload={title,client,
+      client_email:document.getElementById('mClientEmail').value.trim(),
+      author:document.getElementById('mAuthor').value.trim(),
+      consultant_email:document.getElementById('mConsultantEmail').value.trim(),
+      date:document.getElementById('mDate').value.trim(),
+      context:document.getElementById('mContext').value.trim(),
+      findings,votes:{},item_statuses:{},status:'draft',general_comment:''};
+    if(editingId){await sb.update(editingId,payload);showToast('Atualizado!');}
+    else{payload.id=uid();await sb.insert(payload);showToast('Criado!');}
     closeModal(); renderDash();
-  } catch(e) { showModalError('Erro ao salvar: ' + e.message); }
-  finally { btn.disabled = false; btn.textContent = 'Salvar relatório'; }
+  } catch(e){showModalError('Erro: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='Salvar relatório';}
 }
-
-function showModalError(msg) {
-  const el = document.getElementById('modalError');
-  el.textContent = msg; el.classList.add('on');
-}
-
-async function deleteReport(id) {
-  if (!confirm('Excluir este relatório?')) return;
-  try { await sb.delete(id); renderDash(); showToast('Relatório excluído'); }
-  catch(e) { showToast('Erro: ' + e.message); }
-}
+function showModalError(msg){const el=document.getElementById('modalError');el.textContent=msg;el.classList.add('on');}
+async function deleteReport(id){if(!confirm('Excluir?'))return;try{await sb.delete(id);renderDash();showToast('Excluído');}catch(e){showToast('Erro: '+e.message);}}
 
 // ─── DETAIL ───────────────────────────────────────────────────────────────
+let currentReport = null;
+
 async function openDetail(id) {
   showView('viewDetail');
-  document.getElementById('detailFindings').innerHTML = '<div class="loading"><div class="spinner"></div><span>Carregando...</span></div>';
+  document.getElementById('detailFindings').innerHTML='<div class="loading"><div class="spinner"></div><span>Carregando...</span></div>';
   try {
-    const r = await sb.getOne(id);
-    if (!r) return;
-    document.getElementById('detailTitle').textContent = r.title;
-    document.getElementById('detailMeta').textContent = [r.client, r.date, r.author].filter(Boolean).join(' · ');
-    const link = location.origin + location.pathname + '#review/' + r.id;
-    document.getElementById('clientLinkInput').value = link;
-    document.getElementById('detailActions').innerHTML = `
+    const r = await sb.getOne(id); if(!r) return;
+    currentReport = r;
+    document.getElementById('detailTitle').textContent=r.title;
+    document.getElementById('detailMeta').textContent=[r.client,r.date,r.author].filter(Boolean).join(' · ');
+    const link=location.origin+location.pathname+'#review/'+r.id;
+    document.getElementById('clientLinkInput').value=link;
+    document.getElementById('detailActions').innerHTML=`
       <button class="btn btn-ghost btn-sm" onclick="editReport('${r.id}')">✏️ Editar</button>
-      ${r.status==='draft' ? `<button class="btn btn-primary btn-sm" onclick="markSent('${r.id}')">📤 Marcar Enviado</button>` : ''}
-      ${r.status==='done' ? `<button class="btn btn-ghost btn-sm" onclick="clearVotes('${r.id}')">🔄 Resetar</button>` : ''}
-    `;
-    // Email button
-    const emailBtn = document.getElementById('sendEmailBtn');
-    if (r.client_email) {
-      emailBtn.style.display = 'flex';
-      emailBtn.setAttribute('data-id', r.id);
-    } else {
-      emailBtn.style.display = 'none';
-    }
+      ${r.status==='draft'?`<button class="btn btn-primary btn-sm" onclick="markSent('${r.id}')">📤 Marcar Enviado</button>`:''}
+      ${r.status==='done'?`<button class="btn btn-ghost btn-sm" onclick="clearVotes('${r.id}')">🔄 Resetar</button>`:''}`;
+    const eb=document.getElementById('sendEmailBtn');
+    eb.style.display=r.client_email?'flex':'none';
+    if(r.client_email) eb.setAttribute('data-id',r.id);
     // General comment
-    if (r.general_comment) {
-      document.getElementById('generalCommentPanel').style.display = 'block';
-      document.getElementById('generalCommentText').textContent = '"' + r.general_comment + '"';
-    } else {
-      document.getElementById('generalCommentPanel').style.display = 'none';
-    }
-    // Findings
-    const votes = r.votes || {};
-    document.getElementById('detailFindings').innerHTML = (r.findings||[]).map((f,i) => {
-      const v = votes[f.id];
-      const agreed = v && v.vote==='agree';
-      const disagreed = v && v.vote==='disagree';
-      return `<div class="df-card">
-        <div class="df-card-head">
-          <div class="df-tag">Achado ${i+1}</div>
-          <div class="df-title">${esc(f.title)}</div>
-          ${f.desc ? `<div class="df-desc">${escHtml(f.desc)}</div>` : ''}
-        </div>
-        <div class="df-card-foot">
-          <p>Posição do cliente:</p>
-          ${v ? `<span class="pill ${agreed?'pill-done':''}" style="${!agreed?'background:var(--red-tint);color:var(--red)':''}">${agreed?'✓ Concordou':'✕ Discordou'}</span>` : `<span class="pill pill-draft">Pendente</span>`}
-        </div>
-        ${agreed && v.comment ? `<div class="agree-comment"><div class="ac-lbl">Comentário</div><p>${esc(v.comment)}</p></div>` : ''}
-        ${disagreed && v.comment ? `<div class="response-comment"><div class="rc-lbl">Comentário</div><p>${esc(v.comment)}</p></div>` : ''}
-      </div>`;
-    }).join('');
-    // Panel
-    const answered = Object.keys(votes).length;
-    const total = (r.findings||[]).length;
-    const pct = total ? Math.round((answered/total)*100) : 0;
-    document.getElementById('detailPanelMeta').innerHTML = `
-      <div class="panel-meta">
-        <p>Respondidos <span>${answered} de ${total}</span></p>
-        <p>Concordâncias <span style="color:var(--green)">${Object.values(votes).filter(v=>v.vote==='agree').length}</span></p>
-        <p>Discordâncias <span style="color:var(--red)">${Object.values(votes).filter(v=>v.vote==='disagree').length}</span></p>
+    if(r.general_comment){document.getElementById('generalCommentPanel').style.display='block';document.getElementById('generalCommentText').textContent='"'+r.general_comment+'"';}
+    else document.getElementById('generalCommentPanel').style.display='none';
+    renderDetailFindings(r);
+  } catch(e){showToast('Erro: '+e.message);}
+}
+
+function renderDetailFindings(r) {
+  const votes=r.votes||{};
+  const statuses=r.item_statuses||{};
+  const findings=r.findings||[];
+  // Check if any item is "adjusted" to show approve all button
+  const hasAdjusted=findings.some(f=>{const _r=statuses[f.id];return (_r?(typeof _r==='object'?_r.status:_r):'pending')==='adjusted';});
+  document.getElementById('approveAllWrap').style.display=hasAdjusted?'block':'none';
+
+  document.getElementById('detailFindings').innerHTML=findings.map((f,i)=>{
+    const v=votes[f.id];
+    const _stRaw=statuses[f.id]; const st=_stRaw?(typeof _stRaw==='object'?_stRaw.status:_stRaw):'pending'; const koalazAt=_stRaw&&typeof _stRaw==='object'?_stRaw.koalaz_at:null;
+    const sc=STATUS_CONFIG[st]||STATUS_CONFIG.pending;
+    const clientAt=v&&v.timestamp?v.timestamp:(_stRaw&&typeof _stRaw==='object'?_stRaw.client_at:null); const ts=clientAt?`<div class="df-timestamp">👤 Cliente respondeu em \${new Date(clientAt).toLocaleString('pt-BR')}</div>`:'';
+    return `<div class="df-card ${sc.border}" id="dfc_${f.id}">
+      <div class="df-card-head">
+        <div class="df-tag"><span>Achado ${i+1}</span><span class="is-badge ${sc.badge}">${sc.label}</span></div>
+        <div class="df-title">${esc(f.title)}</div>
+        ${f.desc?`<div class="df-desc">${escHtml(f.desc)}</div>`:''}
       </div>
-      <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
-      <p style="font-size:11px;color:var(--ink3)">${pct}% concluído</p>`;
-  } catch(e) { showToast('Erro: ' + e.message); }
+      ${v?`<div class="df-card-foot">
+        ${ts}
+        ${v.adjust_type?`<span style="font-size:12px;color:var(--gold);font-weight:600">📋 ${esc(v.adjust_type)}</span>`:''}
+      </div>`:''}
+      ${v&&v.comment?`<div class="comment-block"><div class="cb-lbl" style="color:${st==='agreed'?'var(--green)':st==='adjustment'?'var(--gold)':'var(--red)'}">💬 Comentário do cliente</div><p>${esc(v.comment)}</p></div>`:''}
+      \${koalazAt?`<div style='padding:6px 18px;background:#F5F4EF;border-top:1px solid var(--line);font-size:11px;color:var(--ink3)'>⚙️ Koalaz: \${new Date(koalazAt).toLocaleString("pt-BR")}</div>`:''}
+      ${koalazAt?`<div style="padding:6px 18px;background:#F5F4EF;border-top:1px solid var(--line);font-size:11px;color:var(--ink3)">⚙️ Koalaz: ${new Date(koalazAt).toLocaleString("pt-BR")}</div>`:""}
+      <div class="consultant-actions">
+        <label>Status Koalaz:</label>
+        <select class="status-select" onchange="updateItemStatus('${r.id}','${f.id}',this.value)">
+          ${Object.entries(STATUS_CONFIG).map(([k,v])=>`<option value="${k}"${st===k?' selected':''}>${v.label}</option>`).join('')}
+        </select>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Panel stats
+  const answered=Object.keys(votes).length;
+  const total=findings.length;
+  const pct=total?Math.round((answered/total)*100):0;
+  const countByStatus=(s)=>findings.filter(f=>{const _r=statuses[f.id];return (_r?(typeof _r==='object'?_r.status:_r):'pending')===s;}).length;
+  document.getElementById('detailPanelMeta').innerHTML=`
+    <div class="panel-meta">
+      <p>Respondidos <span>${answered} de ${total}</span></p>
+      <p>Concordâncias <span style="color:var(--green)">${countByStatus('agreed')}</span></p>
+      <p>Discordâncias <span style="color:var(--red)">${countByStatus('disagreed')}</span></p>
+      <p>Ajustes solicitados <span style="color:var(--gold)">${countByStatus('adjustment')}</span></p>
+      <p>Ajustados Koalaz <span style="color:var(--blue)">${countByStatus('adjusted')}</span></p>
+      <p>Aprovados final <span style="color:var(--purple)">${countByStatus('approved')}</span></p>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+    <p style="font-size:11px;color:var(--ink3)">${pct}% respondido pelo cliente</p>`;
 }
 
-async function markSent(id) {
-  await sb.update(id, { status: 'sent' });
-  openDetail(id); showToast('Marcado como enviado!');
+async function updateItemStatus(reportId, findingId, newStatus) {
+  try {
+    const r = await sb.getOne(reportId);
+    const statuses = r.item_statuses || {};
+    statuses[findingId] = { status: newStatus, koalaz_at: new Date().toISOString() };
+    await sb.update(reportId, { item_statuses: statuses });
+    currentReport = await sb.getOne(reportId);
+    renderDetailFindings(currentReport);
+    showToast('Status atualizado!');
+  } catch(e) { showToast('Erro: '+e.message); }
 }
 
+async function approveAllAdjusted() {
+  if (!currentReport) return;
+  if (!confirm('Aprovar todos os itens "Ajustado pela Koalaz"?')) return;
+  const statuses = currentReport.item_statuses || {};
+  let changed = false;
+  (currentReport.findings||[]).forEach(f => {
+    const _s2=statuses[f.id]; const _st2=_s2?(typeof _s2==='object'?_s2.status:_s2):'pending'; if(_st2==='adjusted'){statuses[f.id]={status:'approved',koalaz_at:new Date().toISOString()};changed=true;}
+  });
+  if (!changed) { showToast('Nenhum item "Ajustado" encontrado'); return; }
+  await sb.update(currentReport.id, { item_statuses: statuses });
+  currentReport = await sb.getOne(currentReport.id);
+  renderDetailFindings(currentReport);
+  showToast('Itens aprovados!');
+}
+
+async function markSent(id) { await sb.update(id,{status:'sent'}); openDetail(id); showToast('Enviado!'); }
 async function clearVotes(id) {
-  if (!confirm('Limpar todas as respostas?')) return;
-  await sb.update(id, { votes: {}, status: 'sent', general_comment: '' });
+  if(!confirm('Limpar todas as respostas?'))return;
+  await sb.update(id,{votes:{},item_statuses:{},status:'sent',general_comment:''});
   openDetail(id); showToast('Respostas removidas');
 }
-
-function copyLink() {
-  navigator.clipboard.writeText(document.getElementById('clientLinkInput').value)
-    .then(() => showToast('Link copiado!'));
-}
+function copyLink() { navigator.clipboard.writeText(document.getElementById('clientLinkInput').value).then(()=>showToast('Link copiado!')); }
 
 async function sendClientEmail() {
-  const btn = document.getElementById('sendEmailBtn');
-  const id = btn.getAttribute('data-id');
-  const r = await sb.getOne(id);
-  if (!r || !r.client_email) { showToast('E-mail do cliente não cadastrado'); return; }
-  btn.disabled = true; btn.textContent = 'Enviando...';
-  const link = location.origin + location.pathname + '#review/' + r.id;
+  const btn=document.getElementById('sendEmailBtn');
+  const id=btn.getAttribute('data-id');
+  const r=await sb.getOne(id);
+  if(!r||!r.client_email){showToast('E-mail não cadastrado');return;}
+  btn.disabled=true; btn.textContent='Enviando...';
+  const link=location.origin+location.pathname+'#review/'+r.id;
   try {
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({
-        type: 'client_invite',
-        clientEmail: r.client_email,
-        clientName: r.client,
-        consultantName: r.author || 'Consultor',
-        reportTitle: r.title,
-        context: r.context || '',
-        link
-      })
-    });
-    await sb.update(id, { status: 'sent' });
-    showToast('E-mail enviado para ' + r.client_email + '!');
-    openDetail(id);
-  } catch(e) { showToast('Erro ao enviar: ' + e.message); }
-  finally { btn.disabled = false; btn.textContent = '📧 Enviar por e-mail'; }
+    await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({type:'client_invite',clientEmail:r.client_email,clientName:r.client,consultantName:r.author||'Consultor',reportTitle:r.title,context:r.context||'',link})});
+    await sb.update(id,{status:'sent'});
+    showToast('E-mail enviado!'); openDetail(id);
+  } catch(e){showToast('Erro: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='📧 Enviar por e-mail';}
 }
 
 // ─── CLIENT VIEW ──────────────────────────────────────────────────────────
-let clientReportId = null;
-let clientVotes = {};
-let clientGeneralComment = '';
+let clientReportId=null, clientVotes={}, clientGeneralComment='';
 
 async function loadClientView(id) {
-  showView('viewClient');
-  clientReportId = id;
-  clientVotes = {};
-  clientGeneralComment = '';
-  document.getElementById('clientBar').style.display = 'flex';
+  showView('viewClient'); clientReportId=id; clientVotes={}; clientGeneralComment='';
+  document.getElementById('clientBar').style.display='flex';
   try {
-    const r = await sb.getOne(id);
-    if (!r) {
-      document.getElementById('clientBody').innerHTML = `<div style="text-align:center;padding:72px 20px;color:var(--ink3)"><div style="font-size:44px;margin-bottom:14px">🔍</div><h2 style="font-family:'Fraunces',serif;margin-bottom:7px">Relatório não encontrado</h2><p>O link pode estar incorreto ou o relatório foi removido.</p></div>`;
-      document.getElementById('clientBar').style.display = 'none';
-      return;
+    const r=await sb.getOne(id);
+    if(!r){
+      document.getElementById('clientBody').innerHTML=`<div style="text-align:center;padding:72px 20px;color:var(--ink3)"><div style="font-size:44px;margin-bottom:14px">🔍</div><h2 style="font-family:'Fraunces',serif">Relatório não encontrado</h2></div>`;
+      document.getElementById('clientBar').style.display='none'; return;
     }
-    const body = document.getElementById('clientBody');
-    body.innerHTML = `
+    const body=document.getElementById('clientBody');
+    body.innerHTML=`
       <div class="client-intro">
         <div class="eyebrow">Revisão de Relatório</div>
         <h1>${esc(r.title)}</h1>
-        <div class="sub">${[r.client, r.date].filter(Boolean).join(' · ')}</div>
-        ${r.context ? `<div class="note">📋 ${esc(r.context)}</div>` : ''}
+        <div class="sub">${[r.client,r.date].filter(Boolean).join(' · ')}</div>
+        ${r.context?`<div class="note">📋 ${esc(r.context)}</div>`:''}
       </div>
       <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);margin-bottom:12px">
         ${(r.findings||[]).length} achado${(r.findings||[]).length!==1?'s':''} para revisar
       </div>
       <div id="clientFindings"></div>
-      <div class="general-comment-box" style="margin-top:8px">
+      <div class="general-comment-box">
         <h3>Comentário Geral</h3>
         <p>Quer deixar alguma observação geral sobre o relatório?</p>
         <textarea placeholder="Suas impressões gerais, dúvidas ou sugestões..." oninput="clientGeneralComment=this.value"></textarea>
       </div>`;
-    const cf = document.getElementById('clientFindings');
-    (r.findings||[]).forEach((f,i) => {
-      const card = document.createElement('div');
-      card.className = 'cf-card';
-      card.id = 'cfc_' + f.id;
-      card.innerHTML = `
+    const cf=document.getElementById('clientFindings');
+    (r.findings||[]).forEach((f,i)=>{
+      const card=document.createElement('div');
+      card.className='cf-card'; card.id='cfc_'+f.id;
+      card.innerHTML=`
         <div class="cf-body">
           <div class="cf-tag">Achado ${i+1}</div>
           <div class="cf-title">${esc(f.title)}</div>
-          ${f.desc ? `<div class="cf-desc">${escHtml(f.desc)}</div>` : ''}
+          ${f.desc?`<div class="cf-desc">${escHtml(f.desc)}</div>`:''}
         </div>
-        <div class="cf-actions">
-          <span class="qa">Sua posição:</span>
-          <button class="vote vote-y" id="vy_${f.id}" onclick="clientVote('${f.id}','agree')">✓ Concordo</button>
-          <button class="vote vote-n" id="vn_${f.id}" onclick="clientVote('${f.id}','disagree')">✕ Discordo</button>
-          <span class="cf-badge cb-p" id="badge_${f.id}">Pendente</span>
+        <div class="cf-status-row">
+          <div class="qa">Sua posição neste achado:</div>
+          <button class="svote svote-agree" id="sv_agree_${f.id}" onclick="clientVote('${f.id}','agreed')">✓ Concordo</button>
+          <button class="svote svote-disagree" id="sv_disagree_${f.id}" onclick="clientVote('${f.id}','disagreed')">✕ Discordo</button>
+          <button class="svote svote-adjust" id="sv_adjust_${f.id}" onclick="clientVote('${f.id}','adjustment')">⚡ Solicitar ajuste</button>
+          <span class="cf-badge is-pending" id="badge_${f.id}">Pendente</span>
         </div>
         <div class="cf-comment" id="cmt_${f.id}">
+          <div id="cmt_type_${f.id}" class="cf-adjust-type" style="display:none">
+            <select onchange="updateVoteAdjustType('${f.id}',this.value)">
+              <option value="">Tipo de ajuste...</option>
+              <option>Correção de informação</option>
+              <option>Complemento necessário</option>
+              <option>Revisão de abordagem</option>
+              <option>Ajuste de tom/linguagem</option>
+              <option>Outro</option>
+            </select>
+          </div>
           <div class="cf-comment-label" id="cmt_label_${f.id}">💬 Comentário</div>
-          <textarea placeholder="Adicione um comentário (opcional)..." oninput="updateVoteComment('${f.id}',this.value)"></textarea>
+          <textarea placeholder="Adicione um comentário..." oninput="updateVoteComment('${f.id}',this.value)"></textarea>
         </div>`;
       cf.appendChild(card);
     });
-    document.getElementById('cbTotal').textContent = (r.findings||[]).length;
+    document.getElementById('cbTotal').textContent=(r.findings||[]).length;
     updateClientProgress((r.findings||[]).length);
-  } catch(e) {
-    document.getElementById('clientBody').innerHTML = `<div style="padding:40px;text-align:center;color:var(--red)">Erro ao carregar: ${e.message}</div>`;
-  }
+  } catch(e){document.getElementById('clientBody').innerHTML=`<div style="padding:40px;text-align:center;color:var(--red)">Erro: ${e.message}</div>`;}
 }
 
 function clientVote(fid, choice) {
-  clientVotes[fid] = { vote: choice, comment: clientVotes[fid]?.comment || '' };
-  document.getElementById('vy_'+fid).classList.toggle('on', choice==='agree');
-  document.getElementById('vn_'+fid).classList.toggle('on', choice==='disagree');
-  const card = document.getElementById('cfc_'+fid);
-  card.classList.remove('agreed','disagreed');
-  card.classList.add(choice==='agree'?'agreed':'disagreed');
-  const badge = document.getElementById('badge_'+fid);
-  badge.className = 'cf-badge ' + (choice==='agree'?'cb-y':'cb-n');
-  badge.textContent = choice==='agree'?'✓ Concordou':'✕ Discordou';
-  const cmtEl = document.getElementById('cmt_'+fid);
-  const lblEl = document.getElementById('cmt_label_'+fid);
-  const taEl = cmtEl.querySelector('textarea');
+  clientVotes[fid]=clientVotes[fid]||{vote:choice,comment:'',adjust_type:'',timestamp:new Date().toISOString()};
+  clientVotes[fid].vote=choice;
+  clientVotes[fid].timestamp=new Date().toISOString();
+  ['agreed','disagreed','adjustment'].forEach(c=>{
+    document.getElementById(`sv_${c}_${fid}`).classList.toggle('on',c===choice);
+  });
+  const card=document.getElementById('cfc_'+fid);
+  card.className='cf-card '+{agreed:'s-agreed',disagreed:'s-disagreed',adjustment:'s-adjustment'}[choice];
+  const badge=document.getElementById('badge_'+fid);
+  const bClass={agreed:'is-agreed',disagreed:'is-disagreed',adjustment:'is-adjustment'};
+  badge.className='cf-badge '+bClass[choice];
+  badge.textContent=STATUS_CONFIG[choice].label;
+  const cmtEl=document.getElementById('cmt_'+fid);
+  const lblEl=document.getElementById('cmt_label_'+fid);
+  const typeEl=document.getElementById('cmt_type_'+fid);
+  const taEl=cmtEl.querySelector('textarea');
   cmtEl.classList.add('open');
-  if (choice==='agree') {
-    lblEl.textContent = '💬 Quer adicionar um comentário? (opcional)';
-    lblEl.style.color = 'var(--green)';
-    taEl.style.borderColor = '#A8D5B5';
-    taEl.style.background = 'var(--green-tint)';
+  if(choice==='agreed'){
+    lblEl.textContent='💬 Quer adicionar um comentário? (opcional)';
+    lblEl.style.color='var(--green)';
+    taEl.style.borderColor='#A8D5B5'; taEl.style.background='var(--green-tint)';
+    typeEl.style.display='none';
+  } else if(choice==='disagreed'){
+    lblEl.textContent='💬 Descreva sua discordância (recomendado)';
+    lblEl.style.color='var(--red)';
+    taEl.style.borderColor='#F5D0D0'; taEl.style.background='var(--red-tint)';
+    typeEl.style.display='none';
   } else {
-    lblEl.textContent = '💬 Descreva sua discordância';
-    lblEl.style.color = 'var(--red)';
-    taEl.style.borderColor = '#F5D0D0';
-    taEl.style.background = 'var(--red-tint)';
+    lblEl.textContent='💬 Descreva o ajuste necessário';
+    lblEl.style.color='var(--gold)';
+    taEl.style.borderColor='#E8C870'; taEl.style.background='var(--gold-tint)';
+    typeEl.style.display='block';
   }
-  const total = document.querySelectorAll('.cf-card').length;
-  updateClientProgress(total);
+  updateClientProgress(document.querySelectorAll('.cf-card').length);
 }
-
-function updateVoteComment(fid, val) {
-  if (clientVotes[fid]) clientVotes[fid].comment = val;
-}
-
-function updateClientProgress(total) {
-  const answered = Object.keys(clientVotes).length;
-  document.getElementById('cbAnswered').textContent = answered;
-  document.getElementById('cpText').textContent = `${answered} / ${total}`;
-  const btn = document.getElementById('clientSubmitBtn');
-  btn.disabled = answered < total;
-  btn.style.opacity = answered < total ? '.45' : '1';
+function updateVoteComment(fid,val){if(clientVotes[fid])clientVotes[fid].comment=val;}
+function updateVoteAdjustType(fid,val){if(clientVotes[fid])clientVotes[fid].adjust_type=val;}
+function updateClientProgress(total){
+  const answered=Object.keys(clientVotes).length;
+  document.getElementById('cbAnswered').textContent=answered;
+  document.getElementById('cpText').textContent=`${answered} / ${total}`;
+  const btn=document.getElementById('clientSubmitBtn');
+  btn.disabled=answered<total; btn.style.opacity=answered<total?'.45':'1';
 }
 
 async function submitReview() {
-  const btn = document.getElementById('clientSubmitBtn');
-  btn.disabled = true; btn.textContent = 'Enviando...';
+  const btn=document.getElementById('clientSubmitBtn');
+  btn.disabled=true; btn.textContent='Enviando...';
   try {
-    const r = await sb.getOne(clientReportId);
-    await sb.update(clientReportId, {
-      votes: clientVotes,
-      status: 'done',
-      general_comment: clientGeneralComment,
-      reviewed_at: new Date().toISOString()
-    });
-    // Notify consultant
-    if (r && r.consultant_email) {
-      const agreed = Object.values(clientVotes).filter(v=>v.vote==='agree').length;
-      const disagreed = Object.values(clientVotes).filter(v=>v.vote==='disagree').length;
-      const dashLink = location.origin + location.pathname;
-      fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify({
-          type: 'review_done',
-          consultantEmail: r.consultant_email,
-          clientName: r.client,
-          reportTitle: r.title,
-          agreed, disagreed,
-          generalComment: clientGeneralComment,
-          dashboardLink: dashLink
-        })
-      }).catch(()=>{});
+    const r=await sb.getOne(clientReportId);
+    // Build item_statuses from client votes
+    const statuses={};
+    Object.entries(clientVotes).forEach(([fid,v])=>{statuses[fid]={status:v.vote,client_at:v.timestamp};});
+    await sb.update(clientReportId,{votes:clientVotes,item_statuses:statuses,status:'done',general_comment:clientGeneralComment,reviewed_at:new Date().toISOString()});
+    if(r&&r.consultant_email){
+      const agreed=Object.values(clientVotes).filter(v=>v.vote==='agreed').length;
+      const disagreed=Object.values(clientVotes).filter(v=>v.vote==='disagreed').length;
+      const adjustment=Object.values(clientVotes).filter(v=>v.vote==='adjustment').length;
+      fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({type:'review_done',consultantEmail:r.consultant_email,clientName:r.client,reportTitle:r.title,agreed,disagreed,adjustment,generalComment:clientGeneralComment,dashboardLink:location.origin+location.pathname})}).catch(()=>{});
     }
-    const agreed = Object.values(clientVotes).filter(v=>v.vote==='agree').length;
-    const disagreed = Object.values(clientVotes).filter(v=>v.vote==='disagree').length;
-    document.getElementById('clientBar').style.display = 'none';
-    document.getElementById('clientBody').innerHTML = `
+    const agreed=Object.values(clientVotes).filter(v=>v.vote==='agreed').length;
+    const disagreed=Object.values(clientVotes).filter(v=>v.vote==='disagreed').length;
+    const adjustment=Object.values(clientVotes).filter(v=>v.vote==='adjustment').length;
+    document.getElementById('clientBar').style.display='none';
+    document.getElementById('clientBody').innerHTML=`
       <div class="thankyou">
         <div class="ty-icon">🎉</div>
         <h1>Revisão Enviada!</h1>
-        <p>Sua revisão foi registrada com sucesso. O consultor receberá suas respostas em tempo real.</p>
+        <p>Sua revisão foi registrada. O consultor receberá suas respostas em tempo real.</p>
         <div class="ty-stats">
           <div class="ty-stat"><div class="n g">${agreed}</div><div class="l">Concordâncias</div></div>
           <div class="ty-stat"><div class="n r">${disagreed}</div><div class="l">Discordâncias</div></div>
+          <div class="ty-stat"><div class="n o">${adjustment}</div><div class="l">Ajustes</div></div>
         </div>
         <p style="font-size:12px;color:var(--ink4)">Você pode fechar esta página.</p>
       </div>`;
-  } catch(e) {
-    btn.disabled = false; btn.textContent = 'Enviar revisão →';
-    showToast('Erro ao enviar: ' + e.message);
-  }
+  } catch(e){btn.disabled=false;btn.textContent='Enviar revisão →';showToast('Erro: '+e.message);}
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────
-function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function escHtml(s) { return esc(s).replace(/\n[-\u2022*] */g,'<br>&bull;&nbsp;').replace(/\n/g,'<br>'); }
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('on');
-  setTimeout(() => t.classList.remove('on'), 2800);
-}
-document.getElementById('modalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeModal(); });
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function escHtml(s){return esc(s).replace(/\n[-\u2022*] */g,'<br>&bull;&nbsp;').replace(/\n/g,'<br>');}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2800);}
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
 </script>
 </body>
 </html>
