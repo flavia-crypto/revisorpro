@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koalaz — Projetos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0F0F0D;--ink2:#3D3D38;--ink3:#7A7A72;--ink4:#AEADA5;
+  --line:#E8E6DF;--bg:#F4F2EC;--surface:#FDFCF8;
+  --accent:#1C4532;--accent2:#2D6A4F;--accent-tint:#EAF2EC;
+  --gold:#9A6B00;--gold-tint:#FDF6E3;
+  --red:#B83232;--red-tint:#FDEAEA;
+  --green:#1A6B3C;--green-tint:#EAF5EE;
+  --blue:#1A4A8A;--blue-tint:#EAF0FB;
+  --r:10px;--sh:0 1px 2px rgba(0,0,0,.05),0 4px 20px rgba(0,0,0,.06);
+}
+body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh}
+.view{display:none;min-height:100vh}
+.view.on{display:flex;flex-direction:column;animation:up .35s ease}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* LOGIN */
+#viewLogin{align-items:center;justify-content:center;background:var(--bg)}
+.login-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:44px;width:100%;max-width:400px;box-shadow:var(--sh);text-align:center}
+.login-logo{font-family:'Fraunces',serif;font-size:32px;color:var(--accent);margin-bottom:4px;letter-spacing:-.5px}
+.login-logo em{font-style:italic;opacity:.5}
+.login-sub{color:var(--ink3);font-size:13px;margin-bottom:32px}
+.login-error{background:var(--red-tint);border:1px solid #F5D0D0;border-radius:7px;padding:10px 12px;font-size:13px;color:var(--red);margin-bottom:14px;display:none}
+.login-error.on{display:block}
+
+/* SHELL */
+.shell{display:flex;min-height:100vh}
+.sidebar{width:240px;background:var(--accent);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;height:100vh}
+.sidebar-brand{padding:28px 22px 24px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sidebar-brand .logo{font-family:'Fraunces',serif;font-size:20px;color:#fff;letter-spacing:-.3px}
+.sidebar-brand .logo em{font-style:italic;opacity:.45}
+.sidebar-brand .role{font-size:11px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1px;margin-top:3px}
+.sidebar nav{padding:16px 12px;flex:1}
+.nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;color:rgba(255,255,255,.6);font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;user-select:none}
+.nav-item:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-item.active{background:rgba(255,255,255,.15);color:#fff}
+.nav-icon{font-size:16px;width:20px;text-align:center}
+.sidebar-footer{padding:16px;border-top:1px solid rgba(255,255,255,.08)}
+.sidebar-footer p{font-size:11px;color:rgba(255,255,255,.25);line-height:1.6}
+.main-area{flex:1;overflow-y:auto;background:var(--bg)}
+.topbar{background:var(--surface);border-bottom:1px solid var(--line);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.topbar-title{font-size:15px;font-weight:600}
+.page-body{padding:32px}
+
+/* STATS */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.stat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
+.stat-card .num{font-family:'Fraunces',serif;font-size:36px;line-height:1;margin-bottom:3px}
+.stat-card .lbl{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+.c-green .num{color:var(--green)} .c-gold .num{color:var(--gold)} .c-blue .num{color:var(--blue)}
+
+/* PROJECT CARDS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.project-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--sh);cursor:pointer;transition:all .2s;position:relative}
+.project-card:hover{transform:translateY(-2px);box-shadow:0 4px 24px rgba(0,0,0,.1);border-color:#ccc}
+.project-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+.project-type-badge{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:3px 9px;border-radius:20px;background:var(--accent-tint);color:var(--accent)}
+.project-name{font-family:'Fraunces',serif;font-size:18px;font-weight:500;letter-spacing:-.3px;margin-bottom:4px;line-height:1.3}
+.project-client{font-size:13px;color:var(--ink3);margin-bottom:14px}
+.project-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.project-responsible{font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:4px}
+.project-deadline{font-size:12px;color:var(--ink3)}
+.project-card-actions{position:absolute;top:14px;right:14px;display:flex;gap:4px;opacity:0;transition:opacity .2s}
+.project-card:hover .project-card-actions{opacity:1}
+
+/* STATUS PILLS */
+.pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.pill-briefing{background:var(--gold-tint);color:var(--gold)}
+.pill-active{background:var(--green-tint);color:var(--green)}
+.pill-paused{background:#F0EFE9;color:var(--ink3)}
+.pill-done{background:var(--blue-tint);color:var(--blue)}
+
+/* MODULE TAGS */
+.module-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.module-tag{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg);border:1px solid var(--line);color:var(--ink3)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(28,69,50,.3)}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-ghost{background:transparent;border:1.5px solid var(--line);color:var(--ink2)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+.btn-danger{background:transparent;border:1.5px solid #F5D0D0;color:var(--red)}
+.btn-danger:hover{background:var(--red-tint)}
+.btn-sm{padding:6px 12px;font-size:12px}
+.btn-icon{padding:6px 8px;border-radius:6px}
+
+/* MODAL */
+.overlay{position:fixed;inset:0;background:rgba(15,15,13,.55);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--surface);border-radius:14px;width:100%;max-width:640px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.18);transform:translateY(14px);transition:transform .25s}
+.overlay.open .modal{transform:translateY(0)}
+.modal-head{padding:24px 28px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.modal-head h2{font-family:'Fraunces',serif;font-size:22px;font-weight:500;letter-spacing:-.3px}
+.modal-head p{color:var(--ink3);font-size:13px;margin-top:2px}
+.modal-close{background:var(--bg);border:none;cursor:pointer;width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--ink3);flex-shrink:0;transition:all .2s}
+.modal-close:hover{background:var(--line);color:var(--ink)}
+.modal-body{padding:24px 28px}
+.modal-foot{padding:0 28px 24px;display:flex;justify-content:flex-end;gap:8px}
+
+/* FORM */
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:6px}
+.fg input,.fg textarea,.fg select{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:10px 13px;font-family:'Instrument Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--bg);outline:none;transition:border-color .2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--accent);background:#fff}
+.fg textarea{min-height:80px;resize:vertical}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg-hint{font-size:11px;color:var(--ink4);margin-top:4px}
+.error-state{background:var(--red-tint);border:1px solid #F5D0D0;border-radius:8px;padding:12px 14px;font-size:13px;color:var(--red);margin-bottom:16px;display:none}
+.error-state.on{display:block}
+
+/* MODULE SELECTOR */
+.module-selector{display:flex;flex-direction:column;gap:8px}
+.module-option{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:all .2s;user-select:none}
+.module-option:hover{border-color:var(--accent);background:var(--accent-tint)}
+.module-option.selected{border-color:var(--accent);background:var(--accent-tint)}
+.module-option input[type=checkbox]{width:16px;height:16px;margin-top:2px;flex-shrink:0;accent-color:var(--accent)}
+.module-option-info .module-name{font-weight:600;font-size:14px}
+.module-option-info .module-desc{font-size:12px;color:var(--ink3);margin-top:2px}
+
+/* PROJECT DETAIL */
+.detail-header{background:var(--surface);border-bottom:1px solid var(--line);padding:20px 32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.detail-header-info{flex:1}
+.detail-header h1{font-family:'Fraunces',serif;font-size:24px;font-weight:500;letter-spacing:-.4px}
+.detail-header .meta{font-size:13px;color:var(--ink3);margin-top:3px}
+.detail-tabs{background:var(--surface);border-bottom:1px solid var(--line);padding:0 32px;display:flex;gap:0}
+.tab{padding:14px 20px;font-size:13px;font-weight:600;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-content{display:none;padding:32px}
+.tab-content.active{display:block;animation:up .3s ease}
+
+/* PROJECT INFO CARD */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.info-item{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
+.info-item .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:4px}
+.info-item .value{font-size:14px;font-weight:500;color:var(--ink)}
+
+/* BRIEFING */
+.briefing-section{margin-bottom:28px}
+.briefing-section-title{font-family:'Fraunces',serif;font-size:16px;font-weight:500;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.briefing-section-desc{font-size:13px;color:var(--ink3);margin-bottom:16px}
+.briefing-q{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:8px}
+.briefing-q .q-text{font-size:14px;font-weight:500;margin-bottom:8px}
+.briefing-q textarea,.briefing-q input{width:100%;border:1.5px solid var(--line);border-radius:6px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);outline:none;resize:vertical;min-height:70px;transition:border-color .2s}
+.briefing-q textarea:focus,.briefing-q input:focus{border-color:var(--accent);background:#fff}
+.briefing-q.short textarea{min-height:44px}
+
+/* BRIEFING RESPONSES */
+.response-item{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:8px}
+.response-item .r-question{font-size:12px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.response-item .r-answer{font-size:14px;color:var(--ink);line-height:1.6}
+.response-item .r-answer.empty{color:var(--ink4);font-style:italic}
+
+/* SEND BRIEFING PANEL */
+.send-panel{background:var(--gold-tint);border:1px solid #E8D48A;border-radius:var(--r);padding:20px 22px;margin-bottom:24px}
+.send-panel h3{font-size:15px;font-weight:600;margin-bottom:4px}
+.send-panel p{font-size:13px;color:#7A5200;margin-bottom:14px;line-height:1.6}
+.link-box{display:flex;gap:8px}
+.link-box input{flex:1;border:1.5px solid #E8D48A;border-radius:6px;padding:8px 10px;font-size:12px;color:var(--ink2);background:#fff;font-family:monospace;outline:none;min-width:0}
+.copy-btn{background:var(--accent);border:none;color:#fff;border-radius:6px;padding:0 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap}
+.copy-btn:hover{background:var(--accent2)}
+
+/* CLIENT BRIEFING VIEW */
+#viewBriefing{background:var(--bg)}
+.briefing-top{background:var(--accent);padding:18px 32px}
+.briefing-top .brand{font-family:'Fraunces',serif;font-size:18px;color:#fff;letter-spacing:-.3px}
+.briefing-top .brand em{font-style:italic;opacity:.45}
+.briefing-body{max-width:720px;margin:0 auto;padding:40px 24px 100px}
+.briefing-intro{margin-bottom:36px}
+.briefing-intro h1{font-family:'Fraunces',serif;font-size:28px;font-weight:500;letter-spacing:-.5px;margin-bottom:8px}
+.briefing-intro .welcome{font-size:15px;color:var(--ink2);line-height:1.7;margin-bottom:12px}
+.briefing-intro .note{background:var(--accent-tint);border:1px solid #A8D5B5;border-radius:8px;padding:12px 16px;font-size:13px;color:var(--accent);line-height:1.6}
+.briefing-progress{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin-bottom:28px;display:flex;align-items:center;gap:14px}
+.briefing-progress .pct{font-family:'Fraunces',serif;font-size:22px;font-weight:500;color:var(--accent);flex-shrink:0}
+.briefing-progress .bar-wrap{flex:1}
+.briefing-progress .bar-label{font-size:12px;color:var(--ink3);margin-bottom:5px}
+.briefing-progress .bar{height:5px;background:var(--line);border-radius:10px;overflow:hidden}
+.briefing-progress .bar-fill{height:100%;background:var(--accent);border-radius:10px;transition:width .4s ease}
+.briefing-section-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--sh)}
+.bsc-head{padding:16px 20px;border-bottom:1px solid var(--line);background:#FAFAF8;display:flex;align-items:center;gap:10px}
+.bsc-icon{font-size:20px}
+.bsc-title{font-size:15px;font-weight:600}
+.bsc-desc{font-size:12px;color:var(--ink3);margin-top:1px}
+.bsc-body{padding:16px 20px;display:flex;flex-direction:column;gap:10px}
+.bq{background:var(--bg);border-radius:7px;padding:14px}
+.bq .bq-label{font-size:13px;font-weight:600;margin-bottom:7px;line-height:1.5}
+.bq .bq-optional{font-size:11px;color:var(--ink4);font-weight:400;margin-left:4px}
+.bq textarea,.bq input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:6px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:#fff;outline:none;resize:vertical;min-height:72px;transition:border-color .2s}
+.bq textarea:focus,.bq input[type=text]:focus{border-color:var(--accent)}
+.bq.short textarea{min-height:44px}
+.briefing-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,242,236,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:100}
+.briefing-bar-info{font-size:13px;color:var(--ink3)}
+.briefing-bar-info strong{color:var(--ink)}
+.thankyou{max-width:520px;margin:0 auto;padding:80px 20px;text-align:center}
+.ty-icon{font-size:56px;margin-bottom:20px}
+.thankyou h1{font-family:'Fraunces',serif;font-size:32px;font-weight:500;letter-spacing:-.5px;margin-bottom:10px}
+.thankyou p{color:var(--ink3);font-size:15px;max-width:400px;margin:0 auto 20px;line-height:1.7}
+
+/* MISC */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;color:var(--ink3);gap:14px}
+.spinner{width:32px;height:32px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--ink);color:#fff;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:999;white-space:nowrap}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.empty-state{text-align:center;padding:60px 20px;color:var(--ink3)}
+.empty-state .big{font-size:48px;margin-bottom:14px}
+.empty-state h3{font-family:'Fraunces',serif;font-size:20px;font-weight:500;margin-bottom:6px;color:var(--ink)}
+.section-divider{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+
+@media(max-width:860px){
+  .sidebar{display:none}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .info-grid{grid-template-columns:1fr}
+  .fg-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="view" id="viewLogin">
+  <div class="login-box">
+    <div class="login-logo">koalaz<em>·</em></div>
+    <p class="login-sub">Gestão de Projetos — acesso restrito</p>
+    <div class="login-error" id="loginError">Senha incorreta</div>
+    <div class="fg" style="text-align:left"><label>Senha</label><input type="password" id="loginPass" placeholder="Digite sua senha" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="doLogin()">Entrar →</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="view" id="viewDash">
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="logo">koalaz<em>·projetos</em></div>
+        <div class="role">Painel interno</div>
+      </div>
+      <nav>
+        <div class="nav-item active" onclick="showDashTab()"><span class="nav-icon">◉</span> Todos os projetos</div>
+      </nav>
+      <div class="sidebar-footer">
+        <p>Koalaz · Sistema de Projetos</p>
+        <button onclick="doLogout()" style="background:none;border:none;color:rgba(255,255,255,.3);font-size:11px;cursor:pointer;margin-top:8px;padding:0">Sair</button>
+      </div>
+    </aside>
+    <div class="main-area">
+      <div class="topbar">
+        <div class="topbar-title">Projetos</div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-ghost btn-sm" onclick="renderDash()">↻ Atualizar</button>
+          <button class="btn btn-primary btn-sm" onclick="openNewModal()">＋ Novo Projeto</button>
+        </div>
+      </div>
+      <div class="page-body">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="num" id="statTotal">—</div><div class="lbl">Projetos</div></div>
+          <div class="stat-card c-gold"><div class="num" id="statBriefing">—</div><div class="lbl">Briefing pendente</div></div>
+          <div class="stat-card c-green"><div class="num" id="statActive">—</div><div class="lbl">Em andamento</div></div>
+          <div class="stat-card c-blue"><div class="num" id="statDone">—</div><div class="lbl">Concluídos</div></div>
+        </div>
+        <div class="section-divider">Projetos ativos</div>
+        <div id="projectsGrid" class="projects-grid"><div class="loading"><div class="spinner"></div><span>Carregando...</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT DETAIL -->
+<div class="view" id="viewDetail">
+  <div class="detail-header">
+    <button class="btn btn-ghost btn-sm" onclick="showView('viewDash');renderDash()">← Voltar</button>
+    <div class="detail-header-info">
+      <h1 id="detailName"></h1>
+      <div class="meta" id="detailMeta"></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" id="detailActions"></div>
+  </div>
+  <div class="detail-tabs">
+    <div class="tab active" onclick="switchTab('tabInfo')">📋 Cadastro</div>
+    <div class="tab" onclick="switchTab('tabBriefing')">🎯 Briefing</div>
+  </div>
+  <div class="tab-content active" id="tabInfo">
+    <div id="tabInfoContent"></div>
+  </div>
+  <div class="tab-content" id="tabBriefing">
+    <div id="tabBriefingContent"></div>
+  </div>
+</div>
+
+<!-- CLIENT BRIEFING VIEW -->
+<div class="view" id="viewBriefing">
+  <div class="briefing-top">
+    <div class="brand">koalaz<em>·</em></div>
+  </div>
+  <div class="briefing-body" id="briefingBody"><div class="loading"><div class="spinner"></div><span>Carregando...</span></div></div>
+  <div class="briefing-bar" id="briefingBar">
+    <div class="briefing-bar-info">Responda todos os campos e clique em enviar</div>
+    <button class="btn btn-primary" id="briefingSubmitBtn" onclick="submitBriefing()">Enviar briefing →</button>
+  </div>
+</div>
+
+<!-- MODAL NEW/EDIT PROJECT -->
+<div class="overlay" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h2 id="modalTitle">Novo Projeto</h2><p id="modalSubtitle">Cadastre o projeto e selecione os módulos de briefing</p></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="error-state" id="modalError"></div>
+      <div class="fg-row">
+        <div class="fg"><label>Nome do Projeto *</label><input type="text" id="mName" placeholder="Ex.: Novo site institucional"></div>
+        <div class="fg"><label>Cliente *</label><input type="text" id="mClient" placeholder="Ex.: Machado Lisboa"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>E-mail do Cliente</label><input type="email" id="mClientEmail" placeholder="cliente@empresa.com"></div>
+        <div class="fg"><label>Responsável Koalaz</label><input type="text" id="mResponsible" placeholder="Ex.: Flávia" value="Flávia Azevedo"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label>Tipo de Projeto *</label>
+          <select id="mType" onchange="updateModuleSuggestion()">
+            <option value="">Selecione...</option>
+            <option value="site">Site Estratégico</option>
+            <option value="marca">Marca e Autoridade</option>
+            <option value="conteudo">Conteúdo e Redes Sociais</option>
+            <option value="marketing">Marketing e Receita</option>
+            <option value="completo">Projeto Completo</option>
+          </select>
+        </div>
+        <div class="fg"><label>Prazo Inicial</label><input type="text" id="mDeadline" placeholder="Ex.: Agosto 2025"></div>
+      </div>
+      <div class="fg"><label>Observações internas</label><textarea id="mNotes" placeholder="Contexto interno, particularidades do cliente..."></textarea></div>
+      <div class="fg">
+        <label>Módulos de Briefing</label>
+        <p class="fg-hint" style="margin-bottom:10px">Selecione os módulos que serão incluídos no briefing do cliente</p>
+        <div class="module-selector" id="moduleSelector">
+          <label class="module-option" id="mod_base">
+            <input type="checkbox" value="base" checked onchange="toggleModule(this)">
+            <div class="module-option-info">
+              <div class="module-name">📋 Briefing Base</div>
+              <div class="module-desc">Dados da empresa, contexto, objetivos e público — sempre incluído</div>
+            </div>
+          </label>
+          <label class="module-option" id="mod_site">
+            <input type="checkbox" value="site" onchange="toggleModule(this)">
+            <div class="module-option-info">
+              <div class="module-name">🌐 Site e Presença Digital</div>
+              <div class="module-desc">Objetivo do site, páginas, SEO, referências e integrações</div>
+            </div>
+          </label>
+          <label class="module-option" id="mod_marca">
+            <input type="checkbox" value="marca" onchange="toggleModule(this)">
+            <div class="module-option-info">
+              <div class="module-name">⭐ Marca Pessoal e Autoridade</div>
+              <div class="module-desc">Trajetória, posicionamento, tom de voz e diferenciais</div>
+            </div>
+          </label>
+          <label class="module-option" id="mod_conteudo">
+            <input type="checkbox" value="conteudo" onchange="toggleModule(this)">
+            <div class="module-option-info">
+              <div class="module-name">✍️ Conteúdo e Redes Sociais</div>
+              <div class="module-desc">Temas, linguagem, frequência, aprovações e calendário</div>
+            </div>
+          </label>
+          <label class="module-option" id="mod_marketing">
+            <input type="checkbox" value="marketing" onchange="toggleModule(this)">
+            <div class="module-option-info">
+              <div class="module-name">📈 Marketing e Receita</div>
+              <div class="module-desc">Faturamento, canais de aquisição, conversão e metas</div>
+            </div>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" id="saveBtn" onclick="saveProject()">Salvar projeto</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────────────────────
+const SUPABASE_URL = 'https://uwdirznolbhmazlfiqwf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_pfNIy_2XNnvToiGCzO9wGw_6x-bR9KU';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmt5IVhcaPAg_OEeyHpceZviv4vFSpxKFDP_D5PTHcE--i5beAjg5g3nnobgADtb-9-g/exec';
+const PANEL_PASSWORD = 'koalaz2026';
+
+// ─── BRIEFING QUESTIONS ────────────────────────────────────────────────────
+const MODULES = {
+  base: {
+    icon: '📋', title: 'Briefing Base', desc: 'Informações essenciais sobre sua empresa e projeto',
+    questions: [
+      { id:'b1', text:'Qual é o nome completo da sua empresa ou marca?', short:true },
+      { id:'b2', text:'Como você descreveria sua empresa em poucas palavras?' },
+      { id:'b3', text:'Quais são os responsáveis e decisores deste projeto? (nome, cargo e contato)' },
+      { id:'b4', text:'Qual é o contexto atual da empresa? Como as coisas estão hoje?' },
+      { id:'b5', text:'Qual é o principal objetivo deste projeto?' },
+      { id:'b6', text:'Qual problema ou desafio este projeto precisa resolver?' },
+      { id:'b7', text:'Quem é o seu público prioritário? Descreva com o máximo de detalhes.' },
+      { id:'b8', text:'Quais são seus principais concorrentes ou referências no mercado?' },
+      { id:'b9', text:'Quais canais de comunicação você utiliza atualmente? (site, redes sociais, e-mail...)' },
+      { id:'b10', text:'Você possui materiais institucionais prontos? (logo, fotos, textos, vídeos...)' },
+      { id:'b11', text:'Há alguma urgência ou restrição importante que devemos considerar?' },
+      { id:'b12', text:'Como você saberá que este projeto foi bem-sucedido? Quais são seus critérios de sucesso?' },
+      { id:'b13', text:'Há algum prazo especial ou data sensível que precisamos respeitar?' },
+      { id:'b14', text:'Existe algo que você considera indispensável neste projeto?' },
+      { id:'b15', text:'Há alguma preocupação ou expectativa que a equipe Koalaz precisa considerar desde o início?' },
+    ]
+  },
+  site: {
+    icon: '🌐', title: 'Site e Presença Digital', desc: 'Tudo sobre seu site, identidade online e SEO',
+    questions: [
+      { id:'s1', text:'Qual é o principal objetivo do seu site? (gerar leads, informar, vender, posicionar...)' },
+      { id:'s2', text:'Quais páginas você considera essenciais para o novo site?' },
+      { id:'s3', text:'Quais serviços ou produtos devem ter mais destaque?' },
+      { id:'s4', text:'Quais palavras ou termos seus clientes usam para te encontrar?' },
+      { id:'s5', text:'Você tem sites de referência que admira? Envie links e explique o que gosta.' },
+      { id:'s6', text:'Quais materiais estão disponíveis para o site? (fotos profissionais, vídeos, depoimentos...)' },
+      { id:'s7', text:'Você gostaria de incluir informações sobre a equipe? Quantas pessoas?' },
+      { id:'s8', text:'Quais são os principais diferenciais do seu escritório ou empresa?' },
+      { id:'s9', text:'Você possui cases, resultados ou provas de autoridade que possam ser destacados?' },
+      { id:'s10', text:'Quais são as dúvidas mais frequentes dos seus clientes que o site poderia responder?' },
+      { id:'s11', text:'Há restrições jurídicas, regulatórias ou éticas que o site precisa respeitar?' },
+      { id:'s12', text:'Quais integrações serão necessárias? (WhatsApp, agendamento, formulários, CRM...)' },
+    ]
+  },
+  marca: {
+    icon: '⭐', title: 'Marca Pessoal e Autoridade', desc: 'Posicionamento, reputação e presença como especialista',
+    questions: [
+      { id:'m1', text:'Como você descreveria sua trajetória profissional?' },
+      { id:'m2', text:'Em quais áreas você se considera uma autoridade reconhecida?' },
+      { id:'m3', text:'Quais temas você deseja ocupar na sua comunicação?' },
+      { id:'m4', text:'Quais temas você prefere não abordar publicamente?' },
+      { id:'m5', text:'Quem são os públicos que você deseja alcançar com sua marca pessoal?' },
+      { id:'m6', text:'Como você gostaria de ser percebido? Qual imagem deseja construir?' },
+      { id:'m7', text:'Você tem causas, bandeiras ou posicionamentos que fazem parte da sua identidade?' },
+      { id:'m8', text:'Quais são seus principais diferenciais técnicos ou credenciais?' },
+      { id:'m9', text:'Você tem referências de imagem ou profissionais que admira? Por quê?' },
+      { id:'m10', text:'Há limites éticos, regulatórios ou institucionais que precisamos respeitar na comunicação?' },
+      { id:'m11', text:'Você já teve exposição em mídia? Quais veículos? Há oportunidades que gostaria de explorar?' },
+    ]
+  },
+  conteudo: {
+    icon: '✍️', title: 'Conteúdo e Redes Sociais', desc: 'Estratégia editorial, linguagem e calendário',
+    questions: [
+      { id:'c1', text:'Quais são os temas prioritários para sua comunicação?' },
+      { id:'c2', text:'Há temas que você não quer que apareçam no seu conteúdo?' },
+      { id:'c3', text:'Como você descreveria a linguagem desejada para sua marca? (formal, próxima, técnica, inspiracional...)' },
+      { id:'c4', text:'Qual é a frequência de publicação que você consegue manter?' },
+      { id:'c5', text:'Você tem disponibilidade para gravações de vídeo ou fotos? Com qual frequência?' },
+      { id:'c6', text:'Você possui banco de imagens, vídeos ou materiais institucionais?' },
+      { id:'c7', text:'Como funciona o processo de aprovação de conteúdo na sua empresa?' },
+      { id:'c8', text:'Há datas, eventos ou campanhas importantes no calendário?' },
+      { id:'c9', text:'Quais produtos ou serviços precisam de mais destaque no conteúdo?' },
+      { id:'c10', text:'Quais são as dúvidas mais frequentes do seu público que o conteúdo poderia responder?' },
+      { id:'c11', text:'Quais narrativas ou histórias você quer que sua marca reforce?' },
+    ]
+  },
+  marketing: {
+    icon: '📈', title: 'Marketing e Receita', desc: 'Crescimento, aquisição e performance comercial',
+    questions: [
+      { id:'mk1', text:'Qual é o faturamento atual aproximado? (pode ser em faixas)' },
+      { id:'mk2', text:'Qual é o ticket médio dos seus serviços ou produtos?' },
+      { id:'mk3', text:'Quais são os serviços ou produtos mais lucrativos?' },
+      { id:'mk4', text:'Qual é sua capacidade atual de atendimento?' },
+      { id:'mk5', text:'Como seus clientes chegam até você hoje? Quais são os principais canais de aquisição?' },
+      { id:'mk6', text:'Você sabe sua taxa de conversão de contato para cliente?' },
+      { id:'mk7', text:'Como é a jornada do seu cliente, do primeiro contato à contratação?' },
+      { id:'mk8', text:'Quais são as principais objeções dos clientes antes de contratar?' },
+      { id:'mk9', text:'Como funciona seu atendimento pós-venda? Há CRM ou sistema de acompanhamento?' },
+      { id:'mk10', text:'Você tem estratégia de recompra ou fidelização?' },
+      { id:'mk11', text:'Há sazonalidade no seu negócio? Quais períodos são mais fortes ou fracos?' },
+      { id:'mk12', text:'Quais são suas metas comerciais para os próximos 6 a 12 meses?' },
+    ]
+  }
+};
+
+const PROJECT_TYPE_LABELS = {
+  site:'Site Estratégico', marca:'Marca e Autoridade',
+  conteudo:'Conteúdo e Redes', marketing:'Marketing e Receita', completo:'Projeto Completo'
+};
+
+const STATUS_LABELS = {
+  briefing_pending:'Briefing pendente', briefing_sent:'Briefing enviado',
+  briefing_done:'Briefing respondido', active:'Em andamento', paused:'Pausado', done:'Concluído'
+};
+
+const STATUS_PILLS = {
+  briefing_pending:'pill-briefing', briefing_sent:'pill-briefing',
+  briefing_done:'pill-gold', active:'pill-active', paused:'pill-paused', done:'pill-done'
+};
+
+// ─── LOGIN ─────────────────────────────────────────────────────────────────
+function doLogin() {
+  if (document.getElementById('loginPass').value === PANEL_PASSWORD) {
+    sessionStorage.setItem('kp_auth','1');
+    showView('viewDash'); renderDash();
+  } else {
+    document.getElementById('loginError').classList.add('on');
+    document.getElementById('loginPass').value = '';
+  }
+}
+function doLogout() { sessionStorage.removeItem('kp_auth'); showView('viewLogin'); }
+
+// ─── SUPABASE ──────────────────────────────────────────────────────────────
+const sb = {
+  h:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Prefer':'return=representation'},
+  async getProjects(){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?order=created_at.desc`,{headers:this.h});if(!r.ok)throw new Error(await r.text());return r.json();},
+  async getProject(id){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{headers:this.h});if(!r.ok)throw new Error(await r.text());return (await r.json())[0]||null;},
+  async insertProject(d){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects`,{method:'POST',headers:this.h,body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();},
+  async updateProject(id,d){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{method:'PATCH',headers:this.h,body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();},
+  async deleteProject(id){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{method:'DELETE',headers:this.h});if(!r.ok)throw new Error(await r.text());},
+  async getBriefing(projectId){const r=await fetch(`${SUPABASE_URL}/rest/v1/briefing_responses?project_id=eq.${projectId}`,{headers:this.h});if(!r.ok)throw new Error(await r.text());return (await r.json())[0]||null;},
+  async upsertBriefing(d){const r=await fetch(`${SUPABASE_URL}/rest/v1/briefing_responses`,{method:'POST',headers:{...this.h,'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();}
+};
+
+// ─── ROUTING ───────────────────────────────────────────────────────────────
+function checkRoute() {
+  const hash = location.hash;
+  if (hash.startsWith('#briefing/')) { loadBriefingView(hash.slice(10)); }
+  else { sessionStorage.getItem('kp_auth')==='1'?(showView('viewDash'),renderDash()):showView('viewLogin'); }
+}
+window.addEventListener('hashchange', checkRoute);
+window.addEventListener('load', checkRoute);
+
+function showView(id) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  const bb = document.getElementById('briefingBar');
+  if (bb) bb.style.display = id==='viewBriefing'?'flex':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ─── DASHBOARD ─────────────────────────────────────────────────────────────
+async function renderDash() {
+  document.getElementById('projectsGrid').innerHTML='<div class="loading"><div class="spinner"></div><span>Carregando...</span></div>';
+  try {
+    const projects = await sb.getProjects();
+    document.getElementById('statTotal').textContent=projects.length;
+    document.getElementById('statBriefing').textContent=projects.filter(p=>p.status==='briefing_pending'||p.status==='briefing_sent').length;
+    document.getElementById('statActive').textContent=projects.filter(p=>p.status==='active').length;
+    document.getElementById('statDone').textContent=projects.filter(p=>p.status==='done').length;
+    const grid=document.getElementById('projectsGrid');
+    if(!projects.length){
+      grid.innerHTML='<div class="empty-state"><div class="big">🚀</div><h3>Nenhum projeto ainda</h3><p>Clique em <strong>+ Novo Projeto</strong> para começar</p></div>';
+      return;
+    }
+    grid.innerHTML=projects.map(p=>{
+      const modules=(p.modules||[]).map(m=>`<span class="module-tag">${MODULES[m]?MODULES[m].icon+' '+MODULES[m].title:m}</span>`).join('');
+      const pill=STATUS_PILLS[p.status]||'pill-paused';
+      const label=STATUS_LABELS[p.status]||p.status;
+      return `<div class="project-card" onclick="openDetail('${p.id}')">
+        <div class="project-card-top">
+          <span class="project-type-badge">${PROJECT_TYPE_LABELS[p.project_type]||p.project_type}</span>
+          <span class="pill ${pill}">${label}</span>
+        </div>
+        <div class="project-name">${esc(p.name)}</div>
+        <div class="project-client">👤 ${esc(p.client_name)}</div>
+        <div class="project-meta">
+          ${p.responsible?`<span class="project-responsible">⚙️ ${esc(p.responsible)}</span>`:''}
+          ${p.deadline?`<span class="project-deadline">📅 ${esc(p.deadline)}</span>`:''}
+        </div>
+        ${modules?`<div class="module-tags">${modules}</div>`:''}
+        <div class="project-card-actions" onclick="event.stopPropagation()">
+          <button class="btn btn-ghost btn-sm btn-icon" onclick="editProject('${p.id}')">✏️</button>
+          <button class="btn btn-danger btn-sm btn-icon" onclick="deleteProject('${p.id}')">🗑</button>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e){document.getElementById('projectsGrid').innerHTML=`<div class="empty-state" style="color:var(--red)">Erro: ${e.message}</div>`;}
+}
+
+function showDashTab() { showView('viewDash'); renderDash(); }
+
+// ─── MODAL ─────────────────────────────────────────────────────────────────
+let editingId=null;
+function openNewModal(){
+  editingId=null;
+  document.getElementById('modalTitle').textContent='Novo Projeto';
+  ['mName','mClient','mClientEmail','mDeadline','mNotes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('mResponsible').value='Flávia Azevedo';
+  document.getElementById('mType').value='';
+  document.getElementById('modalError').classList.remove('on');
+  // Reset modules — only base checked
+  document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{
+    cb.checked=cb.value==='base';
+    cb.closest('.module-option').classList.toggle('selected',cb.value==='base');
+  });
+  document.getElementById('modalOverlay').classList.add('open');
+}
+
+async function editProject(id) {
+  try {
+    const p=await sb.getProject(id); if(!p) return;
+    editingId=id;
+    document.getElementById('modalTitle').textContent='Editar Projeto';
+    document.getElementById('mName').value=p.name;
+    document.getElementById('mClient').value=p.client_name;
+    document.getElementById('mClientEmail').value=p.client_email||'';
+    document.getElementById('mResponsible').value=p.responsible||'';
+    document.getElementById('mDeadline').value=p.deadline||'';
+    document.getElementById('mNotes').value=p.notes||'';
+    document.getElementById('mType').value=p.project_type||'';
+    document.getElementById('modalError').classList.remove('on');
+    const mods=p.modules||[];
+    document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{
+      cb.checked=mods.includes(cb.value);
+      cb.closest('.module-option').classList.toggle('selected',mods.includes(cb.value));
+    });
+    document.getElementById('modalOverlay').classList.add('open');
+  } catch(e){showToast('Erro: '+e.message);}
+}
+
+function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
+
+function toggleModule(cb){cb.closest('.module-option').classList.toggle('selected',cb.checked);}
+
+function updateModuleSuggestion(){
+  const type=document.getElementById('mType').value;
+  const suggestions={
+    site:['base','site'], marca:['base','marca'], conteudo:['base','conteudo'],
+    marketing:['base','marketing'], completo:['base','site','marca','conteudo','marketing']
+  };
+  const mods=suggestions[type]||['base'];
+  document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{
+    cb.checked=mods.includes(cb.value);
+    cb.closest('.module-option').classList.toggle('selected',mods.includes(cb.value));
+  });
+}
+
+async function saveProject(){
+  const name=document.getElementById('mName').value.trim();
+  const client=document.getElementById('mClient').value.trim();
+  const type=document.getElementById('mType').value;
+  if(!name||!client||!type){showModalError('Preencha nome, cliente e tipo');return;}
+  const modules=[];
+  document.querySelectorAll('#moduleSelector input[type=checkbox]:checked').forEach(cb=>modules.push(cb.value));
+  const btn=document.getElementById('saveBtn');
+  btn.disabled=true; btn.textContent='Salvando...';
+  try {
+    const payload={name,client_name:client,client_email:document.getElementById('mClientEmail').value.trim(),
+      responsible:document.getElementById('mResponsible').value.trim(),
+      deadline:document.getElementById('mDeadline').value.trim(),
+      notes:document.getElementById('mNotes').value.trim(),
+      project_type:type,modules};
+    if(editingId){await sb.updateProject(editingId,payload);showToast('Projeto atualizado!');}
+    else{payload.id=uid();payload.status='briefing_pending';await sb.insertProject(payload);showToast('Projeto criado!');}
+    closeModal(); renderDash();
+  }catch(e){showModalError('Erro: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='Salvar projeto';}
+}
+
+function showModalError(msg){const el=document.getElementById('modalError');el.textContent=msg;el.classList.add('on');}
+
+async function deleteProject(id){
+  if(!confirm('Excluir este projeto? Esta ação não pode ser desfeita.'))return;
+  try{await sb.deleteProject(id);renderDash();showToast('Projeto excluído');}
+  catch(e){showToast('Erro: '+e.message);}
+}
+
+// ─── DETAIL ────────────────────────────────────────────────────────────────
+let currentProject=null;
+
+async function openDetail(id){
+  showView('viewDetail');
+  try {
+    const p=await sb.getProject(id); if(!p) return;
+    currentProject=p;
+    document.getElementById('detailName').textContent=p.name;
+    document.getElementById('detailMeta').textContent=[p.client_name,PROJECT_TYPE_LABELS[p.project_type],p.responsible].filter(Boolean).join(' · ');
+    document.getElementById('detailActions').innerHTML=`
+      <button class="btn btn-ghost btn-sm" onclick="editProject('${p.id}')">✏️ Editar</button>
+      <select class="btn btn-ghost btn-sm" style="cursor:pointer" onchange="updateStatus('${p.id}',this.value)">
+        ${Object.entries(STATUS_LABELS).map(([k,v])=>`<option value="${k}"${p.status===k?' selected':''}>${v}</option>`).join('')}
+      </select>`;
+    renderInfoTab(p);
+    renderBriefingTab(p);
+  }catch(e){showToast('Erro: '+e.message);}
+}
+
+function switchTab(tabId){
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    const ids=['tabInfo','tabBriefing'];
+    t.classList.toggle('active',ids[i]===tabId);
+  });
+  document.querySelectorAll('.tab-content').forEach(tc=>{tc.classList.remove('active');});
+  document.getElementById(tabId).classList.add('active');
+}
+
+function renderInfoTab(p){
+  document.getElementById('tabInfoContent').innerHTML=`
+    <div class="info-grid">
+      <div class="info-item"><div class="label">Cliente</div><div class="value">${esc(p.client_name)}</div></div>
+      <div class="info-item"><div class="label">E-mail</div><div class="value">${esc(p.client_email||'—')}</div></div>
+      <div class="info-item"><div class="label">Tipo de Projeto</div><div class="value">${PROJECT_TYPE_LABELS[p.project_type]||'—'}</div></div>
+      <div class="info-item"><div class="label">Responsável</div><div class="value">${esc(p.responsible||'—')}</div></div>
+      <div class="info-item"><div class="label">Prazo</div><div class="value">${esc(p.deadline||'—')}</div></div>
+      <div class="info-item"><div class="label">Status</div><div class="value"><span class="pill ${STATUS_PILLS[p.status]||'pill-paused'}">${STATUS_LABELS[p.status]||p.status}</span></div></div>
+    </div>
+    ${p.notes?`<div class="info-item" style="margin-bottom:20px"><div class="label">Observações internas</div><div class="value" style="margin-top:6px;color:var(--ink2);line-height:1.7">${esc(p.notes)}</div></div>`:''}
+    <div class="section-divider">Módulos selecionados</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      ${(p.modules||[]).map(m=>MODULES[m]?`<div style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600">${MODULES[m].icon} ${MODULES[m].title}</div>`:'').join('')}
+    </div>
+    <div style="margin-top:20px;font-size:11px;color:var(--ink3)">Criado em ${new Date(p.created_at).toLocaleDateString('pt-BR')}</div>`;
+}
+
+async function renderBriefingTab(p){
+  const cont=document.getElementById('tabBriefingContent');
+  cont.innerHTML='<div class="loading"><div class="spinner"></div><span>Carregando briefing...</span></div>';
+  const briefing=await sb.getBriefing(p.id);
+  const link=location.origin+location.pathname+'#briefing/'+p.id;
+  let html=`<div class="send-panel">
+    <h3>🔗 Link do briefing para o cliente</h3>
+    <p>Envie este link para <strong>${esc(p.client_name)}</strong> responder o briefing online. Você acompanha as respostas aqui em tempo real.</p>
+    <div class="link-box">
+      <input type="text" value="${link}" readonly>
+      <button class="copy-btn" onclick="copyBriefingLink()">Copiar</button>
+    </div>
+    ${p.client_email?`<button class="btn btn-primary btn-sm" style="margin-top:10px" onclick="sendBriefingEmail('${p.id}')">📧 Enviar por e-mail</button>`:''}
+  </div>`;
+
+  if(briefing&&briefing.submitted_at){
+    html+=`<div style="background:var(--green-tint);border:1px solid #A8D5B5;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--green)">
+      ✅ Briefing respondido em ${new Date(briefing.submitted_at).toLocaleString('pt-BR')}
+    </div>`;
+    const responses=briefing.responses||{};
+    (p.modules||[]).forEach(modKey=>{
+      const mod=MODULES[modKey]; if(!mod) return;
+      html+=`<div class="briefing-section">
+        <div class="briefing-section-title">${mod.icon} ${mod.title}</div>`;
+      mod.questions.forEach(q=>{
+        const ans=responses[q.id];
+        html+=`<div class="response-item">
+          <div class="r-question">${esc(q.text)}</div>
+          <div class="r-answer ${ans?'':'empty'}">${ans?esc(ans):'Não respondido'}</div>
+        </div>`;
+      });
+      html+='</div>';
+    });
+  } else {
+    html+=`<div style="text-align:center;padding:40px;color:var(--ink3)">
+      <div style="font-size:40px;margin-bottom:12px">⏳</div>
+      <p style="font-size:14px">Aguardando o cliente responder o briefing.</p>
+      <p style="font-size:12px;margin-top:6px">As respostas aparecerão aqui assim que forem enviadas.</p>
+    </div>`;
+  }
+  cont.innerHTML=html;
+}
+
+function copyBriefingLink(){
+  if(!currentProject) return;
+  const link=location.origin+location.pathname+'#briefing/'+currentProject.id;
+  navigator.clipboard.writeText(link).then(()=>showToast('Link copiado!'));
+}
+
+async function sendBriefingEmail(projectId){
+  const p=await sb.getProject(projectId);
+  if(!p||!p.client_email){showToast('E-mail não cadastrado');return;}
+  const link=location.origin+location.pathname+'#briefing/'+p.id;
+  try {
+    await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({
+      type:'briefing_invite',
+      clientEmail:p.client_email,
+      clientName:p.client_name,
+      consultantName:p.responsible||'Equipe Koalaz',
+      projectName:p.name,
+      link
+    })});
+    await sb.updateProject(projectId,{status:'briefing_sent'});
+    showToast('E-mail enviado!');
+    openDetail(projectId);
+  }catch(e){showToast('Erro: '+e.message);}
+}
+
+async function updateStatus(id,status){
+  await sb.updateProject(id,{status});
+  if(currentProject&&currentProject.id===id) currentProject.status=status;
+  showToast('Status atualizado!');
+}
+
+// ─── CLIENT BRIEFING ───────────────────────────────────────────────────────
+let briefingProjectId=null, briefingAnswers={};
+
+async function loadBriefingView(projectId){
+  showView('viewBriefing');
+  briefingProjectId=projectId; briefingAnswers={};
+  try {
+    const p=await sb.getProject(projectId);
+    if(!p){
+      document.getElementById('briefingBody').innerHTML='<div style="text-align:center;padding:72px 20px;color:var(--ink3)"><div style="font-size:44px;margin-bottom:14px">🔍</div><h2 style="font-family:Fraunces,serif">Briefing não encontrado</h2></div>';
+      document.getElementById('briefingBar').style.display='none'; return;
+    }
+    // Check if already submitted
+    const existing=await sb.getBriefing(projectId);
+    if(existing&&existing.submitted_at){
+      document.getElementById('briefingBody').innerHTML=`
+        <div class="thankyou">
+          <div class="ty-icon">✅</div>
+          <h1>Briefing já enviado!</h1>
+          <p>Você já respondeu o briefing do projeto <strong>${esc(p.name)}</strong>. Nossa equipe vai entrar em contato em breve para agendar a reunião de trabalho.</p>
+          <p style="font-size:12px;color:var(--ink4)">Enviado em ${new Date(existing.submitted_at).toLocaleString('pt-BR')}</p>
+        </div>`;
+      document.getElementById('briefingBar').style.display='none'; return;
+    }
+    const totalQ=(p.modules||[]).reduce((acc,m)=>acc+(MODULES[m]?MODULES[m].questions.length:0),0)+1;
+    let html=`
+      <div class="briefing-intro">
+        <h1>Olá, ${esc(p.client_name)}! 👋</h1>
+        <p class="welcome">Seja muito bem-vindo(a) à Koalaz! Para iniciarmos o seu projeto <strong>${esc(p.name)}</strong>, preparamos este briefing personalizado. Suas respostas são valiosas — elas vão nos ajudar a preparar a reunião de trabalho e orientar as primeiras decisões estratégicas.</p>
+        <div class="note">💡 Caso você não possua alguma informação, não se preocupe. Responda o que puder e deixe o restante em branco.</div>
+      </div>
+      <div class="briefing-progress">
+        <div class="pct" id="bProgressPct">0%</div>
+        <div class="bar-wrap">
+          <div class="bar-label" id="bProgressLabel">0 de ${totalQ} perguntas respondidas</div>
+          <div class="bar"><div class="bar-fill" id="bProgressBar" style="width:0%"></div></div>
+        </div>
+      </div>`;
+    (p.modules||[]).forEach(modKey=>{
+      const mod=MODULES[modKey]; if(!mod) return;
+      html+=`<div class="briefing-section-card">
+        <div class="bsc-head"><div class="bsc-icon">${mod.icon}</div><div><div class="bsc-title">${mod.title}</div><div class="bsc-desc">${mod.desc}</div></div></div>
+        <div class="bsc-body">`;
+      mod.questions.forEach(q=>{
+        html+=`<div class="bq ${q.short?'short':''}">
+          <div class="bq-label">${esc(q.text)}</div>
+          <textarea placeholder="Sua resposta..." oninput="updateAnswer('${q.id}',this.value,${totalQ})" rows="${q.short?2:4}"></textarea>
+        </div>`;
+      });
+      html+='</div></div>';
+    });
+    // Extra observations
+    html+=`<div class="briefing-section-card" style="margin-top:8px">
+      <div class="bsc-head"><div class="bsc-icon">💬</div><div><div class="bsc-title">Observações finais</div><div class="bsc-desc">Algo que não foi perguntado mas que você considera importante</div></div></div>
+      <div class="bsc-body">
+        <div class="bq"><div class="bq-label">Existe algo que você considera indispensável neste projeto? <span class="bq-optional">(opcional)</span></div><textarea placeholder="Sua resposta..." oninput="updateAnswer('extra1',this.value,${totalQ})"></textarea></div>
+        <div class="bq"><div class="bq-label">Há alguma preocupação ou expectativa que a equipe Koalaz precisa considerar? <span class="bq-optional">(opcional)</span></div><textarea placeholder="Sua resposta..." oninput="updateAnswer('extra2',this.value,${totalQ})"></textarea></div>
+      </div>
+    </div>`;
+    document.getElementById('briefingBody').innerHTML=html;
+    document.getElementById('briefingBar').style.display='flex';
+  }catch(e){document.getElementById('briefingBody').innerHTML=`<div style="padding:40px;text-align:center;color:var(--red)">Erro: ${e.message}</div>`;}
+}
+
+function updateAnswer(qid, val, total){
+  if(val.trim()) briefingAnswers[qid]=val.trim();
+  else delete briefingAnswers[qid];
+  const answered=Object.keys(briefingAnswers).length;
+  const pct=Math.round((answered/total)*100);
+  const pctEl=document.getElementById('bProgressPct');
+  const lblEl=document.getElementById('bProgressLabel');
+  const barEl=document.getElementById('bProgressBar');
+  if(pctEl){pctEl.textContent=pct+'%'; lblEl.textContent=answered+' de '+total+' perguntas respondidas'; barEl.style.width=pct+'%';}
+}
+
+async function submitBriefing(){
+  if(Object.keys(briefingAnswers).length===0){showToast('Responda ao menos uma pergunta antes de enviar');return;}
+  const btn=document.getElementById('briefingSubmitBtn');
+  btn.disabled=true; btn.textContent='Enviando...';
+  try {
+    const p=await sb.getProject(briefingProjectId);
+    await sb.upsertBriefing({id:uid(),project_id:briefingProjectId,responses:briefingAnswers,submitted_at:new Date().toISOString()});
+    await sb.updateProject(briefingProjectId,{status:'briefing_done'});
+    document.getElementById('briefingBar').style.display='none';
+    document.getElementById('briefingBody').innerHTML=`
+      <div class="thankyou">
+        <div class="ty-icon">🎉</div>
+        <h1>Briefing enviado!</h1>
+        <p>Obrigada por compartilhar essas informações! Nossa equipe vai analisar com cuidado tudo o que você descreveu e entrará em contato em breve para agendar a reunião de trabalho.</p>
+        <p>Até lá! 💚</p>
+        <p style="font-size:12px;color:var(--ink4)">— Equipe Koalaz</p>
+      </div>`;
+  }catch(e){btn.disabled=false;btn.textContent='Enviar briefing →';showToast('Erro: '+e.message);}
+}
+
+// ─── HELPERS ───────────────────────────────────────────────────────────────
+function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2800);}
+document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+</script>
+</body>
+</html>
