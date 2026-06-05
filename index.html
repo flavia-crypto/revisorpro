@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RevisorPro</title>
-<!-- v2-supabase-2026 -->
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -605,7 +604,7 @@ async function openDetail(id) {
         <div class="df-card-head">
           <div class="df-tag">Achado ${i+1}</div>
           <div class="df-title">${esc(f.title)}</div>
-          ${f.desc ? `<div class="df-desc">${esc(f.desc)}</div>` : ''}
+          ${f.desc ? `<div class="df-desc">${escHtml(f.desc)}</div>` : ''}
         </div>
         <div class="df-card-foot">
           <p>Posição do cliente:</p>
@@ -694,7 +693,7 @@ async function loadClientView(id) {
         <div class="cf-body">
           <div class="cf-tag">Achado ${i+1}</div>
           <div class="cf-title">${esc(f.title)}</div>
-          ${f.desc ? `<div class="cf-desc">${esc(f.desc)}</div>` : ''}
+          ${f.desc ? `<div class="cf-desc">${escHtml(f.desc)}</div>` : ''}
         </div>
         <div class="cf-actions">
           <span class="qa">Sua posição:</span>
@@ -703,8 +702,8 @@ async function loadClientView(id) {
           <span class="cf-badge cb-p" id="badge_${f.id}">Pendente</span>
         </div>
         <div class="cf-comment" id="cmt_${f.id}">
-          <div class="cf-comment-label">💬 Descreva sua discordância</div>
-          <textarea placeholder="Explique ou forneça contexto adicional..." oninput="clientComment('${f.id}',this.value)"></textarea>
+          <div class="cf-comment-label" id="cmt_label_${f.id}">💬 Comentário</div>
+          <textarea placeholder="Adicione um comentário (opcional)..." oninput="clientComment('${f.id}',this.value)"></textarea>
         </div>`;
       cf.appendChild(card);
     });
@@ -727,7 +726,22 @@ function clientVote(fid, choice) {
   const badge = document.getElementById('badge_'+fid);
   badge.className = 'cf-badge ' + (choice==='agree'?'cb-y':'cb-n');
   badge.textContent = choice==='agree'?'✓ Concordou':'✕ Discordou';
-  document.getElementById('cmt_'+fid).classList.toggle('open', choice==='disagree');
+  // Show comment for both choices
+  const cmtEl = document.getElementById('cmt_'+fid);
+  const lblEl = document.getElementById('cmt_label_'+fid);
+  const taEl = cmtEl.querySelector('textarea');
+  cmtEl.classList.add('open');
+  if (choice==='agree') {
+    lblEl.textContent = '💬 Quer adicionar algum comentário? (opcional)';
+    lblEl.style.color = 'var(--green)';
+    taEl.style.borderColor = '#A8D5B5';
+    taEl.style.background = 'var(--green-tint)';
+  } else {
+    lblEl.textContent = '💬 Descreva sua discordância';
+    lblEl.style.color = 'var(--red)';
+    taEl.style.borderColor = '#F5D0D0';
+    taEl.style.background = 'var(--red-tint)';
+  }
 
   // get total from DOM
   const total = document.querySelectorAll('.cf-card').length;
@@ -777,6 +791,7 @@ async function submitReview() {
 // ─── HELPERS ─────────────────────────────────────────────────────────────
 function uid() { return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escHtml(s) { return esc(s).replace(/\n[-\u2022*] */g,'<br>&bull;&nbsp;').replace(/\n/g,'<br>'); }
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg; t.classList.add('on');
