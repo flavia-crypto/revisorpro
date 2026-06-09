@@ -838,7 +838,7 @@ async function renderDash(){
   try{
     const projects=await sb.getProjects();
     document.getElementById('statTotal').textContent=projects.length;
-    document.getElementById('statBriefing').textContent=projects.filter(p=>p.status.startsWith('briefing')).length;
+    document.getElementById('statBriefing').textContent=projects.filter(p=>p.status==='briefing_pending'||p.status==='briefing_sent'||p.status==='briefing_done').length;
     document.getElementById('statActive').textContent=projects.filter(p=>p.status==='active').length;
     document.getElementById('statDone').textContent=projects.filter(p=>p.status==='done').length;
     const grid=document.getElementById('projectsGrid');
