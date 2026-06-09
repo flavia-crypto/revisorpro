@@ -732,7 +732,7 @@ let editingProjectId=null;
 function openNewProjectModal(){
   editingProjectId=null;
   document.getElementById('modalProjectTitle').textContent='Novo Projeto';
-  ['mName','mClient','mClientEmail','mDeadline','mNotes'].forEach(id=>document.getElementById(id).value='');
+  ['mName','mClient','mClientEmail','mClientPassword','mDeadline','mNotes'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('mResponsible').value='Flávia Azevedo';
   document.getElementById('mType').value='';
   document.getElementById('mStatus').value='briefing_pending';
