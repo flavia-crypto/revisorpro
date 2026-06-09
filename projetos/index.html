@@ -598,79 +598,127 @@ const STATUS_CONFIG={
 
 
 // ─── DELIVERY TEMPLATES ────────────────────────────────────────────────────
+const CHANNELS = ['Instagram','Facebook','LinkedIn','Blog post','WhatsApp','TikTok','YouTube','E-mail'];
+const AD_PLATFORMS = ['Meta Ads','Google Ads','TikTok Ads','LinkedIn Ads','YouTube Ads'];
+
 const DELIVERY_TEMPLATES = {
   site: [
-    { label: 'Diagnóstico estratégico', findings: [
+    { label: 'Diagnóstico estratégico', itemLabel: 'Achado', fields: ['title','desc'], items: [
       { title: 'Posicionamento de mercado', desc: '' },
       { title: 'Posicionamento de comunicação', desc: '' },
       { title: 'Proposta de reposicionamento', desc: '' },
       { title: 'Objetivos de negócio', desc: '' }
     ]},
-    { label: 'Arquitetura do site', findings: [
+    { label: 'Arquitetura do site', itemLabel: 'Seção', fields: ['title','desc'], items: [
       { title: 'Estrutura de páginas', desc: '' },
       { title: 'Hierarquia de conteúdo', desc: '' },
       { title: 'Chamadas para ação (CTAs)', desc: '' }
     ]},
-    { label: 'Textos do site', findings: [
+    { label: 'Textos do site', itemLabel: 'Seção', fields: ['title','desc'], items: [
       { title: 'Home', desc: '' },
       { title: 'Sobre', desc: '' },
       { title: 'Serviços', desc: '' },
       { title: 'Contato', desc: '' }
     ]},
-    { label: 'Validação de termos (SEO)', findings: [
+    { label: 'Validação de termos (SEO)', itemLabel: 'Achado', fields: ['title','desc'], items: [
       { title: 'Termos principais', desc: '' },
       { title: 'Termos secundários', desc: '' }
+    ]},
+    { label: 'Relatório mensal', itemLabel: 'Indicador', fields: ['title','desc'], items: [
+      { title: 'Sessões no site', desc: '' },
+      { title: 'Taxa de conversão', desc: '' },
+      { title: 'Palavras-chave em destaque', desc: '' },
+      { title: 'Próximos passos', desc: '' }
     ]}
   ],
   conteudo: [
-    { label: 'Linha editorial', findings: [
+    { label: 'Linha editorial', itemLabel: 'Ponto', fields: ['title','desc'], items: [
       { title: 'Pilares de conteúdo', desc: '' },
       { title: 'Tom de voz', desc: '' },
       { title: 'Temas prioritários', desc: '' },
-      { title: 'Temas a evitar', desc: '' }
+      { title: 'Temas a evitar', desc: '' },
+      { title: 'Referências de estilo', desc: '' }
     ]},
-    { label: 'Calendário editorial', findings: [
-      { title: 'Janeiro', desc: '' },
-      { title: 'Fevereiro', desc: '' },
-      { title: 'Março', desc: '' }
+    { label: 'Calendário editorial', itemLabel: 'Item', fields: ['title','channel','format','date','desc','ref'], items: [
+      { title: 'Post 1', channel: '', format: '', date: '', desc: '', ref: '' },
+      { title: 'Post 2', channel: '', format: '', date: '', desc: '', ref: '' },
+      { title: 'Post 3', channel: '', format: '', date: '', desc: '', ref: '' }
     ]},
-    { label: 'Aprovação de posts', findings: [
-      { title: 'Post 1', desc: 'Cole o texto aqui' },
-      { title: 'Post 2', desc: 'Cole o texto aqui' },
-      { title: 'Post 3', desc: 'Cole o texto aqui' }
+    { label: 'Aprovação de posts', itemLabel: 'Item', fields: ['title','channel','date','desc','ref'], items: [
+      { title: 'Post 1', channel: '', date: '', desc: '', ref: '' },
+      { title: 'Post 2', channel: '', date: '', desc: '', ref: '' },
+      { title: 'Post 3', channel: '', date: '', desc: '', ref: '' }
     ]},
-    { label: 'Aprovação de artes gráficas', findings: [
-      { title: 'Arte 1', desc: '' },
-      { title: 'Arte 2', desc: '' },
-      { title: 'Arte 3', desc: '' }
+    { label: 'Aprovação de artes gráficas', itemLabel: 'Peça', fields: ['title','channel','date','desc'], items: [
+      { title: 'Arte 1', channel: '', date: '', desc: '' },
+      { title: 'Arte 2', channel: '', date: '', desc: '' },
+      { title: 'Arte 3', channel: '', date: '', desc: '' }
+    ]},
+    { label: 'Roteiro de vídeo/Reels', itemLabel: 'Cena', fields: ['title','channel','date','desc','ref'], items: [
+      { title: 'Abertura', channel: '', date: '', desc: '', ref: '' },
+      { title: 'Desenvolvimento', channel: '', date: '', desc: '', ref: '' },
+      { title: 'CTA final', channel: '', date: '', desc: '', ref: '' }
+    ]},
+    { label: 'Relatório mensal', itemLabel: 'Indicador', fields: ['title','channel','desc'], items: [
+      { title: 'Alcance', channel: '', desc: '' },
+      { title: 'Engajamento', channel: '', desc: '' },
+      { title: 'Crescimento de seguidores', channel: '', desc: '' },
+      { title: 'Posts de melhor desempenho', channel: '', desc: '' },
+      { title: 'Próximos passos', channel: '', desc: '' }
     ]}
   ],
   marca: [
-    { label: 'Posicionamento da marca', findings: [
+    { label: 'Posicionamento da marca', itemLabel: 'Ponto', fields: ['title','desc'], items: [
       { title: 'Proposta de valor', desc: '' },
       { title: 'Público-alvo', desc: '' },
       { title: 'Diferenciais', desc: '' },
-      { title: 'Tom de voz', desc: '' }
+      { title: 'Tom de voz', desc: '' },
+      { title: 'Promessa da marca', desc: '' }
     ]},
-    { label: 'Identidade visual', findings: [
-      { title: 'Paleta de cores', desc: '' },
-      { title: 'Tipografia', desc: '' },
-      { title: 'Logotipo', desc: '' }
+    { label: 'Identidade visual', itemLabel: 'Elemento', fields: ['title','desc','ref'], items: [
+      { title: 'Paleta de cores', desc: '', ref: '' },
+      { title: 'Tipografia', desc: '', ref: '' },
+      { title: 'Logotipo', desc: '', ref: '' },
+      { title: 'Elementos gráficos', desc: '', ref: '' }
+    ]},
+    { label: 'Relatório mensal', itemLabel: 'Indicador', fields: ['title','desc'], items: [
+      { title: 'Percepção de marca', desc: '' },
+      { title: 'Menções e autoridade', desc: '' },
+      { title: 'Próximos passos', desc: '' }
     ]}
   ],
   marketing: [
-    { label: 'Estratégia de aquisição', findings: [
+    { label: 'Estratégia de aquisição', itemLabel: 'Ponto', fields: ['title','desc'], items: [
       { title: 'Canais prioritários', desc: '' },
       { title: 'Funil de conversão', desc: '' },
-      { title: 'Metas e KPIs', desc: '' }
+      { title: 'Metas e KPIs', desc: '' },
+      { title: 'Orçamento sugerido', desc: '' }
     ]},
-    { label: 'Campanha', findings: [
-      { title: 'Conceito da campanha', desc: '' },
-      { title: 'Peças criativas', desc: '' },
-      { title: 'Segmentação', desc: '' }
+    { label: 'Campanha', itemLabel: 'Peça', fields: ['title','platform','date','desc','ref'], items: [
+      { title: 'Peça 1', platform: '', date: '', desc: '', ref: '' },
+      { title: 'Peça 2', platform: '', date: '', desc: '', ref: '' },
+      { title: 'Peça 3', platform: '', date: '', desc: '', ref: '' }
+    ]},
+    { label: 'Relatório mensal', itemLabel: 'Indicador', fields: ['title','platform','desc'], items: [
+      { title: 'Investimento total', platform: '', desc: '' },
+      { title: 'Alcance', platform: '', desc: '' },
+      { title: 'Cliques e conversões', platform: '', desc: '' },
+      { title: 'CPA (Custo por aquisição)', platform: '', desc: '' },
+      { title: 'Próximos passos', platform: '', desc: '' }
+    ]}
+  ],
+  completo: [
+    { label: 'Diagnóstico estratégico', itemLabel: 'Achado', fields: ['title','desc'], items: [
+      { title: 'Posicionamento de mercado', desc: '' },
+      { title: 'Posicionamento de comunicação', desc: '' },
+      { title: 'Objetivos de negócio', desc: '' }
     ]}
   ]
 };
+
+// Get item label for current template
+let currentItemLabel = 'Achado';
+
 const PROJECT_TYPE_LABELS={site:'Site Estratégico',marca:'Marca e Autoridade',conteudo:'Conteúdo e Redes',marketing:'Marketing e Receita',completo:'Projeto Completo'};
 const STATUS_LABELS={briefing_pending:'Briefing pendente',briefing_sent:'Briefing enviado',briefing_done:'Briefing respondido',briefing_na:'Briefing n/a',active:'Em andamento',paused:'Pausado',done:'Concluído'};
 const STATUS_PILLS={briefing_pending:'pill-briefing',briefing_sent:'pill-briefing',briefing_done:'pill-briefing',briefing_na:'pill-paused',active:'pill-active',paused:'pill-paused',done:'pill-done'};
@@ -999,35 +1047,71 @@ async function openNewApprovalModal(projectId){
     wrap.style.display = 'none';
     sel.innerHTML = '';
   }
-  addApprovalFinding();addApprovalFinding();
+  currentItemLabel = 'Achado';
+  addApprovalFinding('','',[], ['title','desc']);
+  addApprovalFinding('','',[], ['title','desc']);
   document.getElementById('modalApproval').classList.add('open');
 }
-function addApprovalFinding(title='',desc='',files=[]){
+function addApprovalFinding(title='',desc='',files=[],fields=['title','desc']){
   const div=document.createElement('div');div.className='finding-card';
   const fcId='fc_'+Date.now()+'_'+Math.random().toString(36).slice(2,5);
   div.dataset.fcid=fcId;
-  div.innerHTML=`<div class="fc-num">${document.getElementById('approvalFindings').children.length+1}</div>
-    <input type="text" placeholder="Título do achado *" value="${esc(title)}" data-field="title">
-    <textarea placeholder="Descrição (opcional) — use Enter para listas e parágrafos" data-field="desc">${esc(desc)}</textarea>
-    <div class="file-upload-area" onclick="document.getElementById('fu_${fcId}').click()">
-      <input type="file" id="fu_${fcId}" multiple accept="image/*,.pdf" onchange="handleFindingFiles(this,'${fcId}')">
-      <div class="file-upload-label">📎 Anexar imagens ou PDFs</div>
-    </div>
-    <div class="file-list" id="fl_${fcId}"></div>
-    <button class="fc-remove" onclick="this.closest('.finding-card').remove();renumberAF()">✕</button>`;
+  div.dataset.fields=JSON.stringify(fields);
+  const lbl = currentItemLabel || 'Achado';
+  const num = document.getElementById('approvalFindings').children.length+1;
+  let extraFields = '';
+  if(fields.includes('channel')) {
+    extraFields += '<div style="margin-bottom:7px"><label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);display:block;margin-bottom:4px">Canal</label>' +
+      '<select data-field="channel" style="width:100%;border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;font-family:inherit;font-size:13px;background:var(--bg);outline:none">' +
+      '<option value="">Selecione o canal...</option>' +
+      CHANNELS.map(c=>'<option>'+c+'</option>').join('') + '</select></div>';
+  }
+  if(fields.includes('platform')) {
+    extraFields += '<div style="margin-bottom:7px"><label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);display:block;margin-bottom:4px">Plataforma</label>' +
+      '<select data-field="platform" style="width:100%;border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;font-family:inherit;font-size:13px;background:var(--bg);outline:none">' +
+      '<option value="">Selecione a plataforma...</option>' +
+      AD_PLATFORMS.map(p=>'<option>'+p+'</option>').join('') + '</select></div>';
+  }
+  if(fields.includes('format')) {
+    extraFields += '<div style="margin-bottom:7px"><label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);display:block;margin-bottom:4px">Formato</label>' +
+      '<select data-field="format" style="width:100%;border:1.5px solid var(--line);border-radius:7px;padding:8px 10px;font-family:inherit;font-size:13px;background:var(--bg);outline:none">' +
+      '<option value="">Selecione o formato...</option>' +
+      ['Feed','Stories','Reels','Carrossel','Vídeo','Live','Newsletter','Artigo'].map(f=>'<option>'+f+'</option>').join('') + '</select></div>';
+  }
+  if(fields.includes('date')) {
+    extraFields += '<div style="margin-bottom:7px"><label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);display:block;margin-bottom:4px">📅 Data prevista</label>' +
+      '<input type="text" data-field="date" placeholder="Ex.: 15/07/2025" style="width:100%;border:1.5px solid var(--accent);border-radius:7px;padding:9px 12px;font-family:inherit;font-size:13px;background:#EAF2EC;outline:none"></div>';
+  }
+  if(fields.includes('ref')) {
+    extraFields += '<div style="margin-bottom:7px"><label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);display:block;margin-bottom:4px">🔗 Link de referência</label>' +
+      '<input type="text" data-field="ref" placeholder="Cole um link de referência ou exemplo..." style="width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 12px;font-family:inherit;font-size:13px;background:var(--bg);outline:none"></div>';
+  }
+  div.innerHTML='<div class="fc-num">'+num+'</div>' +
+    '<input type="text" placeholder="Título do '+lbl.toLowerCase()+' *" value="'+esc(title)+'" data-field="title">' +
+    extraFields +
+    (fields.includes('desc') ? '<textarea placeholder="Descrição, texto ou observações..." data-field="desc">'+esc(desc)+'</textarea>' : '') +
+    '<div class="file-upload-area" id="fua_'+fcId+'" style="border:1.5px dashed var(--line);border-radius:7px;padding:12px;margin-top:8px;text-align:center;cursor:pointer;background:var(--bg)">' +
+    '<input type="file" id="fu_'+fcId+'" multiple accept="image/*,.pdf" style="display:none" onchange="handleFindingFiles(this,this.id.slice(3))">' +
+    '<div class="file-upload-label" onclick="document.getElementById(\'fu_'+fcId+'\').click()">📎 Anexar imagens ou PDFs</div></div>' +
+    '<div class="file-list" id="fl_'+fcId+'"></div>' +
+    '<button style="position:absolute;top:10px;right:10px;background:none;border:none;cursor:pointer;font-size:15px" onclick="this.closest(\'.finding-card\').remove();renumberAF()">✕</button>';
   if(files&&files.length){files.forEach(f=>renderFileItem(fcId,f));}
   document.getElementById('approvalFindings').appendChild(div);renumberAF();
 }
 
 function applyDeliveryTemplate(idx) {
-  if (!idx && idx !== 0) { return; }
+  if (idx === '' || idx === null || idx === undefined) return;
   const wrap = document.getElementById('templateSelectorWrap');
   const templates = JSON.parse(wrap.dataset.templates || '[]');
   const template = templates[parseInt(idx)];
   if (!template) return;
   document.getElementById('approvalFindings').innerHTML = '';
   document.getElementById('aTitle').value = template.label;
-  template.findings.forEach(f => addApprovalFinding(f.title, f.desc));
+  currentItemLabel = template.itemLabel || 'Achado';
+  // Update modal subtitle
+  document.querySelector('#modalApproval .modal-head p').textContent = 'Defina os ' + currentItemLabel.toLowerCase() + 's que o cliente irá revisar';
+  const items = template.items || template.findings || [];
+  items.forEach(f => addApprovalFinding(f.title, f.desc || '', [], template.fields || ['title','desc']));
 }
 function renumberAF(){document.querySelectorAll('#approvalFindings .fc-num').forEach((el,i)=>el.textContent=i+1);}
 async function saveApproval(){
@@ -1096,6 +1180,13 @@ function renderApprovalFindings(a){
         <div class="df-tag"><span>Achado ${i+1}</span><span class="is-badge ${sc.badge}">${sc.label}</span></div>
         <div class="df-title">${esc(f.title)}</div>
         ${f.desc?`<div class="df-desc">${escHtml(f.desc)}</div>`:''}
+        ${(f.channel||f.platform||f.date||f.ref)?`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
+          ${f.channel?`<span style="font-size:12px;background:var(--blue-tint);color:var(--blue);padding:3px 9px;border-radius:20px;font-weight:600">📱 ${esc(f.channel)}</span>`:''}
+          ${f.platform?`<span style="font-size:12px;background:var(--purple-tint);color:var(--purple);padding:3px 9px;border-radius:20px;font-weight:600">🎯 ${esc(f.platform)}</span>`:''}
+          ${f.format?`<span style="font-size:12px;background:var(--accent-tint);color:var(--accent);padding:3px 9px;border-radius:20px;font-weight:600">🎬 ${esc(f.format)}</span>`:''}
+          ${f.date?`<span style="font-size:12px;background:var(--gold-tint);color:var(--gold);padding:3px 9px;border-radius:20px;font-weight:600">📅 ${esc(f.date)}</span>`:''}
+          ${f.ref?`<a href="${esc(f.ref)}" target="_blank" style="font-size:12px;color:var(--accent);padding:3px 9px;border-radius:20px;background:var(--accent-tint);font-weight:600;text-decoration:none">🔗 Referência</a>`:''}
+        </div>`:''}
       </div>
       ${clientAt||v&&v.adjust_type?`<div class="df-card-foot">
         ${clientAt?`<div class="df-timestamp">👤 Cliente: ${new Date(clientAt).toLocaleString('pt-BR')}</div>`:''}
@@ -1251,6 +1342,13 @@ async function loadApprovalClientView(id){
         '<div class="cf-body">',
           '<div class="cf-tag">Achado '+(i+1)+'</div>',
           '<div class="cf-title">'+esc(f.title)+'</div>',
+          (f.channel||f.platform||f.date||f.ref) ? '<div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0">' +
+            (f.channel?'<span style="font-size:11px;background:var(--blue-tint);color:var(--blue);padding:2px 8px;border-radius:20px;font-weight:600">📱 '+esc(f.channel)+'</span>':'') +
+            (f.platform?'<span style="font-size:11px;background:var(--purple-tint);color:var(--purple);padding:2px 8px;border-radius:20px;font-weight:600">🎯 '+esc(f.platform)+'</span>':'') +
+            (f.format?'<span style="font-size:11px;background:var(--accent-tint);color:var(--accent);padding:2px 8px;border-radius:20px;font-weight:600">🎬 '+esc(f.format)+'</span>':'') +
+            (f.date?'<span style="font-size:11px;background:var(--gold-tint);color:var(--gold);padding:2px 8px;border-radius:20px;font-weight:600">📅 '+esc(f.date)+'</span>':'') +
+            (f.ref?'<a href="'+esc(f.ref)+'" target="_blank" style="font-size:11px;color:var(--accent);padding:2px 8px;border-radius:20px;background:var(--accent-tint);font-weight:600;text-decoration:none">🔗 Ref.</a>':'') +
+            '</div>' : '',
           f.desc ? '<div class="cf-desc">'+escHtml(f.desc)+'</div>' : '',
         '</div>',
         filesHtml,
@@ -1486,12 +1584,17 @@ async function collectFindingsWithFiles() {
   const findings = [];
   const cards = document.querySelectorAll('#approvalFindings .finding-card');
   for (const card of cards) {
-    const t = card.querySelector('[data-field="title"]').value.trim();
-    const d = card.querySelector('[data-field="desc"]').value.trim();
-    if (!t) continue;
+    const t = card.querySelector('[data-field="title"]');
+    if (!t || !t.value.trim()) continue;
     const fcId = card.dataset.fcid;
     const fileUrls = fcId ? await uploadFindingFiles(fcId) : [];
-    findings.push({ id: uid(), title: t, desc: d, files: fileUrls });
+    const finding = { id: uid(), title: t.value.trim(), files: fileUrls };
+    // Collect all extra fields
+    ['desc','channel','platform','format','date','ref'].forEach(field => {
+      const el = card.querySelector('[data-field="'+field+'"]');
+      if (el) finding[field] = el.value.trim();
+    });
+    findings.push(finding);
   }
   return findings;
 }
