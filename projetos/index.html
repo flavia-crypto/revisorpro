@@ -15,13 +15,13 @@
   --red:#B83232;--red-tint:#FDEAEA;
   --green:#1A6B3C;--green-tint:#EAF5EE;
   --blue:#1A4A8A;--blue-tint:#EAF0FB;
+  --purple:#5A2D8A;--purple-tint:#F0EAF9;
   --r:10px;--sh:0 1px 2px rgba(0,0,0,.05),0 4px 20px rgba(0,0,0,.06);
 }
 body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.6;min-height:100vh}
 .view{display:none;min-height:100vh}
 .view.on{display:flex;flex-direction:column;animation:up .35s ease}
 @keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
 /* LOGIN */
 #viewLogin{align-items:center;justify-content:center;background:var(--bg)}
 .login-box{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:44px;width:100%;max-width:400px;box-shadow:var(--sh);text-align:center}
@@ -30,7 +30,6 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .login-sub{color:var(--ink3);font-size:13px;margin-bottom:32px}
 .login-error{background:var(--red-tint);border:1px solid #F5D0D0;border-radius:7px;padding:10px 12px;font-size:13px;color:var(--red);margin-bottom:14px;display:none}
 .login-error.on{display:block}
-
 /* SHELL */
 .shell{display:flex;min-height:100vh}
 .sidebar{width:240px;background:var(--accent);display:flex;flex-direction:column;flex-shrink:0;position:sticky;top:0;height:100vh}
@@ -49,14 +48,12 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .topbar{background:var(--surface);border-bottom:1px solid var(--line);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
 .topbar-title{font-size:15px;font-weight:600}
 .page-body{padding:32px}
-
 /* STATS */
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
 .stat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh)}
 .stat-card .num{font-family:'Fraunces',serif;font-size:36px;line-height:1;margin-bottom:3px}
 .stat-card .lbl{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
-.c-green .num{color:var(--green)} .c-gold .num{color:var(--gold)} .c-blue .num{color:var(--blue)}
-
+.c-green .num{color:var(--green)}.c-gold .num{color:var(--gold)}.c-blue .num{color:var(--blue)}
 /* PROJECT CARDS */
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
 .project-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;box-shadow:var(--sh);cursor:pointer;transition:all .2s;position:relative}
@@ -66,22 +63,26 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .project-name{font-family:'Fraunces',serif;font-size:18px;font-weight:500;letter-spacing:-.3px;margin-bottom:4px;line-height:1.3}
 .project-client{font-size:13px;color:var(--ink3);margin-bottom:14px}
 .project-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.project-responsible{font-size:12px;color:var(--ink3);display:flex;align-items:center;gap:4px}
-.project-deadline{font-size:12px;color:var(--ink3)}
 .project-card-actions{position:absolute;top:14px;right:14px;display:flex;gap:4px;opacity:0;transition:opacity .2s}
 .project-card:hover .project-card-actions{opacity:1}
-
-/* STATUS PILLS */
+.module-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.module-tag{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg);border:1px solid var(--line);color:var(--ink3)}
+/* PILLS */
 .pill{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px}
 .pill-briefing{background:var(--gold-tint);color:var(--gold)}
 .pill-active{background:var(--green-tint);color:var(--green)}
 .pill-paused{background:#F0EFE9;color:var(--ink3)}
 .pill-done{background:var(--blue-tint);color:var(--blue)}
-
-/* MODULE TAGS */
-.module-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
-.module-tag{font-size:11px;padding:2px 8px;border-radius:4px;background:var(--bg);border:1px solid var(--line);color:var(--ink3)}
-
+.pill-draft{background:#F0EFE9;color:var(--ink3)}
+.pill-sent{background:var(--gold-tint);color:var(--gold)}
+/* ITEM STATUS */
+.is-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap}
+.is-pending{background:#F0EFE9;color:var(--ink3)}
+.is-agreed{background:var(--green-tint);color:var(--green)}
+.is-disagreed{background:var(--red-tint);color:var(--red)}
+.is-adjustment{background:var(--gold-tint);color:var(--gold)}
+.is-adjusted{background:var(--blue-tint);color:var(--blue)}
+.is-approved{background:var(--purple-tint);color:var(--purple)}
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;white-space:nowrap}
 .btn-primary{background:var(--accent);color:#fff}
@@ -91,9 +92,10 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 .btn-danger{background:transparent;border:1.5px solid #F5D0D0;color:var(--red)}
 .btn-danger:hover{background:var(--red-tint)}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-purple:hover{opacity:.9}
 .btn-sm{padding:6px 12px;font-size:12px}
 .btn-icon{padding:6px 8px;border-radius:6px}
-
 /* MODAL */
 .overlay{position:fixed;inset:0;background:rgba(15,15,13,.55);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
 .overlay.open{opacity:1;pointer-events:all}
@@ -106,7 +108,6 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .modal-close:hover{background:var(--line);color:var(--ink)}
 .modal-body{padding:24px 28px}
 .modal-foot{padding:0 28px 24px;display:flex;justify-content:flex-end;gap:8px}
-
 /* FORM */
 .fg{margin-bottom:18px}
 .fg label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:6px}
@@ -117,75 +118,115 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .fg-hint{font-size:11px;color:var(--ink4);margin-top:4px}
 .error-state{background:var(--red-tint);border:1px solid #F5D0D0;border-radius:8px;padding:12px 14px;font-size:13px;color:var(--red);margin-bottom:16px;display:none}
 .error-state.on{display:block}
-
 /* MODULE SELECTOR */
 .module-selector{display:flex;flex-direction:column;gap:8px}
 .module-option{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:all .2s;user-select:none}
-.module-option:hover{border-color:var(--accent);background:var(--accent-tint)}
-.module-option.selected{border-color:var(--accent);background:var(--accent-tint)}
+.module-option:hover,.module-option.selected{border-color:var(--accent);background:var(--accent-tint)}
 .module-option input[type=checkbox]{width:16px;height:16px;margin-top:2px;flex-shrink:0;accent-color:var(--accent)}
 .module-option-info .module-name{font-weight:600;font-size:14px}
 .module-option-info .module-desc{font-size:12px;color:var(--ink3);margin-top:2px}
-
-/* PROJECT DETAIL */
+/* FINDING BUILDER */
+.finding-card{background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:13px;margin-bottom:8px;position:relative}
+.finding-card input{margin-bottom:7px;width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 12px;font-family:'Instrument Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--surface);outline:none}
+.finding-card input:focus{border-color:var(--accent)}
+.finding-card textarea{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 12px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--surface);outline:none;resize:vertical;min-height:140px}
+.finding-card textarea:focus{border-color:var(--accent)}
+.fc-num{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;background:var(--accent);color:#fff;border-radius:5px;font-size:10px;font-weight:700;margin-bottom:7px}
+.fc-remove{position:absolute;top:10px;right:10px;background:none;border:none;cursor:pointer;color:var(--ink4);font-size:15px;padding:2px 5px;border-radius:4px;transition:all .15s}
+.fc-remove:hover{color:var(--red);background:var(--red-tint)}
+.add-finding-btn{width:100%;border:1.5px dashed var(--line);background:none;border-radius:7px;padding:9px;color:var(--ink3);font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.add-finding-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+/* DETAIL */
 .detail-header{background:var(--surface);border-bottom:1px solid var(--line);padding:20px 32px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
 .detail-header-info{flex:1}
 .detail-header h1{font-family:'Fraunces',serif;font-size:24px;font-weight:500;letter-spacing:-.4px}
 .detail-header .meta{font-size:13px;color:var(--ink3);margin-top:3px}
-.detail-tabs{background:var(--surface);border-bottom:1px solid var(--line);padding:0 32px;display:flex;gap:0}
+.detail-tabs{background:var(--surface);border-bottom:1px solid var(--line);padding:0 32px;display:flex;gap:0;position:sticky;top:0;z-index:40}
 .tab{padding:14px 20px;font-size:13px;font-weight:600;color:var(--ink3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
 .tab:hover{color:var(--ink)}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 .tab-content{display:none;padding:32px}
 .tab-content.active{display:block;animation:up .3s ease}
-
-/* PROJECT INFO CARD */
+/* INFO */
 .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
 .info-item{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px}
 .info-item .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:4px}
 .info-item .value{font-size:14px;font-weight:500;color:var(--ink)}
-
+.section-divider{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
 /* BRIEFING */
-.briefing-section{margin-bottom:28px}
-.briefing-section-title{font-family:'Fraunces',serif;font-size:16px;font-weight:500;margin-bottom:4px;display:flex;align-items:center;gap:8px}
-.briefing-section-desc{font-size:13px;color:var(--ink3);margin-bottom:16px}
-.briefing-q{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:8px}
-.briefing-q .q-text{font-size:14px;font-weight:500;margin-bottom:8px}
-.briefing-q textarea,.briefing-q input{width:100%;border:1.5px solid var(--line);border-radius:6px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);outline:none;resize:vertical;min-height:70px;transition:border-color .2s}
-.briefing-q textarea:focus,.briefing-q input:focus{border-color:var(--accent);background:#fff}
-.briefing-q.short textarea{min-height:44px}
-
-/* BRIEFING RESPONSES */
-.response-item{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:8px}
-.response-item .r-question{font-size:12px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
-.response-item .r-answer{font-size:14px;color:var(--ink);line-height:1.6}
-.response-item .r-answer.empty{color:var(--ink4);font-style:italic}
-
-/* SEND BRIEFING PANEL */
 .send-panel{background:var(--gold-tint);border:1px solid #E8D48A;border-radius:var(--r);padding:20px 22px;margin-bottom:24px}
 .send-panel h3{font-size:15px;font-weight:600;margin-bottom:4px}
 .send-panel p{font-size:13px;color:#7A5200;margin-bottom:14px;line-height:1.6}
 .link-box{display:flex;gap:8px}
 .link-box input{flex:1;border:1.5px solid #E8D48A;border-radius:6px;padding:8px 10px;font-size:12px;color:var(--ink2);background:#fff;font-family:monospace;outline:none;min-width:0}
-.copy-btn{background:var(--accent);border:none;color:#fff;border-radius:6px;padding:0 14px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;white-space:nowrap}
+.copy-btn{background:var(--accent);border:none;color:#fff;border-radius:6px;padding:0 14px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
 .copy-btn:hover{background:var(--accent2)}
-
-/* CLIENT BRIEFING VIEW */
-#viewBriefing{background:var(--bg)}
+.response-item{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:8px}
+.response-item .r-question{font-size:12px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px}
+.response-item .r-answer{font-size:14px;color:var(--ink);line-height:1.6}
+.response-item .r-answer.empty{color:var(--ink4);font-style:italic}
+/* APPROVALS TAB */
+.approval-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin-bottom:12px;box-shadow:var(--sh);cursor:pointer;transition:all .2s;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.approval-card:hover{border-color:#ccc;transform:translateY(-1px)}
+.approval-card-title{font-size:16px;font-weight:600;margin-bottom:4px}
+.approval-card-meta{font-size:12px;color:var(--ink3)}
+.approval-card-actions{display:flex;gap:6px;align-items:center}
+/* APPROVAL DETAIL */
+.approval-detail-head{background:var(--surface);border-bottom:1px solid var(--line);padding:18px 28px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.approval-detail-body{padding:28px;display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start}
+.df-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);transition:border-color .3s;margin-bottom:10px}
+.df-card.is-agreed-border{border-color:var(--green)}
+.df-card.is-disagreed-border{border-color:var(--red)}
+.df-card.is-adjustment-border{border-color:var(--gold)}
+.df-card.is-adjusted-border{border-color:var(--blue)}
+.df-card.is-approved-border{border-color:var(--purple)}
+.df-card-head{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+.df-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);margin-bottom:5px;display:flex;align-items:center;justify-content:space-between}
+.df-title{font-size:15px;font-weight:600}
+.df-desc{font-size:13px;color:var(--ink2);margin-top:3px;line-height:1.65}
+.df-card-foot{padding:12px 18px;background:#FAFAF7;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.df-timestamp{font-size:11px;color:var(--ink4)}
+.comment-block{padding:11px 18px;border-top:1px solid var(--line)}
+.comment-block .cb-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
+.comment-block p{font-size:13px;color:var(--ink2);line-height:1.6}
+.consultant-actions{padding:10px 18px;background:#F5F4EF;border-top:1px solid var(--line);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.consultant-actions label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3)}
+.status-select{border:1.5px solid var(--line);border-radius:6px;padding:5px 8px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;background:var(--surface);color:var(--ink);outline:none;cursor:pointer}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;box-shadow:var(--sh);margin-bottom:14px}
+.panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.panel-link-box{display:flex;gap:7px;margin-bottom:10px}
+.panel-link-box input{flex:1;border:1.5px solid var(--line);border-radius:6px;padding:7px 9px;font-size:11px;color:var(--ink2);background:var(--bg);font-family:monospace;outline:none;min-width:0}
+.panel-meta p{font-size:13px;color:var(--ink2);margin-bottom:7px;display:flex;justify-content:space-between}
+.panel-meta p span{font-weight:600;color:var(--ink)}
+.progress-bar-wrap{height:5px;background:var(--line);border-radius:10px;margin:10px 0 5px;overflow:hidden}
+.progress-bar-fill{height:100%;background:var(--accent2);border-radius:10px;transition:width .5s}
+/* CLIENT VIEWS */
+#viewBriefing,#viewApproval{background:var(--bg)}
+.client-top{background:var(--accent);padding:16px 28px;display:flex;align-items:center;justify-content:space-between}
+.client-top .brand{font-family:'Fraunces',serif;font-size:17px;color:#fff}
+.client-top .brand em{font-style:italic;opacity:.45}
+.client-progress{font-size:12px;color:rgba(255,255,255,.55)}
+.client-progress strong{color:#fff}
+.client-body{max-width:740px;margin:0 auto;padding:36px 20px 96px}
+.client-intro{margin-bottom:32px}
+.client-intro .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:7px}
+.client-intro h1{font-family:'Fraunces',serif;font-size:28px;font-weight:500;letter-spacing:-.5px;margin-bottom:5px}
+.client-intro .sub{color:var(--ink3);font-size:13px}
+.client-intro .note{background:var(--gold-tint);border:1px solid #E8D48A;border-radius:8px;padding:11px 14px;font-size:13px;color:#7A5200;margin-top:12px;line-height:1.6}
+/* CLIENT BRIEFING */
 .briefing-top{background:var(--accent);padding:18px 32px}
-.briefing-top .brand{font-family:'Fraunces',serif;font-size:18px;color:#fff;letter-spacing:-.3px}
+.briefing-top .brand{font-family:'Fraunces',serif;font-size:18px;color:#fff}
 .briefing-top .brand em{font-style:italic;opacity:.45}
 .briefing-body{max-width:720px;margin:0 auto;padding:40px 24px 100px}
-.briefing-intro{margin-bottom:36px}
 .briefing-intro h1{font-family:'Fraunces',serif;font-size:28px;font-weight:500;letter-spacing:-.5px;margin-bottom:8px}
 .briefing-intro .welcome{font-size:15px;color:var(--ink2);line-height:1.7;margin-bottom:12px}
-.briefing-intro .note{background:var(--accent-tint);border:1px solid #A8D5B5;border-radius:8px;padding:12px 16px;font-size:13px;color:var(--accent);line-height:1.6}
+.briefing-intro .note{background:var(--accent-tint);border:1px solid #A8D5B5;border-radius:8px;padding:12px 16px;font-size:13px;color:var(--accent);line-height:1.6;margin-bottom:28px}
 .briefing-progress{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin-bottom:28px;display:flex;align-items:center;gap:14px}
 .briefing-progress .pct{font-family:'Fraunces',serif;font-size:22px;font-weight:500;color:var(--accent);flex-shrink:0}
 .briefing-progress .bar-wrap{flex:1}
 .briefing-progress .bar-label{font-size:12px;color:var(--ink3);margin-bottom:5px}
 .briefing-progress .bar{height:5px;background:var(--line);border-radius:10px;overflow:hidden}
-.briefing-progress .bar-fill{height:100%;background:var(--accent);border-radius:10px;transition:width .4s ease}
+.briefing-progress .bar-fill{height:100%;background:var(--accent);border-radius:10px;transition:width .4s}
 .briefing-section-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:16px;overflow:hidden;box-shadow:var(--sh)}
 .bsc-head{padding:16px 20px;border-bottom:1px solid var(--line);background:#FAFAF8;display:flex;align-items:center;gap:10px}
 .bsc-icon{font-size:20px}
@@ -195,34 +236,93 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .bq{background:var(--bg);border-radius:7px;padding:14px}
 .bq .bq-label{font-size:13px;font-weight:600;margin-bottom:7px;line-height:1.5}
 .bq .bq-optional{font-size:11px;color:var(--ink4);font-weight:400;margin-left:4px}
-.bq textarea,.bq input[type=text]{width:100%;border:1.5px solid var(--line);border-radius:6px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:#fff;outline:none;resize:vertical;min-height:72px;transition:border-color .2s}
-.bq textarea:focus,.bq input[type=text]:focus{border-color:var(--accent)}
-.bq.short textarea{min-height:44px}
-.briefing-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,242,236,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:100}
-.briefing-bar-info{font-size:13px;color:var(--ink3)}
-.briefing-bar-info strong{color:var(--ink)}
-.thankyou{max-width:520px;margin:0 auto;padding:80px 20px;text-align:center}
-.ty-icon{font-size:56px;margin-bottom:20px}
-.thankyou h1{font-family:'Fraunces',serif;font-size:32px;font-weight:500;letter-spacing:-.5px;margin-bottom:10px}
-.thankyou p{color:var(--ink3);font-size:15px;max-width:400px;margin:0 auto 20px;line-height:1.7}
-
+.bq textarea{width:100%;border:1.5px solid var(--line);border-radius:6px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:#fff;outline:none;resize:vertical;min-height:72px;transition:border-color .2s}
+.bq textarea:focus{border-color:var(--accent)}
+/* CLIENT APPROVAL */
+.cf-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);margin-bottom:12px;overflow:hidden;box-shadow:var(--sh);transition:border-color .3s}
+.cf-card.s-agreed{border-color:var(--green)}
+.cf-card.s-disagreed{border-color:var(--red)}
+.cf-card.s-adjustment{border-color:var(--gold)}
+.cf-body{padding:20px 22px}
+.cf-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);margin-bottom:6px}
+.cf-title{font-size:16px;font-weight:600;margin-bottom:5px}
+.cf-desc{font-size:13px;color:var(--ink2);line-height:1.7}
+.cf-status-row{border-top:1px solid var(--line);padding:12px 22px;background:#FAFAF7;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.cf-status-row .qa{font-size:12px;color:var(--ink3);width:100%;margin-bottom:4px}
+.svote{display:flex;align-items:center;gap:5px;padding:7px 12px;border-radius:7px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid transparent;transition:all .2s}
+.svote-agree{border-color:var(--green);color:var(--green);background:#fff}
+.svote-agree:hover,.svote-agree.on{background:var(--green-tint)}
+.svote-disagree{border-color:var(--red);color:var(--red);background:#fff}
+.svote-disagree:hover,.svote-disagree.on{background:var(--red-tint)}
+.svote-adjust{border-color:var(--gold);color:var(--gold);background:#fff}
+.svote-adjust:hover,.svote-adjust.on{background:var(--gold-tint)}
+.cf-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;margin-left:auto;flex-shrink:0}
+.cf-comment{max-height:0;overflow:hidden;transition:max-height .4s ease;padding:0 22px}
+.cf-comment.open{max-height:400px;padding:16px 22px}
+.cf-comment-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.cf-comment textarea{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);outline:none;resize:vertical;min-height:75px}
+.cf-comment textarea:focus{background:#fff}
+.cf-adjust-type{margin-bottom:8px}
+.cf-adjust-type select{width:100%;border:1.5px solid var(--gold);border-radius:7px;padding:8px 10px;font-family:'Instrument Sans',sans-serif;font-size:13px;background:var(--gold-tint);outline:none}
+.general-comment-box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:8px;box-shadow:var(--sh)}
+.general-comment-box h3{font-size:14px;font-weight:600;margin-bottom:4px}
+.general-comment-box p{font-size:12px;color:var(--ink3);margin-bottom:12px}
+.general-comment-box textarea{width:100%;border:1.5px solid var(--line);border-radius:7px;padding:9px 11px;font-family:'Instrument Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--bg);outline:none;resize:vertical;min-height:80px}
+.general-comment-box textarea:focus{border-color:var(--accent);background:#fff}
+/* CLIENT BAR */
+.client-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,242,236,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:13px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;z-index:100}
+.client-bar-info{font-size:13px;color:var(--ink3)}
+.client-bar-info strong{color:var(--ink)}
+/* THANK YOU */
+.thankyou{max-width:500px;margin:0 auto;padding:72px 20px;text-align:center}
+.ty-icon{font-size:52px;margin-bottom:18px}
+.thankyou h1{font-family:'Fraunces',serif;font-size:30px;font-weight:500;letter-spacing:-.5px;margin-bottom:9px}
+.thankyou p{color:var(--ink3);font-size:14px;max-width:380px;margin:0 auto 16px;line-height:1.7}
+.ty-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:20px}
+.ty-stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px}
+.ty-stat .n{font-family:'Fraunces',serif;font-size:28px;line-height:1;margin-bottom:2px}
+.ty-stat .n.g{color:var(--green)}.ty-stat .n.r{color:var(--red)}.ty-stat .n.o{color:var(--gold)}
+.ty-stat .l{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
 /* MISC */
 .loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;color:var(--ink3);gap:14px}
 .spinner{width:32px;height:32px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%) translateY(8px);background:var(--ink);color:#fff;padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;opacity:0;transition:all .3s;pointer-events:none;z-index:999;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-.empty-state{text-align:center;padding:60px 20px;color:var(--ink3)}
-.empty-state .big{font-size:48px;margin-bottom:14px}
-.empty-state h3{font-family:'Fraunces',serif;font-size:20px;font-weight:500;margin-bottom:6px;color:var(--ink)}
-.section-divider{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
-
+.empty-state{text-align:center;padding:48px 20px;color:var(--ink3)}
+.empty-state .big{font-size:44px;margin-bottom:12px}
+.empty-state h3{font-family:'Fraunces',serif;font-size:18px;font-weight:500;margin-bottom:5px;color:var(--ink)}
 @media(max-width:860px){
   .sidebar{display:none}
   .stat-grid{grid-template-columns:1fr 1fr}
   .info-grid{grid-template-columns:1fr}
   .fg-row{grid-template-columns:1fr}
+  .approval-detail-body{grid-template-columns:1fr}
+  .cf-status-row{gap:6px}
+  .svote{padding:6px 9px;font-size:11px}
 }
+
+/* FILE UPLOAD */
+.file-upload-area{border:1.5px dashed var(--line);border-radius:7px;padding:12px;margin-top:8px;text-align:center;cursor:pointer;transition:all .2s;background:var(--bg)}
+.file-upload-area:hover{border-color:var(--accent);background:var(--accent-tint)}
+.file-upload-area input[type=file]{display:none}
+.file-upload-label{font-size:12px;color:var(--ink3);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.file-list{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.file-item{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 10px;font-size:12px}
+.file-item-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink2)}
+.file-item-remove{background:none;border:none;cursor:pointer;color:var(--ink4);font-size:14px;flex-shrink:0;transition:color .15s}
+.file-item-remove:hover{color:var(--red)}
+.file-uploading{opacity:.6;font-style:italic}
+/* FILE PREVIEWS in client view */
+.finding-files{padding:10px 22px;border-top:1px solid var(--line);background:#FAFAF8;display:flex;flex-wrap:wrap;gap:8px}
+.file-preview-img{width:120px;height:80px;object-fit:cover;border-radius:6px;border:1px solid var(--line);cursor:pointer;transition:transform .2s}
+.file-preview-img:hover{transform:scale(1.03)}
+.file-preview-pdf{display:flex;align-items:center;gap:6px;background:var(--red-tint);border:1px solid #F5D0D0;border-radius:6px;padding:7px 12px;font-size:12px;font-weight:600;color:var(--red);text-decoration:none;cursor:pointer}
+.file-preview-pdf:hover{background:#F5D0D0}
+/* IMAGE LIGHTBOX */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s}
+.lightbox.open{opacity:1;pointer-events:all}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:8px;object-fit:contain}
 </style>
 </head>
 <body>
@@ -246,9 +346,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
         <div class="logo">koalaz<em>·projetos</em></div>
         <div class="role">Painel interno</div>
       </div>
-      <nav>
-        <div class="nav-item active" onclick="showDashTab()"><span class="nav-icon">◉</span> Todos os projetos</div>
-      </nav>
+      <nav><div class="nav-item active"><span class="nav-icon">◉</span> Todos os projetos</div></nav>
       <div class="sidebar-footer">
         <p>Koalaz · Sistema de Projetos</p>
         <button onclick="doLogout()" style="background:none;border:none;color:rgba(255,255,255,.3);font-size:11px;cursor:pointer;margin-top:8px;padding:0">Sair</button>
@@ -259,7 +357,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
         <div class="topbar-title">Projetos</div>
         <div style="display:flex;gap:8px">
           <button class="btn btn-ghost btn-sm" onclick="renderDash()">↻ Atualizar</button>
-          <button class="btn btn-primary btn-sm" onclick="openNewModal()">＋ Novo Projeto</button>
+          <button class="btn btn-primary btn-sm" onclick="openNewProjectModal()">＋ Novo Projeto</button>
         </div>
       </div>
       <div class="page-body">
@@ -269,7 +367,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
           <div class="stat-card c-green"><div class="num" id="statActive">—</div><div class="lbl">Em andamento</div></div>
           <div class="stat-card c-blue"><div class="num" id="statDone">—</div><div class="lbl">Concluídos</div></div>
         </div>
-        <div class="section-divider">Projetos ativos</div>
+        <div class="section-divider">Projetos</div>
         <div id="projectsGrid" class="projects-grid"><div class="loading"><div class="spinner"></div><span>Carregando...</span></div></div>
       </div>
     </div>
@@ -280,52 +378,130 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 <div class="view" id="viewDetail">
   <div class="detail-header">
     <button class="btn btn-ghost btn-sm" onclick="showView('viewDash');renderDash()">← Voltar</button>
-    <div class="detail-header-info">
-      <h1 id="detailName"></h1>
-      <div class="meta" id="detailMeta"></div>
-    </div>
+    <div class="detail-header-info"><h1 id="detailName"></h1><div class="meta" id="detailMeta"></div></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap" id="detailActions"></div>
   </div>
   <div class="detail-tabs">
     <div class="tab active" onclick="switchTab('tabInfo')">📋 Cadastro</div>
     <div class="tab" onclick="switchTab('tabBriefing')">🎯 Briefing</div>
+    <div class="tab" onclick="switchTab('tabApprovals')">✅ Aprovações</div>
   </div>
-  <div class="tab-content active" id="tabInfo">
-    <div id="tabInfoContent"></div>
+  <div class="tab-content active" id="tabInfo"><div id="tabInfoContent"></div></div>
+  <div class="tab-content" id="tabBriefing"><div id="tabBriefingContent"></div></div>
+  <div class="tab-content" id="tabApprovals"><div id="tabApprovalsContent"></div></div>
+</div>
+
+<!-- APPROVAL DETAIL -->
+<div class="view" id="viewApprovalDetail">
+  <div class="approval-detail-head">
+    <button class="btn btn-ghost btn-sm" id="backToProject">← Voltar ao projeto</button>
+    <div style="flex:1"><h1 style="font-family:'Fraunces',serif;font-size:20px;font-weight:500" id="approvalDetailTitle"></h1><div style="font-size:13px;color:var(--ink3)" id="approvalDetailMeta"></div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" id="approvalDetailActions"></div>
   </div>
-  <div class="tab-content" id="tabBriefing">
-    <div id="tabBriefingContent"></div>
+  <div class="approval-detail-body">
+    <div id="approvalDetailFindings"></div>
+    <div>
+      <div class="panel">
+        <div class="panel-title">Link para o Cliente</div>
+        <div class="panel-link-box"><input type="text" id="approvalLinkInput" readonly><button class="copy-btn" onclick="copyApprovalLink()">Copiar</button></div>
+        <p style="font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:10px">Compartilhe com o cliente. As respostas chegam aqui em tempo real.</p>
+        <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center" id="sendApprovalEmailBtn" onclick="sendApprovalEmail()">📧 Enviar por e-mail</button>
+      </div>
+      <div class="panel">
+        <div class="panel-title">Progresso</div>
+        <div id="approvalPanelMeta"></div>
+        <div id="approveAllWrap" style="display:none;margin-top:12px">
+          <button class="btn btn-purple btn-sm" style="width:100%;justify-content:center" onclick="approveAllAdjusted()">✅ Aprovar etapa inteira</button>
+          <p style="font-size:11px;color:var(--ink3);margin-top:6px">Aprova todos os itens "Ajustado pela Koalaz"</p>
+        </div>
+      </div>
+      <div class="panel" id="generalCommentPanel" style="display:none">
+        <div class="panel-title">Comentário Geral do Cliente</div>
+        <p id="generalCommentText" style="font-size:13px;color:var(--ink2);line-height:1.6;font-style:italic"></p>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- CLIENT BRIEFING VIEW -->
 <div class="view" id="viewBriefing">
-  <div class="briefing-top">
-    <div class="brand">koalaz<em>·</em></div>
-  </div>
+  <div class="briefing-top"><div class="brand">koalaz<em>·</em></div></div>
   <div class="briefing-body" id="briefingBody"><div class="loading"><div class="spinner"></div><span>Carregando...</span></div></div>
-  <div class="briefing-bar" id="briefingBar">
-    <div class="briefing-bar-info">Responda todos os campos e clique em enviar</div>
+  <div class="client-bar" id="briefingBar" style="display:none">
+    <div class="briefing-bar-info">Responda e clique em enviar quando terminar</div>
     <button class="btn btn-primary" id="briefingSubmitBtn" onclick="submitBriefing()">Enviar briefing →</button>
   </div>
 </div>
 
-<!-- MODAL NEW/EDIT PROJECT -->
-<div class="overlay" id="modalOverlay">
+<!-- CLIENT APPROVAL VIEW -->
+<div class="view" id="viewApproval">
+  <div class="client-top">
+    <div class="brand">koalaz<em>·</em></div>
+    <div class="client-progress"><strong id="cpText">0 / 0</strong> revisados</div>
+  </div>
+  <div class="client-body" id="approvalClientBody"><div class="loading"><div class="spinner"></div><span>Carregando...</span></div></div>
+  <div class="client-bar" id="approvalBar" style="display:none">
+    <div class="client-bar-info"><strong id="cbAnswered">0</strong> de <strong id="cbTotal">0</strong> itens</div>
+    <button class="btn btn-primary" id="approvalSubmitBtn" onclick="submitApproval()" disabled>Enviar revisão →</button>
+  </div>
+</div>
+
+
+<!-- CLIENT AREA -->
+<div class="view" id="viewClientArea">
+  <div id="clientAreaLogin" style="display:flex;flex:1;align-items:center;justify-content:center;background:var(--bg)">
+    <div class="login-box">
+      <div class="login-logo">koalaz<em>·</em></div>
+      <p class="login-sub" id="clientAreaWelcome">Área do Cliente</p>
+      <div class="login-error" id="clientAreaError">Senha incorreta</div>
+      <div class="fg" style="text-align:left"><label>Senha de acesso</label><input type="password" id="clientAreaPass" placeholder="Digite sua senha" onkeydown="if(event.key==='Enter')doClientLogin()"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px" onclick="doClientLogin()">Entrar →</button>
+    </div>
+  </div>
+  <div id="clientAreaContent" style="display:none;flex:1;flex-direction:column">
+    <div class="client-top">
+      <div class="brand">koalaz<em>·</em></div>
+      <div style="font-size:13px;color:rgba(255,255,255,.7)" id="clientAreaProjectName"></div>
+    </div>
+    <div style="max-width:740px;margin:0 auto;padding:36px 20px 60px;width:100%">
+      <div class="client-intro">
+        <div class="eyebrow">Área do Cliente</div>
+        <h1 id="clientAreaTitle"></h1>
+        <div class="sub" id="clientAreaSub"></div>
+      </div>
+      <!-- BRIEFING SECTION -->
+      <div id="clientAreaBriefingSection" style="margin-bottom:28px">
+        <div class="section-divider">🎯 Briefing</div>
+        <div id="clientAreaBriefingCard"></div>
+      </div>
+      <!-- APPROVALS SECTION -->
+      <div id="clientAreaApprovalsSection">
+        <div class="section-divider">✅ Etapas de Aprovação</div>
+        <div id="clientAreaApprovalsList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: NEW/EDIT PROJECT -->
+<div class="overlay" id="modalProject">
   <div class="modal">
     <div class="modal-head">
-      <div><h2 id="modalTitle">Novo Projeto</h2><p id="modalSubtitle">Cadastre o projeto e selecione os módulos de briefing</p></div>
-      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div><h2 id="modalProjectTitle">Novo Projeto</h2><p>Cadastre o projeto e selecione os módulos de briefing</p></div>
+      <button class="modal-close" onclick="closeModal('modalProject')">✕</button>
     </div>
     <div class="modal-body">
-      <div class="error-state" id="modalError"></div>
+      <div class="error-state" id="modalProjectError"></div>
       <div class="fg-row">
         <div class="fg"><label>Nome do Projeto *</label><input type="text" id="mName" placeholder="Ex.: Novo site institucional"></div>
         <div class="fg"><label>Cliente *</label><input type="text" id="mClient" placeholder="Ex.: Machado Lisboa"></div>
       </div>
       <div class="fg-row">
         <div class="fg"><label>E-mail do Cliente</label><input type="email" id="mClientEmail" placeholder="cliente@empresa.com"></div>
-        <div class="fg"><label>Responsável Koalaz</label><input type="text" id="mResponsible" placeholder="Ex.: Flávia" value="Flávia Azevedo"></div>
+        <div class="fg"><label>Senha do Cliente</label><input type="text" id="mClientPassword" placeholder="Ex.: machado2025"><div class="fg-hint">O cliente usa para acessar a área dele</div></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Responsável Koalaz</label><input type="text" id="mResponsible" value="Flávia Azevedo"></div>
       </div>
       <div class="fg-row">
         <div class="fg">
@@ -339,54 +515,56 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
             <option value="completo">Projeto Completo</option>
           </select>
         </div>
-        <div class="fg"><label>Prazo Inicial</label><input type="text" id="mDeadline" placeholder="Ex.: Agosto 2025"></div>
+      <div class="fg">
+        <label>Status</label>
+        <select id="mStatus">
+          <option value="briefing_pending">Briefing pendente</option>
+          <option value="briefing_sent">Briefing enviado</option>
+          <option value="briefing_done">Briefing respondido</option>
+          <option value="active">Em andamento</option>
+          <option value="paused">Pausado</option>
+          <option value="done">Concluído</option>
+        </select>
       </div>
-      <div class="fg"><label>Observações internas</label><textarea id="mNotes" placeholder="Contexto interno, particularidades do cliente..."></textarea></div>
+      <div class="fg"><label>Observações internas</label><textarea id="mNotes" placeholder="Contexto interno, particularidades..."></textarea></div>
       <div class="fg">
         <label>Módulos de Briefing</label>
-        <p class="fg-hint" style="margin-bottom:10px">Selecione os módulos que serão incluídos no briefing do cliente</p>
         <div class="module-selector" id="moduleSelector">
-          <label class="module-option" id="mod_base">
-            <input type="checkbox" value="base" checked onchange="toggleModule(this)">
-            <div class="module-option-info">
-              <div class="module-name">📋 Briefing Base</div>
-              <div class="module-desc">Dados da empresa, contexto, objetivos e público — sempre incluído</div>
-            </div>
-          </label>
-          <label class="module-option" id="mod_site">
-            <input type="checkbox" value="site" onchange="toggleModule(this)">
-            <div class="module-option-info">
-              <div class="module-name">🌐 Site e Presença Digital</div>
-              <div class="module-desc">Objetivo do site, páginas, SEO, referências e integrações</div>
-            </div>
-          </label>
-          <label class="module-option" id="mod_marca">
-            <input type="checkbox" value="marca" onchange="toggleModule(this)">
-            <div class="module-option-info">
-              <div class="module-name">⭐ Marca Pessoal e Autoridade</div>
-              <div class="module-desc">Trajetória, posicionamento, tom de voz e diferenciais</div>
-            </div>
-          </label>
-          <label class="module-option" id="mod_conteudo">
-            <input type="checkbox" value="conteudo" onchange="toggleModule(this)">
-            <div class="module-option-info">
-              <div class="module-name">✍️ Conteúdo e Redes Sociais</div>
-              <div class="module-desc">Temas, linguagem, frequência, aprovações e calendário</div>
-            </div>
-          </label>
-          <label class="module-option" id="mod_marketing">
-            <input type="checkbox" value="marketing" onchange="toggleModule(this)">
-            <div class="module-option-info">
-              <div class="module-name">📈 Marketing e Receita</div>
-              <div class="module-desc">Faturamento, canais de aquisição, conversão e metas</div>
-            </div>
-          </label>
+          <label class="module-option selected" id="mod_base"><input type="checkbox" value="base" checked onchange="toggleModule(this)"><div class="module-option-info"><div class="module-name">📋 Briefing Base</div><div class="module-desc">Dados da empresa, contexto e objetivos</div></div></label>
+          <label class="module-option" id="mod_site"><input type="checkbox" value="site" onchange="toggleModule(this)"><div class="module-option-info"><div class="module-name">🌐 Site e Presença Digital</div><div class="module-desc">Objetivo, páginas, SEO e referências</div></div></label>
+          <label class="module-option" id="mod_marca"><input type="checkbox" value="marca" onchange="toggleModule(this)"><div class="module-option-info"><div class="module-name">⭐ Marca Pessoal e Autoridade</div><div class="module-desc">Trajetória, posicionamento e tom de voz</div></div></label>
+          <label class="module-option" id="mod_conteudo"><input type="checkbox" value="conteudo" onchange="toggleModule(this)"><div class="module-option-info"><div class="module-name">✍️ Conteúdo e Redes Sociais</div><div class="module-desc">Temas, linguagem e calendário</div></div></label>
+          <label class="module-option" id="mod_marketing"><input type="checkbox" value="marketing" onchange="toggleModule(this)"><div class="module-option-info"><div class="module-name">📈 Marketing e Receita</div><div class="module-desc">Canais de aquisição e metas</div></div></label>
         </div>
       </div>
     </div>
     <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
-      <button class="btn btn-primary" id="saveBtn" onclick="saveProject()">Salvar projeto</button>
+      <button class="btn btn-ghost" onclick="closeModal('modalProject')">Cancelar</button>
+      <button class="btn btn-primary" id="saveProjectBtn" onclick="saveProject()">Salvar projeto</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: NEW/EDIT APPROVAL -->
+<div class="overlay" id="modalApproval">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h2 id="modalApprovalTitle">Nova Etapa de Aprovação</h2><p>Defina os achados que o cliente irá revisar</p></div>
+      <button class="modal-close" onclick="closeModal('modalApproval')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="error-state" id="modalApprovalError"></div>
+      <div class="fg"><label>Título da Etapa *</label><input type="text" id="aTitle" placeholder="Ex.: Diagnóstico estratégico — 1ª etapa"></div>
+      <div class="fg"><label>Instrução para o cliente</label><textarea id="aContext" placeholder="Contexto ou orientação sobre o que o cliente deve revisar..."></textarea></div>
+      <div class="fg">
+        <label>Achados para Revisão</label>
+        <div id="approvalFindings"></div>
+        <button class="add-finding-btn" onclick="addApprovalFinding()">＋ Adicionar achado</button>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal('modalApproval')">Cancelar</button>
+      <button class="btn btn-primary" id="saveApprovalBtn" onclick="saveApproval()">Salvar etapa</button>
     </div>
   </div>
 </div>
@@ -394,506 +572,826 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 <div class="toast" id="toast"></div>
 
 <script>
-// ─── CONFIG ───────────────────────────────────────────────────────────────
-const SUPABASE_URL = 'https://uwdirznolbhmazlfiqwf.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_pfNIy_2XNnvToiGCzO9wGw_6x-bR9KU';
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmt5IVhcaPAg_OEeyHpceZviv4vFSpxKFDP_D5PTHcE--i5beAjg5g3nnobgADtb-9-g/exec';
-const PANEL_PASSWORD = 'koalaz2026';
+const SUPABASE_URL='https://uwdirznolbhmazlfiqwf.supabase.co';
+const SUPABASE_KEY='sb_publishable_pfNIy_2XNnvToiGCzO9wGw_6x-bR9KU';
+const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbzmt5IVhcaPAg_OEeyHpceZviv4vFSpxKFDP_D5PTHcE--i5beAjg5g3nnobgADtb-9-g/exec';
+const PANEL_PASSWORD='koalaz2026';
 
-// ─── BRIEFING QUESTIONS ────────────────────────────────────────────────────
-const MODULES = {
-  base: {
-    icon: '📋', title: 'Briefing Base', desc: 'Informações essenciais sobre sua empresa e projeto',
-    questions: [
-      { id:'b1', text:'Qual é o nome completo da sua empresa ou marca?', short:true },
-      { id:'b2', text:'Como você descreveria sua empresa em poucas palavras?' },
-      { id:'b3', text:'Quais são os responsáveis e decisores deste projeto? (nome, cargo e contato)' },
-      { id:'b4', text:'Qual é o contexto atual da empresa? Como as coisas estão hoje?' },
-      { id:'b5', text:'Qual é o principal objetivo deste projeto?' },
-      { id:'b6', text:'Qual problema ou desafio este projeto precisa resolver?' },
-      { id:'b7', text:'Quem é o seu público prioritário? Descreva com o máximo de detalhes.' },
-      { id:'b8', text:'Quais são seus principais concorrentes ou referências no mercado?' },
-      { id:'b9', text:'Quais canais de comunicação você utiliza atualmente? (site, redes sociais, e-mail...)' },
-      { id:'b10', text:'Você possui materiais institucionais prontos? (logo, fotos, textos, vídeos...)' },
-      { id:'b11', text:'Há alguma urgência ou restrição importante que devemos considerar?' },
-      { id:'b12', text:'Como você saberá que este projeto foi bem-sucedido? Quais são seus critérios de sucesso?' },
-      { id:'b13', text:'Há algum prazo especial ou data sensível que precisamos respeitar?' },
-      { id:'b14', text:'Existe algo que você considera indispensável neste projeto?' },
-      { id:'b15', text:'Há alguma preocupação ou expectativa que a equipe Koalaz precisa considerar desde o início?' },
-    ]
-  },
-  site: {
-    icon: '🌐', title: 'Site e Presença Digital', desc: 'Tudo sobre seu site, identidade online e SEO',
-    questions: [
-      { id:'s1', text:'Qual é o principal objetivo do seu site? (gerar leads, informar, vender, posicionar...)' },
-      { id:'s2', text:'Quais páginas você considera essenciais para o novo site?' },
-      { id:'s3', text:'Quais serviços ou produtos devem ter mais destaque?' },
-      { id:'s4', text:'Quais palavras ou termos seus clientes usam para te encontrar?' },
-      { id:'s5', text:'Você tem sites de referência que admira? Envie links e explique o que gosta.' },
-      { id:'s6', text:'Quais materiais estão disponíveis para o site? (fotos profissionais, vídeos, depoimentos...)' },
-      { id:'s7', text:'Você gostaria de incluir informações sobre a equipe? Quantas pessoas?' },
-      { id:'s8', text:'Quais são os principais diferenciais do seu escritório ou empresa?' },
-      { id:'s9', text:'Você possui cases, resultados ou provas de autoridade que possam ser destacados?' },
-      { id:'s10', text:'Quais são as dúvidas mais frequentes dos seus clientes que o site poderia responder?' },
-      { id:'s11', text:'Há restrições jurídicas, regulatórias ou éticas que o site precisa respeitar?' },
-      { id:'s12', text:'Quais integrações serão necessárias? (WhatsApp, agendamento, formulários, CRM...)' },
-    ]
-  },
-  marca: {
-    icon: '⭐', title: 'Marca Pessoal e Autoridade', desc: 'Posicionamento, reputação e presença como especialista',
-    questions: [
-      { id:'m1', text:'Como você descreveria sua trajetória profissional?' },
-      { id:'m2', text:'Em quais áreas você se considera uma autoridade reconhecida?' },
-      { id:'m3', text:'Quais temas você deseja ocupar na sua comunicação?' },
-      { id:'m4', text:'Quais temas você prefere não abordar publicamente?' },
-      { id:'m5', text:'Quem são os públicos que você deseja alcançar com sua marca pessoal?' },
-      { id:'m6', text:'Como você gostaria de ser percebido? Qual imagem deseja construir?' },
-      { id:'m7', text:'Você tem causas, bandeiras ou posicionamentos que fazem parte da sua identidade?' },
-      { id:'m8', text:'Quais são seus principais diferenciais técnicos ou credenciais?' },
-      { id:'m9', text:'Você tem referências de imagem ou profissionais que admira? Por quê?' },
-      { id:'m10', text:'Há limites éticos, regulatórios ou institucionais que precisamos respeitar na comunicação?' },
-      { id:'m11', text:'Você já teve exposição em mídia? Quais veículos? Há oportunidades que gostaria de explorar?' },
-    ]
-  },
-  conteudo: {
-    icon: '✍️', title: 'Conteúdo e Redes Sociais', desc: 'Estratégia editorial, linguagem e calendário',
-    questions: [
-      { id:'c1', text:'Quais são os temas prioritários para sua comunicação?' },
-      { id:'c2', text:'Há temas que você não quer que apareçam no seu conteúdo?' },
-      { id:'c3', text:'Como você descreveria a linguagem desejada para sua marca? (formal, próxima, técnica, inspiracional...)' },
-      { id:'c4', text:'Qual é a frequência de publicação que você consegue manter?' },
-      { id:'c5', text:'Você tem disponibilidade para gravações de vídeo ou fotos? Com qual frequência?' },
-      { id:'c6', text:'Você possui banco de imagens, vídeos ou materiais institucionais?' },
-      { id:'c7', text:'Como funciona o processo de aprovação de conteúdo na sua empresa?' },
-      { id:'c8', text:'Há datas, eventos ou campanhas importantes no calendário?' },
-      { id:'c9', text:'Quais produtos ou serviços precisam de mais destaque no conteúdo?' },
-      { id:'c10', text:'Quais são as dúvidas mais frequentes do seu público que o conteúdo poderia responder?' },
-      { id:'c11', text:'Quais narrativas ou histórias você quer que sua marca reforce?' },
-    ]
-  },
-  marketing: {
-    icon: '📈', title: 'Marketing e Receita', desc: 'Crescimento, aquisição e performance comercial',
-    questions: [
-      { id:'mk1', text:'Qual é o faturamento atual aproximado? (pode ser em faixas)' },
-      { id:'mk2', text:'Qual é o ticket médio dos seus serviços ou produtos?' },
-      { id:'mk3', text:'Quais são os serviços ou produtos mais lucrativos?' },
-      { id:'mk4', text:'Qual é sua capacidade atual de atendimento?' },
-      { id:'mk5', text:'Como seus clientes chegam até você hoje? Quais são os principais canais de aquisição?' },
-      { id:'mk6', text:'Você sabe sua taxa de conversão de contato para cliente?' },
-      { id:'mk7', text:'Como é a jornada do seu cliente, do primeiro contato à contratação?' },
-      { id:'mk8', text:'Quais são as principais objeções dos clientes antes de contratar?' },
-      { id:'mk9', text:'Como funciona seu atendimento pós-venda? Há CRM ou sistema de acompanhamento?' },
-      { id:'mk10', text:'Você tem estratégia de recompra ou fidelização?' },
-      { id:'mk11', text:'Há sazonalidade no seu negócio? Quais períodos são mais fortes ou fracos?' },
-      { id:'mk12', text:'Quais são suas metas comerciais para os próximos 6 a 12 meses?' },
-    ]
-  }
+const STATUS_CONFIG={
+  pending:{label:'Pendente',badge:'is-pending',border:''},
+  agreed:{label:'Concordou',badge:'is-agreed',border:'is-agreed-border'},
+  disagreed:{label:'Discordou',badge:'is-disagreed',border:'is-disagreed-border'},
+  adjustment:{label:'Ajuste solicitado',badge:'is-adjustment',border:'is-adjustment-border'},
+  adjusted:{label:'Ajustado pela Koalaz',badge:'is-adjusted',border:'is-adjusted-border'},
+  approved:{label:'Aprovado final',badge:'is-approved',border:'is-approved-border'}
 };
 
-const PROJECT_TYPE_LABELS = {
-  site:'Site Estratégico', marca:'Marca e Autoridade',
-  conteudo:'Conteúdo e Redes', marketing:'Marketing e Receita', completo:'Projeto Completo'
-};
+const PROJECT_TYPE_LABELS={site:'Site Estratégico',marca:'Marca e Autoridade',conteudo:'Conteúdo e Redes',marketing:'Marketing e Receita',completo:'Projeto Completo'};
+const STATUS_LABELS={briefing_pending:'Briefing pendente',briefing_sent:'Briefing enviado',briefing_done:'Briefing respondido',active:'Em andamento',paused:'Pausado',done:'Concluído'};
+const STATUS_PILLS={briefing_pending:'pill-briefing',briefing_sent:'pill-briefing',briefing_done:'pill-briefing',active:'pill-active',paused:'pill-paused',done:'pill-done'};
 
-const STATUS_LABELS = {
-  briefing_pending:'Briefing pendente', briefing_sent:'Briefing enviado',
-  briefing_done:'Briefing respondido', active:'Em andamento', paused:'Pausado', done:'Concluído'
-};
-
-const STATUS_PILLS = {
-  briefing_pending:'pill-briefing', briefing_sent:'pill-briefing',
-  briefing_done:'pill-gold', active:'pill-active', paused:'pill-paused', done:'pill-done'
+const MODULES={
+  base:{icon:'📋',title:'Briefing Base',desc:'Dados da empresa, contexto e objetivos',questions:[
+    {id:'b1',text:'Qual é o nome completo da sua empresa ou marca?'},
+    {id:'b2',text:'Como você descreveria sua empresa em poucas palavras?'},
+    {id:'b3',text:'Quais são os responsáveis e decisores deste projeto?'},
+    {id:'b4',text:'Qual é o contexto atual da empresa? Como as coisas estão hoje?'},
+    {id:'b5',text:'Qual é o principal objetivo deste projeto?'},
+    {id:'b6',text:'Qual problema ou desafio este projeto precisa resolver?'},
+    {id:'b7',text:'Quem é o seu público prioritário?'},
+    {id:'b8',text:'Quais são seus principais concorrentes ou referências?'},
+    {id:'b9',text:'Quais canais de comunicação você utiliza atualmente?'},
+    {id:'b10',text:'Você possui materiais institucionais prontos? (logo, fotos, textos...)'},
+    {id:'b11',text:'Há alguma urgência ou restrição importante que devemos considerar?'},
+    {id:'b12',text:'Como você saberá que este projeto foi bem-sucedido?'},
+    {id:'b13',text:'Há algum prazo especial ou data sensível que precisamos respeitar?'}
+  ]},
+  site:{icon:'🌐',title:'Site e Presença Digital',desc:'Objetivo, páginas, SEO e referências',questions:[
+    {id:'s1',text:'Qual é o principal objetivo do seu site?'},
+    {id:'s2',text:'Quais páginas você considera essenciais?'},
+    {id:'s3',text:'Quais serviços ou produtos devem ter mais destaque?'},
+    {id:'s4',text:'Quais palavras ou termos seus clientes usam para te encontrar?'},
+    {id:'s5',text:'Você tem sites de referência que admira? Envie links.'},
+    {id:'s6',text:'Quais materiais estão disponíveis? (fotos, vídeos, depoimentos...)'},
+    {id:'s7',text:'Quais são os principais diferenciais do seu escritório ou empresa?'},
+    {id:'s8',text:'Você possui cases ou provas de autoridade que possam ser destacados?'},
+    {id:'s9',text:'Quais são as dúvidas frequentes dos seus clientes?'},
+    {id:'s10',text:'Há restrições jurídicas ou regulatórias que o site precisa respeitar?'},
+    {id:'s11',text:'Quais integrações serão necessárias? (WhatsApp, agendamento, CRM...)'}
+  ]},
+  marca:{icon:'⭐',title:'Marca Pessoal e Autoridade',desc:'Posicionamento e identidade',questions:[
+    {id:'m1',text:'Como você descreveria sua trajetória profissional?'},
+    {id:'m2',text:'Em quais áreas você se considera uma autoridade reconhecida?'},
+    {id:'m3',text:'Quais temas você deseja ocupar na sua comunicação?'},
+    {id:'m4',text:'Quais temas você prefere não abordar publicamente?'},
+    {id:'m5',text:'Quem são os públicos que você deseja alcançar?'},
+    {id:'m6',text:'Como você gostaria de ser percebido? Qual imagem deseja construir?'},
+    {id:'m7',text:'Você tem causas ou posicionamentos que fazem parte da sua identidade?'},
+    {id:'m8',text:'Quais são seus principais diferenciais técnicos ou credenciais?'},
+    {id:'m9',text:'Há limites éticos ou regulatórios na sua comunicação?'},
+    {id:'m10',text:'Você já teve exposição em mídia? Quais oportunidades gostaria de explorar?'}
+  ]},
+  conteudo:{icon:'✍️',title:'Conteúdo e Redes Sociais',desc:'Estratégia editorial e calendário',questions:[
+    {id:'c1',text:'Quais são os temas prioritários para sua comunicação?'},
+    {id:'c2',text:'Há temas que você não quer que apareçam no seu conteúdo?'},
+    {id:'c3',text:'Como você descreveria a linguagem desejada para sua marca?'},
+    {id:'c4',text:'Qual é a frequência de publicação que você consegue manter?'},
+    {id:'c5',text:'Você tem disponibilidade para gravações? Com qual frequência?'},
+    {id:'c6',text:'Você possui banco de imagens ou materiais institucionais?'},
+    {id:'c7',text:'Como funciona o processo de aprovação de conteúdo?'},
+    {id:'c8',text:'Há datas, eventos ou campanhas importantes no calendário?'},
+    {id:'c9',text:'Quais narrativas você quer que sua marca reforce?'}
+  ]},
+  marketing:{icon:'📈',title:'Marketing e Receita',desc:'Crescimento e performance comercial',questions:[
+    {id:'mk1',text:'Qual é o faturamento atual aproximado?'},
+    {id:'mk2',text:'Qual é o ticket médio dos seus serviços ou produtos?'},
+    {id:'mk3',text:'Quais são os serviços ou produtos mais lucrativos?'},
+    {id:'mk4',text:'Como seus clientes chegam até você hoje?'},
+    {id:'mk5',text:'Como é a jornada do seu cliente, do primeiro contato à contratação?'},
+    {id:'mk6',text:'Quais são as principais objeções antes de contratar?'},
+    {id:'mk7',text:'Você tem estratégia de recompra ou fidelização?'},
+    {id:'mk8',text:'Há sazonalidade no seu negócio?'},
+    {id:'mk9',text:'Quais são suas metas comerciais para os próximos 6 a 12 meses?'}
+  ]}
 };
 
 // ─── LOGIN ─────────────────────────────────────────────────────────────────
-function doLogin() {
-  if (document.getElementById('loginPass').value === PANEL_PASSWORD) {
-    sessionStorage.setItem('kp_auth','1');
-    showView('viewDash'); renderDash();
-  } else {
-    document.getElementById('loginError').classList.add('on');
-    document.getElementById('loginPass').value = '';
-  }
+function doLogin(){
+  if(document.getElementById('loginPass').value===PANEL_PASSWORD){
+    sessionStorage.setItem('kp_auth','1');showView('viewDash');renderDash();
+  }else{document.getElementById('loginError').classList.add('on');document.getElementById('loginPass').value='';}
 }
-function doLogout() { sessionStorage.removeItem('kp_auth'); showView('viewLogin'); }
+function doLogout(){sessionStorage.removeItem('kp_auth');showView('viewLogin');}
 
 // ─── SUPABASE ──────────────────────────────────────────────────────────────
-const sb = {
+const sb={
   h:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY,'Prefer':'return=representation'},
-  async getProjects(){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?order=created_at.desc`,{headers:this.h});if(!r.ok)throw new Error(await r.text());return r.json();},
-  async getProject(id){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{headers:this.h});if(!r.ok)throw new Error(await r.text());return (await r.json())[0]||null;},
-  async insertProject(d){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects`,{method:'POST',headers:this.h,body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();},
-  async updateProject(id,d){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{method:'PATCH',headers:this.h,body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();},
-  async deleteProject(id){const r=await fetch(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{method:'DELETE',headers:this.h});if(!r.ok)throw new Error(await r.text());},
-  async getBriefing(projectId){const r=await fetch(`${SUPABASE_URL}/rest/v1/briefing_responses?project_id=eq.${projectId}`,{headers:this.h});if(!r.ok)throw new Error(await r.text());return (await r.json())[0]||null;},
-  async upsertBriefing(d){const r=await fetch(`${SUPABASE_URL}/rest/v1/briefing_responses`,{method:'POST',headers:{...this.h,'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify(d)});if(!r.ok)throw new Error(await r.text());return r.json();}
+  async req(url,opts={}){const r=await fetch(url,{headers:this.h,...opts});if(!r.ok)throw new Error(await r.text());return opts.method==='DELETE'?null:r.json();},
+  async getProjects(){return this.req(`${SUPABASE_URL}/rest/v1/projects?order=created_at.desc`);},
+  async getProject(id){const a=await this.req(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`);return a[0]||null;},
+  async insertProject(d){return this.req(`${SUPABASE_URL}/rest/v1/projects`,{method:'POST',body:JSON.stringify(d)});},
+  async updateProject(id,d){return this.req(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{method:'PATCH',body:JSON.stringify(d)});},
+  async deleteProject(id){return this.req(`${SUPABASE_URL}/rest/v1/projects?id=eq.${id}`,{method:'DELETE'});},
+  async getBriefing(pid){const a=await this.req(`${SUPABASE_URL}/rest/v1/briefing_responses?project_id=eq.${pid}`);return a[0]||null;},
+  async upsertBriefing(d){return this.req(`${SUPABASE_URL}/rest/v1/briefing_responses`,{method:'POST',headers:{...this.h,'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify(d)});},
+  async getApprovals(pid){return this.req(`${SUPABASE_URL}/rest/v1/approvals?project_id=eq.${pid}&order=created_at.asc`);},
+  async getApproval(id){const a=await this.req(`${SUPABASE_URL}/rest/v1/approvals?id=eq.${id}`);return a[0]||null;},
+  async insertApproval(d){return this.req(`${SUPABASE_URL}/rest/v1/approvals`,{method:'POST',body:JSON.stringify(d)});},
+  async updateApproval(id,d){return this.req(`${SUPABASE_URL}/rest/v1/approvals?id=eq.${id}`,{method:'PATCH',body:JSON.stringify(d)});},
+  async deleteApproval(id){return this.req(`${SUPABASE_URL}/rest/v1/approvals?id=eq.${id}`,{method:'DELETE'});}
 };
 
 // ─── ROUTING ───────────────────────────────────────────────────────────────
-function checkRoute() {
-  const hash = location.hash;
-  if (hash.startsWith('#briefing/')) { loadBriefingView(hash.slice(10)); }
-  else { sessionStorage.getItem('kp_auth')==='1'?(showView('viewDash'),renderDash()):showView('viewLogin'); }
+function checkRoute(){
+  const hash=location.hash;
+  if(hash.startsWith('#briefing/'))loadBriefingView(hash.slice(10));
+  else if(hash.startsWith('#approval/'))loadApprovalClientView(hash.slice(10));
+  else if(hash.startsWith('#cliente/'))loadClientArea(hash.slice(9));
+  else sessionStorage.getItem('kp_auth')==='1'?(showView('viewDash'),renderDash()):showView('viewLogin');
 }
-window.addEventListener('hashchange', checkRoute);
-window.addEventListener('load', checkRoute);
+window.addEventListener('hashchange',checkRoute);
+window.addEventListener('load',checkRoute);
 
-function showView(id) {
+function showView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   document.getElementById(id).classList.add('on');
-  const bb = document.getElementById('briefingBar');
-  if (bb) bb.style.display = id==='viewBriefing'?'flex':'none';
+  ['briefingBar','approvalBar'].forEach(bid=>{const el=document.getElementById(bid);if(el)el.style.display='none';});
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // ─── DASHBOARD ─────────────────────────────────────────────────────────────
-async function renderDash() {
+async function renderDash(){
   document.getElementById('projectsGrid').innerHTML='<div class="loading"><div class="spinner"></div><span>Carregando...</span></div>';
-  try {
-    const projects = await sb.getProjects();
+  try{
+    const projects=await sb.getProjects();
     document.getElementById('statTotal').textContent=projects.length;
-    document.getElementById('statBriefing').textContent=projects.filter(p=>p.status==='briefing_pending'||p.status==='briefing_sent').length;
+    document.getElementById('statBriefing').textContent=projects.filter(p=>p.status.startsWith('briefing')).length;
     document.getElementById('statActive').textContent=projects.filter(p=>p.status==='active').length;
     document.getElementById('statDone').textContent=projects.filter(p=>p.status==='done').length;
     const grid=document.getElementById('projectsGrid');
-    if(!projects.length){
-      grid.innerHTML='<div class="empty-state"><div class="big">🚀</div><h3>Nenhum projeto ainda</h3><p>Clique em <strong>+ Novo Projeto</strong> para começar</p></div>';
-      return;
-    }
+    if(!projects.length){grid.innerHTML='<div class="empty-state"><div class="big">🚀</div><h3>Nenhum projeto ainda</h3><p>Clique em + Novo Projeto para começar</p></div>';return;}
     grid.innerHTML=projects.map(p=>{
-      const modules=(p.modules||[]).map(m=>`<span class="module-tag">${MODULES[m]?MODULES[m].icon+' '+MODULES[m].title:m}</span>`).join('');
-      const pill=STATUS_PILLS[p.status]||'pill-paused';
-      const label=STATUS_LABELS[p.status]||p.status;
+      const mods=(p.modules||[]).map(m=>MODULES[m]?`<span class="module-tag">${MODULES[m].icon} ${MODULES[m].title}</span>`:'').join('');
       return `<div class="project-card" onclick="openDetail('${p.id}')">
-        <div class="project-card-top">
-          <span class="project-type-badge">${PROJECT_TYPE_LABELS[p.project_type]||p.project_type}</span>
-          <span class="pill ${pill}">${label}</span>
-        </div>
+        <div class="project-card-top"><span class="project-type-badge">${PROJECT_TYPE_LABELS[p.project_type]||p.project_type}</span><span class="pill ${STATUS_PILLS[p.status]||'pill-paused'}">${STATUS_LABELS[p.status]||p.status}</span></div>
         <div class="project-name">${esc(p.name)}</div>
         <div class="project-client">👤 ${esc(p.client_name)}</div>
-        <div class="project-meta">
-          ${p.responsible?`<span class="project-responsible">⚙️ ${esc(p.responsible)}</span>`:''}
-          ${p.deadline?`<span class="project-deadline">📅 ${esc(p.deadline)}</span>`:''}
-        </div>
-        ${modules?`<div class="module-tags">${modules}</div>`:''}
+        <div class="project-meta">${p.responsible?`<span style="font-size:12px;color:var(--ink3)">⚙️ ${esc(p.responsible)}</span>`:''} ${p.deadline?`<span style="font-size:12px;color:var(--ink3)">📅 ${esc(p.deadline)}</span>`:''}</div>
+        ${mods?`<div class="module-tags">${mods}</div>`:''}
         <div class="project-card-actions" onclick="event.stopPropagation()">
-          <button class="btn btn-ghost btn-sm btn-icon" onclick="editProject('${p.id}')">✏️</button>
+          <button class="btn btn-ghost btn-sm btn-icon" onclick="openEditProjectModal('${p.id}')">✏️</button>
           <button class="btn btn-danger btn-sm btn-icon" onclick="deleteProject('${p.id}')">🗑</button>
         </div>
       </div>`;
     }).join('');
-  } catch(e){document.getElementById('projectsGrid').innerHTML=`<div class="empty-state" style="color:var(--red)">Erro: ${e.message}</div>`;}
+  }catch(e){document.getElementById('projectsGrid').innerHTML=`<div class="empty-state" style="color:var(--red)">Erro: ${e.message}</div>`;}
 }
 
-function showDashTab() { showView('viewDash'); renderDash(); }
-
-// ─── MODAL ─────────────────────────────────────────────────────────────────
-let editingId=null;
-function openNewModal(){
-  editingId=null;
-  document.getElementById('modalTitle').textContent='Novo Projeto';
+// ─── PROJECT MODAL ─────────────────────────────────────────────────────────
+let editingProjectId=null;
+function openNewProjectModal(){
+  editingProjectId=null;
+  document.getElementById('modalProjectTitle').textContent='Novo Projeto';
   ['mName','mClient','mClientEmail','mDeadline','mNotes'].forEach(id=>document.getElementById(id).value='');
   document.getElementById('mResponsible').value='Flávia Azevedo';
   document.getElementById('mType').value='';
-  document.getElementById('modalError').classList.remove('on');
-  // Reset modules — only base checked
-  document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{
-    cb.checked=cb.value==='base';
-    cb.closest('.module-option').classList.toggle('selected',cb.value==='base');
-  });
-  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('mStatus').value='briefing_pending';
+  document.getElementById('modalProjectError').classList.remove('on');
+  document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{cb.checked=cb.value==='base';cb.closest('.module-option').classList.toggle('selected',cb.value==='base');});
+  document.getElementById('modalProject').classList.add('open');
 }
-
-async function editProject(id) {
-  try {
-    const p=await sb.getProject(id); if(!p) return;
-    editingId=id;
-    document.getElementById('modalTitle').textContent='Editar Projeto';
-    document.getElementById('mName').value=p.name;
-    document.getElementById('mClient').value=p.client_name;
-    document.getElementById('mClientEmail').value=p.client_email||'';
-    document.getElementById('mResponsible').value=p.responsible||'';
-    document.getElementById('mDeadline').value=p.deadline||'';
-    document.getElementById('mNotes').value=p.notes||'';
-    document.getElementById('mType').value=p.project_type||'';
-    document.getElementById('modalError').classList.remove('on');
+async function openEditProjectModal(id){
+  try{
+    const p=await sb.getProject(id);if(!p)return;
+    editingProjectId=id;
+    document.getElementById('modalProjectTitle').textContent='Editar Projeto';
+    document.getElementById('mName').value=p.name;document.getElementById('mClient').value=p.client_name;
+    document.getElementById('mClientEmail').value=p.client_email||'';document.getElementById('mResponsible').value=p.responsible||'';
+    document.getElementById('mDeadline').value=p.deadline||'';document.getElementById('mNotes').value=p.notes||'';
+    document.getElementById('mType').value=p.project_type||'';document.getElementById('mStatus').value=p.status||'briefing_pending';document.getElementById('mClientPassword').value=p.client_password||'';
+    document.getElementById('modalProjectError').classList.remove('on');
     const mods=p.modules||[];
-    document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{
-      cb.checked=mods.includes(cb.value);
-      cb.closest('.module-option').classList.toggle('selected',mods.includes(cb.value));
-    });
-    document.getElementById('modalOverlay').classList.add('open');
-  } catch(e){showToast('Erro: '+e.message);}
+    document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{cb.checked=mods.includes(cb.value);cb.closest('.module-option').classList.toggle('selected',mods.includes(cb.value));});
+    document.getElementById('modalProject').classList.add('open');
+  }catch(e){showToast('Erro: '+e.message);}
 }
-
-function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
-
+function closeModal(id){document.getElementById(id).classList.remove('open');}
 function toggleModule(cb){cb.closest('.module-option').classList.toggle('selected',cb.checked);}
-
 function updateModuleSuggestion(){
-  const type=document.getElementById('mType').value;
-  const suggestions={
-    site:['base','site'], marca:['base','marca'], conteudo:['base','conteudo'],
-    marketing:['base','marketing'], completo:['base','site','marca','conteudo','marketing']
-  };
-  const mods=suggestions[type]||['base'];
-  document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{
-    cb.checked=mods.includes(cb.value);
-    cb.closest('.module-option').classList.toggle('selected',mods.includes(cb.value));
-  });
+  const sugg={site:['base','site'],marca:['base','marca'],conteudo:['base','conteudo'],marketing:['base','marketing'],completo:['base','site','marca','conteudo','marketing']};
+  const mods=sugg[document.getElementById('mType').value]||['base'];
+  document.querySelectorAll('#moduleSelector input[type=checkbox]').forEach(cb=>{cb.checked=mods.includes(cb.value);cb.closest('.module-option').classList.toggle('selected',mods.includes(cb.value));});
 }
-
 async function saveProject(){
   const name=document.getElementById('mName').value.trim();
   const client=document.getElementById('mClient').value.trim();
   const type=document.getElementById('mType').value;
-  if(!name||!client||!type){showModalError('Preencha nome, cliente e tipo');return;}
-  const modules=[];
-  document.querySelectorAll('#moduleSelector input[type=checkbox]:checked').forEach(cb=>modules.push(cb.value));
-  const btn=document.getElementById('saveBtn');
-  btn.disabled=true; btn.textContent='Salvando...';
-  try {
-    const payload={name,client_name:client,client_email:document.getElementById('mClientEmail').value.trim(),
-      responsible:document.getElementById('mResponsible').value.trim(),
-      deadline:document.getElementById('mDeadline').value.trim(),
-      notes:document.getElementById('mNotes').value.trim(),
-      project_type:type,modules};
-    if(editingId){await sb.updateProject(editingId,payload);showToast('Projeto atualizado!');}
-    else{payload.id=uid();payload.status='briefing_pending';await sb.insertProject(payload);showToast('Projeto criado!');}
-    closeModal(); renderDash();
-  }catch(e){showModalError('Erro: '+e.message);}
+  if(!name||!client||!type){document.getElementById('modalProjectError').textContent='Preencha nome, cliente e tipo';document.getElementById('modalProjectError').classList.add('on');return;}
+  const modules=[];document.querySelectorAll('#moduleSelector input[type=checkbox]:checked').forEach(cb=>modules.push(cb.value));
+  const btn=document.getElementById('saveProjectBtn');btn.disabled=true;btn.textContent='Salvando...';
+  try{
+    const payload={name,client_name:client,client_email:document.getElementById('mClientEmail').value.trim(),client_password:document.getElementById('mClientPassword').value.trim(),responsible:document.getElementById('mResponsible').value.trim(),deadline:document.getElementById('mDeadline').value.trim(),notes:document.getElementById('mNotes').value.trim(),project_type:type,modules,status:document.getElementById('mStatus').value};
+    if(editingProjectId){await sb.updateProject(editingProjectId,payload);showToast('Atualizado!');}
+    else{payload.id=uid();await sb.insertProject(payload);showToast('Projeto criado!');}
+    closeModal('modalProject');renderDash();
+  }catch(e){document.getElementById('modalProjectError').textContent='Erro: '+e.message;document.getElementById('modalProjectError').classList.add('on');}
   finally{btn.disabled=false;btn.textContent='Salvar projeto';}
 }
+async function deleteProject(id){if(!confirm('Excluir projeto?'))return;try{await sb.deleteProject(id);renderDash();showToast('Excluído');}catch(e){showToast('Erro: '+e.message);}}
 
-function showModalError(msg){const el=document.getElementById('modalError');el.textContent=msg;el.classList.add('on');}
-
-async function deleteProject(id){
-  if(!confirm('Excluir este projeto? Esta ação não pode ser desfeita.'))return;
-  try{await sb.deleteProject(id);renderDash();showToast('Projeto excluído');}
-  catch(e){showToast('Erro: '+e.message);}
-}
-
-// ─── DETAIL ────────────────────────────────────────────────────────────────
+// ─── PROJECT DETAIL ────────────────────────────────────────────────────────
 let currentProject=null;
-
 async function openDetail(id){
   showView('viewDetail');
-  try {
-    const p=await sb.getProject(id); if(!p) return;
+  try{
+    const p=await sb.getProject(id);if(!p)return;
     currentProject=p;
     document.getElementById('detailName').textContent=p.name;
     document.getElementById('detailMeta').textContent=[p.client_name,PROJECT_TYPE_LABELS[p.project_type],p.responsible].filter(Boolean).join(' · ');
     document.getElementById('detailActions').innerHTML=`
-      <button class="btn btn-ghost btn-sm" onclick="editProject('${p.id}')">✏️ Editar</button>
-      <select class="btn btn-ghost btn-sm" style="cursor:pointer" onchange="updateStatus('${p.id}',this.value)">
+      <button class="btn btn-ghost btn-sm" onclick="openEditProjectModal('${p.id}')">✏️ Editar</button>
+      <select class="btn btn-ghost btn-sm" style="cursor:pointer" onchange="updateProjectStatus('${p.id}',this.value)">
         ${Object.entries(STATUS_LABELS).map(([k,v])=>`<option value="${k}"${p.status===k?' selected':''}>${v}</option>`).join('')}
       </select>`;
-    renderInfoTab(p);
-    renderBriefingTab(p);
+    renderInfoTab(p);renderBriefingTab(p);renderApprovalsTab(p);
   }catch(e){showToast('Erro: '+e.message);}
 }
-
 function switchTab(tabId){
-  document.querySelectorAll('.tab').forEach((t,i)=>{
-    const ids=['tabInfo','tabBriefing'];
-    t.classList.toggle('active',ids[i]===tabId);
-  });
-  document.querySelectorAll('.tab-content').forEach(tc=>{tc.classList.remove('active');});
+  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('active',['tabInfo','tabBriefing','tabApprovals'][i]===tabId);});
+  document.querySelectorAll('.tab-content').forEach(tc=>tc.classList.remove('active'));
   document.getElementById(tabId).classList.add('active');
 }
+async function updateProjectStatus(id,status){await sb.updateProject(id,{status});showToast('Status atualizado!');}
 
 function renderInfoTab(p){
   document.getElementById('tabInfoContent').innerHTML=`
     <div class="info-grid">
       <div class="info-item"><div class="label">Cliente</div><div class="value">${esc(p.client_name)}</div></div>
       <div class="info-item"><div class="label">E-mail</div><div class="value">${esc(p.client_email||'—')}</div></div>
-      <div class="info-item"><div class="label">Tipo de Projeto</div><div class="value">${PROJECT_TYPE_LABELS[p.project_type]||'—'}</div></div>
+      <div class="info-item"><div class="label">Tipo</div><div class="value">${PROJECT_TYPE_LABELS[p.project_type]||'—'}</div></div>
       <div class="info-item"><div class="label">Responsável</div><div class="value">${esc(p.responsible||'—')}</div></div>
       <div class="info-item"><div class="label">Prazo</div><div class="value">${esc(p.deadline||'—')}</div></div>
       <div class="info-item"><div class="label">Status</div><div class="value"><span class="pill ${STATUS_PILLS[p.status]||'pill-paused'}">${STATUS_LABELS[p.status]||p.status}</span></div></div>
     </div>
-    ${p.notes?`<div class="info-item" style="margin-bottom:20px"><div class="label">Observações internas</div><div class="value" style="margin-top:6px;color:var(--ink2);line-height:1.7">${esc(p.notes)}</div></div>`:''}
-    <div class="section-divider">Módulos selecionados</div>
-    <div style="display:flex;flex-wrap:wrap;gap:8px">
-      ${(p.modules||[]).map(m=>MODULES[m]?`<div style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600">${MODULES[m].icon} ${MODULES[m].title}</div>`:'').join('')}
+    <div class="info-grid" style="margin-top:0">
+      <div class="info-item"><div class="label">Link da Área do Cliente</div><div class="value" style="font-size:12px;font-family:monospace;word-break:break-all">${location.origin+location.pathname+'#cliente/'+p.id}</div></div>
+      <div class="info-item"><div class="label">Senha do Cliente</div><div class="value">${esc(p.client_password||'não definida')}</div></div>
     </div>
-    <div style="margin-top:20px;font-size:11px;color:var(--ink3)">Criado em ${new Date(p.created_at).toLocaleDateString('pt-BR')}</div>`;
+    ${p.notes?`<div class="info-item" style="margin-bottom:20px"><div class="label">Observações</div><div class="value" style="margin-top:6px;color:var(--ink2);line-height:1.7">${esc(p.notes)}</div></div>`:''}
+    <div class="section-divider">Módulos selecionados</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">${(p.modules||[]).map(m=>MODULES[m]?`<div style="background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:13px;font-weight:600">${MODULES[m].icon} ${MODULES[m].title}</div>`:'').join('')}</div>`;
 }
 
 async function renderBriefingTab(p){
   const cont=document.getElementById('tabBriefingContent');
-  cont.innerHTML='<div class="loading"><div class="spinner"></div><span>Carregando briefing...</span></div>';
+  cont.innerHTML='<div class="loading"><div class="spinner"></div><span>Carregando...</span></div>';
   const briefing=await sb.getBriefing(p.id);
   const link=location.origin+location.pathname+'#briefing/'+p.id;
-  let html=`<div class="send-panel">
-    <h3>🔗 Link do briefing para o cliente</h3>
-    <p>Envie este link para <strong>${esc(p.client_name)}</strong> responder o briefing online. Você acompanha as respostas aqui em tempo real.</p>
-    <div class="link-box">
-      <input type="text" value="${link}" readonly>
-      <button class="copy-btn" onclick="copyBriefingLink()">Copiar</button>
-    </div>
+  let html=`<div class="send-panel"><h3>🔗 Link do briefing para o cliente</h3>
+    <p>Envie para <strong>${esc(p.client_name)}</strong> responder online.</p>
+    <div class="link-box"><input type="text" value="${link}" readonly><button class="copy-btn" onclick="navigator.clipboard.writeText('${link}').then(()=>showToast('Link copiado!'))">Copiar</button></div>
     ${p.client_email?`<button class="btn btn-primary btn-sm" style="margin-top:10px" onclick="sendBriefingEmail('${p.id}')">📧 Enviar por e-mail</button>`:''}
   </div>`;
-
   if(briefing&&briefing.submitted_at){
-    html+=`<div style="background:var(--green-tint);border:1px solid #A8D5B5;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--green)">
-      ✅ Briefing respondido em ${new Date(briefing.submitted_at).toLocaleString('pt-BR')}
-    </div>`;
+    html+=`<div style="background:var(--green-tint);border:1px solid #A8D5B5;border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--green)">✅ Respondido em ${new Date(briefing.submitted_at).toLocaleString('pt-BR')}</div>`;
     const responses=briefing.responses||{};
     (p.modules||[]).forEach(modKey=>{
-      const mod=MODULES[modKey]; if(!mod) return;
-      html+=`<div class="briefing-section">
-        <div class="briefing-section-title">${mod.icon} ${mod.title}</div>`;
+      const mod=MODULES[modKey];if(!mod)return;
+      html+=`<div style="margin-bottom:24px"><div class="section-divider">${mod.icon} ${mod.title}</div>`;
       mod.questions.forEach(q=>{
         const ans=responses[q.id];
-        html+=`<div class="response-item">
-          <div class="r-question">${esc(q.text)}</div>
-          <div class="r-answer ${ans?'':'empty'}">${ans?esc(ans):'Não respondido'}</div>
-        </div>`;
+        html+=`<div class="response-item"><div class="r-question">${esc(q.text)}</div><div class="r-answer ${ans?'':'empty'}">${ans?esc(ans):'Não respondido'}</div></div>`;
       });
       html+='</div>';
     });
-  } else {
-    html+=`<div style="text-align:center;padding:40px;color:var(--ink3)">
-      <div style="font-size:40px;margin-bottom:12px">⏳</div>
-      <p style="font-size:14px">Aguardando o cliente responder o briefing.</p>
-      <p style="font-size:12px;margin-top:6px">As respostas aparecerão aqui assim que forem enviadas.</p>
-    </div>`;
+  }else{
+    html+=`<div class="empty-state"><div class="big">⏳</div><p>Aguardando o cliente responder o briefing.</p></div>`;
   }
   cont.innerHTML=html;
 }
 
-function copyBriefingLink(){
-  if(!currentProject) return;
-  const link=location.origin+location.pathname+'#briefing/'+currentProject.id;
-  navigator.clipboard.writeText(link).then(()=>showToast('Link copiado!'));
+async function renderApprovalsTab(p){
+  const cont=document.getElementById('tabApprovalsContent');
+  cont.innerHTML='<div class="loading"><div class="spinner"></div><span>Carregando...</span></div>';
+  const approvals=await sb.getApprovals(p.id);
+  let html=`<div style="display:flex;justify-content:flex-end;margin-bottom:20px"><button class="btn btn-primary btn-sm" onclick="openNewApprovalModal('${p.id}')">＋ Nova Etapa</button></div>`;
+  if(!approvals.length){
+    html+=`<div class="empty-state"><div class="big">✅</div><h3>Nenhuma etapa ainda</h3><p>Clique em "+ Nova Etapa" para criar a primeira rodada de aprovação.</p></div>`;
+  }else{
+    approvals.forEach((a,i)=>{
+      const answered=Object.keys(a.votes||{}).length;
+      const total=(a.findings||[]).length;
+      const pct=total?Math.round((answered/total)*100):0;
+      const sc={draft:'pill-draft',sent:'pill-sent',done:'pill-done'}[a.status]||'pill-draft';
+      const sl={draft:'Rascunho',sent:'Enviado',done:'Concluído'}[a.status]||'Rascunho';
+      html+=`<div class="approval-card" onclick="openApprovalDetail('${a.id}','${p.id}')">
+        <div>
+          <div class="approval-card-title">${esc(a.title)}</div>
+          <div class="approval-card-meta">${total} achados · ${answered}/${total} respondidos · ${pct}% concluído</div>
+          ${a.reviewed_at?`<div class="approval-card-meta">Respondido em ${new Date(a.reviewed_at).toLocaleString('pt-BR')}</div>`:''}
+        </div>
+        <div class="approval-card-actions" onclick="event.stopPropagation()">
+          <span class="pill ${sc}">${sl}</span>
+          <button class="btn btn-danger btn-sm btn-icon" onclick="deleteApproval('${a.id}','${p.id}')">🗑</button>
+        </div>
+      </div>`;
+    });
+  }
+  cont.innerHTML=html;
 }
 
 async function sendBriefingEmail(projectId){
   const p=await sb.getProject(projectId);
   if(!p||!p.client_email){showToast('E-mail não cadastrado');return;}
   const link=location.origin+location.pathname+'#briefing/'+p.id;
-  try {
-    await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({
-      type:'briefing_invite',
-      clientEmail:p.client_email,
-      clientName:p.client_name,
-      consultantName:p.responsible||'Equipe Koalaz',
-      projectName:p.name,
-      link
-    })});
+  try{
+    await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({type:'briefing_invite',clientEmail:p.client_email,clientName:p.client_name,consultantName:p.responsible||'Equipe Koalaz',projectName:p.name,link})});
     await sb.updateProject(projectId,{status:'briefing_sent'});
-    showToast('E-mail enviado!');
-    openDetail(projectId);
+    showToast('E-mail enviado!');openDetail(projectId);
   }catch(e){showToast('Erro: '+e.message);}
 }
 
-async function updateStatus(id,status){
-  await sb.updateProject(id,{status});
-  if(currentProject&&currentProject.id===id) currentProject.status=status;
-  showToast('Status atualizado!');
+// ─── APPROVAL MODAL ────────────────────────────────────────────────────────
+let editingApprovalId=null,currentApprovalProjectId=null;
+function openNewApprovalModal(projectId){
+  editingApprovalId=null;currentApprovalProjectId=projectId;
+  document.getElementById('modalApprovalTitle').textContent='Nova Etapa de Aprovação';
+  document.getElementById('aTitle').value='';document.getElementById('aContext').value='';
+  document.getElementById('approvalFindings').innerHTML='';
+  document.getElementById('modalApprovalError').classList.remove('on');
+  addApprovalFinding();addApprovalFinding();
+  document.getElementById('modalApproval').classList.add('open');
+}
+function addApprovalFinding(title='',desc='',files=[]){
+  const div=document.createElement('div');div.className='finding-card';
+  const fcId='fc_'+Date.now()+'_'+Math.random().toString(36).slice(2,5);
+  div.dataset.fcid=fcId;
+  div.innerHTML=`<div class="fc-num">${document.getElementById('approvalFindings').children.length+1}</div>
+    <input type="text" placeholder="Título do achado *" value="${esc(title)}" data-field="title">
+    <textarea placeholder="Descrição (opcional) — use Enter para listas e parágrafos" data-field="desc">${esc(desc)}</textarea>
+    <div class="file-upload-area" onclick="document.getElementById('fu_${fcId}').click()">
+      <input type="file" id="fu_${fcId}" multiple accept="image/*,.pdf" onchange="handleFindingFiles(this,'${fcId}')">
+      <div class="file-upload-label">📎 Anexar imagens ou PDFs</div>
+    </div>
+    <div class="file-list" id="fl_${fcId}"></div>
+    <button class="fc-remove" onclick="this.closest('.finding-card').remove();renumberAF()">✕</button>`;
+  if(files&&files.length){files.forEach(f=>renderFileItem(fcId,f));}
+  document.getElementById('approvalFindings').appendChild(div);renumberAF();
+}
+function renumberAF(){document.querySelectorAll('#approvalFindings .fc-num').forEach((el,i)=>el.textContent=i+1);}
+async function saveApproval(){
+  const title=document.getElementById('aTitle').value.trim();
+  if(!title){document.getElementById('modalApprovalError').textContent='Preencha o título';document.getElementById('modalApprovalError').classList.add('on');return;}
+  const btn=document.getElementById('saveApprovalBtn');btn.disabled=true;btn.textContent='Salvando...';
+  const findings=await collectFindingsWithFiles();
+  if(!findings.length){document.getElementById('modalApprovalError').textContent='Adicione ao menos um achado';document.getElementById('modalApprovalError').classList.add('on');btn.disabled=false;btn.textContent='Salvar etapa';return;}
+  try{
+    const payload={project_id:currentApprovalProjectId,title,context:document.getElementById('aContext').value.trim(),findings,votes:{},item_statuses:{},status:'draft',general_comment:''};
+    if(editingApprovalId){await sb.updateApproval(editingApprovalId,payload);}
+    else{payload.id=uid();await sb.insertApproval(payload);}
+    closeModal('modalApproval');
+    // Refresh approvals tab
+    const p=await sb.getProject(currentApprovalProjectId);
+    renderApprovalsTab(p);switchTab('tabApprovals');
+    showToast('Etapa salva!');
+  }catch(e){document.getElementById('modalApprovalError').textContent='Erro: '+e.message;document.getElementById('modalApprovalError').classList.add('on');}
+  finally{btn.disabled=false;btn.textContent='Salvar etapa';}
+}
+async function deleteApproval(id,projectId){
+  if(!confirm('Excluir esta etapa?'))return;
+  try{await sb.deleteApproval(id);const p=await sb.getProject(projectId);renderApprovalsTab(p);showToast('Etapa excluída');}
+  catch(e){showToast('Erro: '+e.message);}
+}
+
+// ─── APPROVAL DETAIL (CONSULTANT) ─────────────────────────────────────────
+let currentApproval=null,currentApprovalProject=null;
+async function openApprovalDetail(approvalId,projectId){
+  showView('viewApprovalDetail');
+  try{
+    const [a,p]=await Promise.all([sb.getApproval(approvalId),sb.getProject(projectId)]);
+    if(!a||!p)return;
+    currentApproval=a;currentApprovalProject=p;
+    document.getElementById('approvalDetailTitle').textContent=a.title;
+    document.getElementById('approvalDetailMeta').textContent=p.client_name+' · '+p.name;
+    document.getElementById('backToProject').onclick=()=>{openDetail(projectId);switchTab('tabApprovals');};
+    const link=location.origin+location.pathname+'#approval/'+a.id;
+    document.getElementById('approvalLinkInput').value=link;
+    const eb=document.getElementById('sendApprovalEmailBtn');
+    eb.style.display=p.client_email?'flex':'none';
+    if(a.general_comment){document.getElementById('generalCommentPanel').style.display='block';document.getElementById('generalCommentText').textContent='"'+a.general_comment+'"';}
+    else document.getElementById('generalCommentPanel').style.display='none';
+    document.getElementById('approvalDetailActions').innerHTML=`
+      ${a.status==='draft'?`<button class="btn btn-primary btn-sm" onclick="markApprovalSent('${a.id}')">📤 Marcar Enviado</button>`:''}
+      ${a.status==='done'?`<button class="btn btn-ghost btn-sm" onclick="resetApproval('${a.id}')">🔄 Resetar</button>`:''}`;
+    renderApprovalFindings(a);
+  }catch(e){showToast('Erro: '+e.message);}
+}
+
+function renderApprovalFindings(a){
+  const votes=a.votes||{};
+  const statuses=a.item_statuses||{};
+  const findings=a.findings||[];
+  const hasAdjusted=findings.some(f=>{const r=statuses[f.id];return (r?(typeof r==='object'?r.status:r):'pending')==='adjusted';});
+  document.getElementById('approveAllWrap').style.display=hasAdjusted?'block':'none';
+  document.getElementById('approvalDetailFindings').innerHTML=findings.map((f,i)=>{
+    const stRaw=statuses[f.id];
+    const st=stRaw?(typeof stRaw==='object'?stRaw.status:stRaw):'pending';
+    const koalazAt=stRaw&&typeof stRaw==='object'?stRaw.koalaz_at:null;
+    const sc=STATUS_CONFIG[st]||STATUS_CONFIG.pending;
+    const v=votes[f.id];
+    const clientAt=v&&v.timestamp?v.timestamp:(stRaw&&typeof stRaw==='object'?stRaw.client_at:null);
+    return `<div class="df-card ${sc.border}" id="dfc_${f.id}">
+      <div class="df-card-head">
+        <div class="df-tag"><span>Achado ${i+1}</span><span class="is-badge ${sc.badge}">${sc.label}</span></div>
+        <div class="df-title">${esc(f.title)}</div>
+        ${f.desc?`<div class="df-desc">${escHtml(f.desc)}</div>`:''}
+      </div>
+      ${clientAt||v&&v.adjust_type?`<div class="df-card-foot">
+        ${clientAt?`<div class="df-timestamp">👤 Cliente: ${new Date(clientAt).toLocaleString('pt-BR')}</div>`:''}
+        ${v&&v.adjust_type?`<span style="font-size:12px;color:var(--gold);font-weight:600">📋 ${esc(v.adjust_type)}</span>`:''}
+      </div>`:''}
+      ${v&&v.comment?`<div class="comment-block"><div class="cb-lbl" style="color:${st==='agreed'?'var(--green)':st==='adjustment'?'var(--gold)':'var(--red)'}">💬 Comentário do cliente</div><p>${esc(v.comment)}</p></div>`:''}
+      ${koalazAt?`<div style="padding:6px 18px;background:#F5F4EF;border-top:1px solid var(--line);font-size:11px;color:var(--ink3)">⚙️ Koalaz: ${new Date(koalazAt).toLocaleString('pt-BR')}</div>`:''}
+      <div class="consultant-actions">
+        <label>Status Koalaz:</label>
+        <select class="status-select" onchange="updateItemStatus('${a.id}','${f.id}',this.value)">
+          ${Object.entries(STATUS_CONFIG).map(([k,sv])=>`<option value="${k}"${st===k?' selected':''}>${sv.label}</option>`).join('')}
+        </select>
+      </div>
+    </div>`;
+  }).join('');
+  const answered=Object.keys(votes).length;
+  const total=findings.length;
+  const pct=total?Math.round((answered/total)*100):0;
+  const cbs=(s)=>findings.filter(f=>{const r=statuses[f.id];return (r?(typeof r==='object'?r.status:r):'pending')===s;}).length;
+  document.getElementById('approvalPanelMeta').innerHTML=`
+    <div class="panel-meta">
+      <p>Respondidos <span>${answered} de ${total}</span></p>
+      <p>Concordâncias <span style="color:var(--green)">${cbs('agreed')}</span></p>
+      <p>Discordâncias <span style="color:var(--red)">${cbs('disagreed')}</span></p>
+      <p>Ajustes <span style="color:var(--gold)">${cbs('adjustment')}</span></p>
+      <p>Ajustados Koalaz <span style="color:var(--blue)">${cbs('adjusted')}</span></p>
+      <p>Aprovados <span style="color:var(--purple)">${cbs('approved')}</span></p>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
+    <p style="font-size:11px;color:var(--ink3)">${pct}% respondido</p>`;
+}
+
+async function updateItemStatus(approvalId,findingId,newStatus){
+  try{
+    const a=await sb.getApproval(approvalId);
+    const statuses=a.item_statuses||{};
+    statuses[findingId]={status:newStatus,koalaz_at:new Date().toISOString()};
+    await sb.updateApproval(approvalId,{item_statuses:statuses});
+    currentApproval=await sb.getApproval(approvalId);
+    renderApprovalFindings(currentApproval);showToast('Status atualizado!');
+  }catch(e){showToast('Erro: '+e.message);}
+}
+
+async function approveAllAdjusted(){
+  if(!currentApproval)return;
+  if(!confirm('Aprovar todos os itens "Ajustado pela Koalaz"?'))return;
+  const statuses=currentApproval.item_statuses||{};
+  let changed=false;
+  (currentApproval.findings||[]).forEach(f=>{
+    const r=statuses[f.id];const st=r?(typeof r==='object'?r.status:r):'pending';
+    if(st==='adjusted'){statuses[f.id]={status:'approved',koalaz_at:new Date().toISOString()};changed=true;}
+  });
+  if(!changed){showToast('Nenhum item "Ajustado" encontrado');return;}
+  await sb.updateApproval(currentApproval.id,{item_statuses:statuses});
+  currentApproval=await sb.getApproval(currentApproval.id);
+  renderApprovalFindings(currentApproval);showToast('Itens aprovados!');
+}
+
+async function markApprovalSent(id){await sb.updateApproval(id,{status:'sent'});openApprovalDetail(id,currentApprovalProject.id);showToast('Marcado como enviado!');}
+async function resetApproval(id){if(!confirm('Limpar todas as respostas?'))return;await sb.updateApproval(id,{votes:{},item_statuses:{},status:'sent',general_comment:''});openApprovalDetail(id,currentApprovalProject.id);showToast('Respostas removidas');}
+function copyApprovalLink(){navigator.clipboard.writeText(document.getElementById('approvalLinkInput').value).then(()=>showToast('Link copiado!'));}
+
+async function sendApprovalEmail(){
+  if(!currentApproval||!currentApprovalProject)return;
+  if(!currentApprovalProject.client_email){showToast('E-mail não cadastrado');return;}
+  const link=location.origin+location.pathname+'#approval/'+currentApproval.id;
+  const btn=document.getElementById('sendApprovalEmailBtn');btn.disabled=true;btn.textContent='Enviando...';
+  try{
+    await fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({type:'client_invite',clientEmail:currentApprovalProject.client_email,clientName:currentApprovalProject.client_name,consultantName:currentApprovalProject.responsible||'Equipe Koalaz',reportTitle:currentApproval.title,context:currentApproval.context||'',link})});
+    await sb.updateApproval(currentApproval.id,{status:'sent'});
+    showToast('E-mail enviado!');openApprovalDetail(currentApproval.id,currentApprovalProject.id);
+  }catch(e){showToast('Erro: '+e.message);}
+  finally{btn.disabled=false;btn.textContent='📧 Enviar por e-mail';}
 }
 
 // ─── CLIENT BRIEFING ───────────────────────────────────────────────────────
-let briefingProjectId=null, briefingAnswers={};
-
+let briefingProjectId=null,briefingAnswers={};
 async function loadBriefingView(projectId){
-  showView('viewBriefing');
-  briefingProjectId=projectId; briefingAnswers={};
-  try {
+  showView('viewBriefing');briefingProjectId=projectId;briefingAnswers={};
+  document.getElementById('briefingBar').style.display='flex';
+  try{
     const p=await sb.getProject(projectId);
-    if(!p){
-      document.getElementById('briefingBody').innerHTML='<div style="text-align:center;padding:72px 20px;color:var(--ink3)"><div style="font-size:44px;margin-bottom:14px">🔍</div><h2 style="font-family:Fraunces,serif">Briefing não encontrado</h2></div>';
-      document.getElementById('briefingBar').style.display='none'; return;
-    }
-    // Check if already submitted
+    if(!p){document.getElementById('briefingBody').innerHTML='<div class="thankyou"><div class="ty-icon">🔍</div><h1>Não encontrado</h1></div>';document.getElementById('briefingBar').style.display='none';return;}
     const existing=await sb.getBriefing(projectId);
     if(existing&&existing.submitted_at){
-      document.getElementById('briefingBody').innerHTML=`
-        <div class="thankyou">
-          <div class="ty-icon">✅</div>
-          <h1>Briefing já enviado!</h1>
-          <p>Você já respondeu o briefing do projeto <strong>${esc(p.name)}</strong>. Nossa equipe vai entrar em contato em breve para agendar a reunião de trabalho.</p>
-          <p style="font-size:12px;color:var(--ink4)">Enviado em ${new Date(existing.submitted_at).toLocaleString('pt-BR')}</p>
-        </div>`;
-      document.getElementById('briefingBar').style.display='none'; return;
+      document.getElementById('briefingBody').innerHTML=`<div class="thankyou"><div class="ty-icon">✅</div><h1>Briefing já enviado!</h1><p>Você já respondeu o briefing do projeto <strong>${esc(p.name)}</strong>. Nossa equipe entrará em contato em breve.</p><p style="font-size:12px;color:var(--ink4)">Enviado em ${new Date(existing.submitted_at).toLocaleString('pt-BR')}</p></div>`;
+      document.getElementById('briefingBar').style.display='none';return;
     }
-    const totalQ=(p.modules||[]).reduce((acc,m)=>acc+(MODULES[m]?MODULES[m].questions.length:0),0)+1;
-    let html=`
-      <div class="briefing-intro">
-        <h1>Olá, ${esc(p.client_name)}! 👋</h1>
-        <p class="welcome">Seja muito bem-vindo(a) à Koalaz! Para iniciarmos o seu projeto <strong>${esc(p.name)}</strong>, preparamos este briefing personalizado. Suas respostas são valiosas — elas vão nos ajudar a preparar a reunião de trabalho e orientar as primeiras decisões estratégicas.</p>
-        <div class="note">💡 Caso você não possua alguma informação, não se preocupe. Responda o que puder e deixe o restante em branco.</div>
-      </div>
-      <div class="briefing-progress">
-        <div class="pct" id="bProgressPct">0%</div>
-        <div class="bar-wrap">
-          <div class="bar-label" id="bProgressLabel">0 de ${totalQ} perguntas respondidas</div>
-          <div class="bar"><div class="bar-fill" id="bProgressBar" style="width:0%"></div></div>
-        </div>
-      </div>`;
-    (p.modules||[]).forEach(modKey=>{
-      const mod=MODULES[modKey]; if(!mod) return;
-      html+=`<div class="briefing-section-card">
-        <div class="bsc-head"><div class="bsc-icon">${mod.icon}</div><div><div class="bsc-title">${mod.title}</div><div class="bsc-desc">${mod.desc}</div></div></div>
-        <div class="bsc-body">`;
-      mod.questions.forEach(q=>{
-        html+=`<div class="bq ${q.short?'short':''}">
-          <div class="bq-label">${esc(q.text)}</div>
-          <textarea placeholder="Sua resposta..." oninput="updateAnswer('${q.id}',this.value,${totalQ})" rows="${q.short?2:4}"></textarea>
-        </div>`;
-      });
+    const totalQ=(p.modules||[]).reduce((acc,m)=>acc+(MODULES[m]?MODULES[m].questions.length:0),0)+2;
+    let html=`<div class="briefing-intro"><h1>Olá, ${esc(p.client_name)}! 👋</h1><p class="welcome">Seja muito bem-vindo(a) à Koalaz! Para iniciarmos o projeto <strong>${esc(p.name)}</strong>, preparamos este briefing. Suas respostas são valiosas e vão nos ajudar a preparar a reunião de trabalho.</p><div class="note">💡 Caso você não possua alguma informação, não se preocupe. Responda o que puder.</div></div>
+    <div class="briefing-progress"><div class="pct" id="bPct">0%</div><div class="bar-wrap"><div class="bar-label" id="bLbl">0 de ${totalQ} perguntas</div><div class="bar"><div class="bar-fill" id="bBar" style="width:0%"></div></div></div></div>`;
+    (p.modules||[]).forEach(mk=>{
+      const mod=MODULES[mk];if(!mod)return;
+      html+=`<div class="briefing-section-card"><div class="bsc-head"><div class="bsc-icon">${mod.icon}</div><div><div class="bsc-title">${mod.title}</div><div class="bsc-desc">${mod.desc}</div></div></div><div class="bsc-body">`;
+      mod.questions.forEach(q=>{html+=`<div class="bq"><div class="bq-label">${esc(q.text)}</div><textarea placeholder="Sua resposta..." oninput="updateBriefingAnswer('${q.id}',this.value,${totalQ})" rows="3"></textarea></div>`;});
       html+='</div></div>';
     });
-    // Extra observations
-    html+=`<div class="briefing-section-card" style="margin-top:8px">
-      <div class="bsc-head"><div class="bsc-icon">💬</div><div><div class="bsc-title">Observações finais</div><div class="bsc-desc">Algo que não foi perguntado mas que você considera importante</div></div></div>
-      <div class="bsc-body">
-        <div class="bq"><div class="bq-label">Existe algo que você considera indispensável neste projeto? <span class="bq-optional">(opcional)</span></div><textarea placeholder="Sua resposta..." oninput="updateAnswer('extra1',this.value,${totalQ})"></textarea></div>
-        <div class="bq"><div class="bq-label">Há alguma preocupação ou expectativa que a equipe Koalaz precisa considerar? <span class="bq-optional">(opcional)</span></div><textarea placeholder="Sua resposta..." oninput="updateAnswer('extra2',this.value,${totalQ})"></textarea></div>
-      </div>
-    </div>`;
+    html+=`<div class="briefing-section-card"><div class="bsc-head"><div class="bsc-icon">💬</div><div><div class="bsc-title">Observações finais</div></div></div><div class="bsc-body">
+      <div class="bq"><div class="bq-label">Existe algo que você considera indispensável neste projeto? <span class="bq-optional">(opcional)</span></div><textarea placeholder="Sua resposta..." oninput="updateBriefingAnswer('extra1',this.value,${totalQ})"></textarea></div>
+      <div class="bq"><div class="bq-label">Há alguma preocupação ou expectativa que a equipe Koalaz precisa considerar? <span class="bq-optional">(opcional)</span></div><textarea placeholder="Sua resposta..." oninput="updateBriefingAnswer('extra2',this.value,${totalQ})"></textarea></div>
+    </div></div>`;
     document.getElementById('briefingBody').innerHTML=html;
-    document.getElementById('briefingBar').style.display='flex';
   }catch(e){document.getElementById('briefingBody').innerHTML=`<div style="padding:40px;text-align:center;color:var(--red)">Erro: ${e.message}</div>`;}
 }
-
-function updateAnswer(qid, val, total){
-  if(val.trim()) briefingAnswers[qid]=val.trim();
-  else delete briefingAnswers[qid];
+function updateBriefingAnswer(qid,val,total){
+  if(val.trim())briefingAnswers[qid]=val.trim();else delete briefingAnswers[qid];
   const answered=Object.keys(briefingAnswers).length;
   const pct=Math.round((answered/total)*100);
-  const pctEl=document.getElementById('bProgressPct');
-  const lblEl=document.getElementById('bProgressLabel');
-  const barEl=document.getElementById('bProgressBar');
-  if(pctEl){pctEl.textContent=pct+'%'; lblEl.textContent=answered+' de '+total+' perguntas respondidas'; barEl.style.width=pct+'%';}
+  const pe=document.getElementById('bPct');const le=document.getElementById('bLbl');const be=document.getElementById('bBar');
+  if(pe){pe.textContent=pct+'%';le.textContent=answered+' de '+total+' perguntas';be.style.width=pct+'%';}
 }
-
 async function submitBriefing(){
-  if(Object.keys(briefingAnswers).length===0){showToast('Responda ao menos uma pergunta antes de enviar');return;}
-  const btn=document.getElementById('briefingSubmitBtn');
-  btn.disabled=true; btn.textContent='Enviando...';
-  try {
-    const p=await sb.getProject(briefingProjectId);
+  if(Object.keys(briefingAnswers).length===0){showToast('Responda ao menos uma pergunta');return;}
+  const btn=document.getElementById('briefingSubmitBtn');btn.disabled=true;btn.textContent='Enviando...';
+  try{
     await sb.upsertBriefing({id:uid(),project_id:briefingProjectId,responses:briefingAnswers,submitted_at:new Date().toISOString()});
     await sb.updateProject(briefingProjectId,{status:'briefing_done'});
     document.getElementById('briefingBar').style.display='none';
-    document.getElementById('briefingBody').innerHTML=`
-      <div class="thankyou">
-        <div class="ty-icon">🎉</div>
-        <h1>Briefing enviado!</h1>
-        <p>Obrigada por compartilhar essas informações! Nossa equipe vai analisar com cuidado tudo o que você descreveu e entrará em contato em breve para agendar a reunião de trabalho.</p>
-        <p>Até lá! 💚</p>
-        <p style="font-size:12px;color:var(--ink4)">— Equipe Koalaz</p>
-      </div>`;
+    document.getElementById('briefingBody').innerHTML=`<div class="thankyou"><div class="ty-icon">🎉</div><h1>Briefing enviado!</h1><p>Obrigada por compartilhar essas informações! Nossa equipe vai analisar com cuidado e entrará em contato em breve para agendar a reunião de trabalho.</p><p>Até lá! 💚</p><p style="font-size:12px;color:var(--ink4)">— Equipe Koalaz</p></div>`;
   }catch(e){btn.disabled=false;btn.textContent='Enviar briefing →';showToast('Erro: '+e.message);}
+}
+
+// ─── CLIENT APPROVAL ───────────────────────────────────────────────────────
+let approvalId=null,clientVotes={},clientGeneralComment='';
+async function loadApprovalClientView(id){
+  showView('viewApproval');approvalId=id;clientVotes={};clientGeneralComment='';
+  document.getElementById('approvalBar').style.display='flex';
+  try{
+    const a=await sb.getApproval(id);
+    if(!a){document.getElementById('approvalClientBody').innerHTML='<div class="thankyou"><div class="ty-icon">🔍</div><h1>Não encontrado</h1></div>';document.getElementById('approvalBar').style.display='none';return;}
+    const p=await sb.getProject(a.project_id);
+    const body=document.getElementById('approvalClientBody');
+    body.innerHTML=`<div class="client-intro">
+      <div class="eyebrow">Revisão de Entrega</div>
+      <h1>${esc(a.title)}</h1>
+      <div class="sub">${p?esc(p.client_name):''}</div>
+      ${a.context?`<div class="note">📋 ${esc(a.context)}</div>`:''}
+    </div>
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:var(--ink3);margin-bottom:12px">${(a.findings||[]).length} achado${(a.findings||[]).length!==1?'s':''} para revisar</div>
+    <div id="clientFindings"></div>
+    <div class="general-comment-box"><h3>Comentário Geral</h3><p>Quer deixar alguma observação geral?</p><textarea placeholder="Suas impressões gerais, dúvidas ou sugestões..." oninput="clientGeneralComment=this.value"></textarea></div>`;
+    const cf=document.getElementById('clientFindings');
+    (a.findings||[]).forEach((f,i)=>{
+      const card=document.createElement('div');card.className='cf-card';card.id='cfc_'+f.id;
+      const fid = f.id;
+      const isImg = function(url){return /\.(png|jpg|jpeg|gif|webp)/i.test(url);};
+      const filesHtml = (f.files&&f.files.length) ? '<div class="finding-files">' + f.files.map(function(url){
+        return isImg(url)
+          ? '<img src="'+url+'" class="file-preview-img" onclick="openLightbox(this.src)" alt="">'
+          : '<a href="'+url+'" target="_blank" class="file-preview-pdf">\ud83d\udcc4 PDF</a>';
+      }).join('') + '</div>' : '';
+      card.innerHTML = [
+        '<div class="cf-body">',
+          '<div class="cf-tag">Achado '+(i+1)+'</div>',
+          '<div class="cf-title">'+esc(f.title)+'</div>',
+          f.desc ? '<div class="cf-desc">'+escHtml(f.desc)+'</div>' : '',
+        '</div>',
+        filesHtml,
+        '<div class="cf-status-row">',
+          '<div class="qa">Sua posi\u00e7\u00e3o neste achado:</div>',
+          '<button class="svote svote-agree" id="sv_agree_'+fid+'" onclick="clientVoteApproval(this.dataset.fid,\'agreed\')" data-fid="'+fid+'">\u2713 Concordo</button>',
+          '<button class="svote svote-disagree" id="sv_disagree_'+fid+'" onclick="clientVoteApproval(this.dataset.fid,\'disagreed\')" data-fid="'+fid+'">\u2715 Discordo</button>',
+          '<button class="svote svote-adjust" id="sv_adjust_'+fid+'" onclick="clientVoteApproval(this.dataset.fid,\'adjustment\')" data-fid="'+fid+'">\u26a1 Solicitar ajuste</button>',
+          '<span class="cf-badge is-pending" id="badge_'+fid+'">Pendente</span>',
+        '</div>',
+        '<div class="cf-comment" id="cmt_'+fid+'">',
+          '<div id="cmt_type_'+fid+'" class="cf-adjust-type" style="display:none">',
+            '<select data-fid="'+fid+'" onchange="if(clientVotes[this.dataset.fid])clientVotes[this.dataset.fid].adjust_type=this.value">',
+              '<option value="">Tipo de ajuste...</option>',
+              '<option>Corre\u00e7\u00e3o de informa\u00e7\u00e3o</option>',
+              '<option>Complemento necess\u00e1rio</option>',
+              '<option>Revis\u00e3o de abordagem</option>',
+              '<option>Ajuste de tom/linguagem</option>',
+              '<option>Outro</option>',
+            '</select>',
+          '</div>',
+          '<div class="cf-comment-label" id="cmt_label_'+fid+'">\ud83d\udcac Coment\u00e1rio</div>',
+          '<textarea placeholder="Adicione um coment\u00e1rio..." data-fid="'+fid+'" oninput="if(clientVotes[this.dataset.fid])clientVotes[this.dataset.fid].comment=this.value"></textarea>',
+        '</div>'
+      ].join('')
+      cf.appendChild(card);
+    });
+    document.getElementById('cbTotal').textContent=(a.findings||[]).length;
+    updateApprovalProgress((a.findings||[]).length);
+  }catch(e){document.getElementById('approvalClientBody').innerHTML=`<div style="padding:40px;text-align:center;color:var(--red)">Erro: ${e.message}</div>`;}
+}
+
+function clientVoteApproval(fid,choice){
+  clientVotes[fid]={vote:choice,comment:'',adjust_type:'',timestamp:new Date().toISOString()};
+  const btnMap={agreed:'agree',disagreed:'disagree',adjustment:'adjust'};
+  ['agreed','disagreed','adjustment'].forEach(c=>{const el=document.getElementById('sv_'+btnMap[c]+'_'+fid);if(el)el.classList.toggle('on',c===choice);});
+  const card=document.getElementById('cfc_'+fid);
+  card.className='cf-card '+{agreed:'s-agreed',disagreed:'s-disagreed',adjustment:'s-adjustment'}[choice];
+  const badge=document.getElementById('badge_'+fid);
+  badge.className='cf-badge '+{agreed:'is-agreed',disagreed:'is-disagreed',adjustment:'is-adjustment'}[choice];
+  badge.textContent=STATUS_CONFIG[choice].label;
+  const cmtEl=document.getElementById('cmt_'+fid);
+  const lblEl=document.getElementById('cmt_label_'+fid);
+  const typeEl=document.getElementById('cmt_type_'+fid);
+  const taEl=cmtEl.querySelector('textarea');
+  cmtEl.classList.add('open');
+  if(choice==='agreed'){lblEl.textContent='💬 Quer adicionar um comentário? (opcional)';lblEl.style.color='var(--green)';taEl.style.borderColor='#A8D5B5';taEl.style.background='var(--green-tint)';typeEl.style.display='none';}
+  else if(choice==='disagreed'){lblEl.textContent='💬 Descreva sua discordância (recomendado)';lblEl.style.color='var(--red)';taEl.style.borderColor='#F5D0D0';taEl.style.background='var(--red-tint)';typeEl.style.display='none';}
+  else{lblEl.textContent='💬 Descreva o ajuste necessário';lblEl.style.color='var(--gold)';taEl.style.borderColor='#E8C870';taEl.style.background='var(--gold-tint)';typeEl.style.display='block';}
+  updateApprovalProgress(document.querySelectorAll('.cf-card').length);
+}
+
+function updateApprovalProgress(total){
+  const answered=Object.keys(clientVotes).length;
+  document.getElementById('cbAnswered').textContent=answered;
+  document.getElementById('cpText').textContent=answered+' / '+total;
+  const btn=document.getElementById('approvalSubmitBtn');
+  btn.disabled=answered<total;btn.style.opacity=answered<total?'.45':'1';
+}
+
+async function submitApproval(){
+  const btn=document.getElementById('approvalSubmitBtn');btn.disabled=true;btn.textContent='Enviando...';
+  try{
+    const a=await sb.getApproval(approvalId);
+    const p=a?await sb.getProject(a.project_id):null;
+    const statuses={};
+    Object.entries(clientVotes).forEach(([fid,v])=>{statuses[fid]={status:v.vote,client_at:v.timestamp};});
+    await sb.updateApproval(approvalId,{votes:clientVotes,item_statuses:statuses,status:'done',general_comment:clientGeneralComment,reviewed_at:new Date().toISOString()});
+    if(p&&p.client_email){
+      const agreed=Object.values(clientVotes).filter(v=>v.vote==='agreed').length;
+      const disagreed=Object.values(clientVotes).filter(v=>v.vote==='disagreed').length;
+      const adjustment=Object.values(clientVotes).filter(v=>v.vote==='adjustment').length;
+      fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({type:'review_done',consultantEmail:'flavia@koalaz.com.br',clientName:p.client_name,reportTitle:a.title,agreed,disagreed,adjustment,generalComment:clientGeneralComment,dashboardLink:location.origin+location.pathname})}).catch(()=>{});
+    }
+    const agreed=Object.values(clientVotes).filter(v=>v.vote==='agreed').length;
+    const disagreed=Object.values(clientVotes).filter(v=>v.vote==='disagreed').length;
+    const adjustment=Object.values(clientVotes).filter(v=>v.vote==='adjustment').length;
+    document.getElementById('approvalBar').style.display='none';
+    document.getElementById('approvalClientBody').innerHTML=`<div class="thankyou"><div class="ty-icon">🎉</div><h1>Revisão Enviada!</h1><p>Suas respostas foram registradas. A equipe Koalaz receberá suas respostas em tempo real.</p><div class="ty-stats"><div class="ty-stat"><div class="n g">${agreed}</div><div class="l">Concordâncias</div></div><div class="ty-stat"><div class="n r">${disagreed}</div><div class="l">Discordâncias</div></div><div class="ty-stat"><div class="n o">${adjustment}</div><div class="l">Ajustes</div></div></div><p style="font-size:12px;color:var(--ink4)">Você pode fechar esta página.</p></div>`;
+  }catch(e){btn.disabled=false;btn.textContent='Enviar revisão →';showToast('Erro: '+e.message);}
+}
+
+
+
+// ─── CLIENT AREA ──────────────────────────────────────────────────────────
+let clientAreaProject = null;
+
+async function loadClientArea(projectId) {
+  showView('viewClientArea');
+  document.getElementById('clientAreaLogin').style.display = 'flex';
+  document.getElementById('clientAreaContent').style.display = 'none';
+  document.getElementById('clientAreaError').classList.remove('on');
+  document.getElementById('clientAreaPass').value = '';
+  try {
+    const p = await sb.getProject(projectId);
+    if (!p) {
+      document.getElementById('clientAreaWelcome').textContent = 'Projeto não encontrado';
+      return;
+    }
+    clientAreaProject = p;
+    document.getElementById('clientAreaWelcome').textContent = 'Bem-vindo(a), ' + p.client_name + '!';
+  } catch(e) { console.error(e); }
+}
+
+async function doClientLogin() {
+  const pass = document.getElementById('clientAreaPass').value;
+  if (!clientAreaProject) return;
+  if (!clientAreaProject.client_password || pass === clientAreaProject.client_password) {
+    document.getElementById('clientAreaLogin').style.display = 'none';
+    document.getElementById('clientAreaContent').style.display = 'flex';
+    document.getElementById('clientAreaContent').style.flexDirection = 'column';
+    renderClientArea();
+  } else {
+    document.getElementById('clientAreaError').classList.add('on');
+    document.getElementById('clientAreaPass').value = '';
+  }
+}
+
+async function renderClientArea() {
+  const p = clientAreaProject;
+  document.getElementById('clientAreaProjectName').textContent = p.name;
+  document.getElementById('clientAreaTitle').textContent = p.name;
+  document.getElementById('clientAreaSub').textContent = p.client_name + (p.responsible ? ' · ' + p.responsible : '');
+
+  // Briefing
+  const briefing = await sb.getBriefing(p.id);
+  const briefingLink = location.origin + location.pathname + '#briefing/' + p.id;
+  let briefingHtml = '';
+  if (briefing && briefing.submitted_at) {
+    briefingHtml = '<div style="background:var(--green-tint);border:1px solid #A8D5B5;border-radius:8px;padding:14px 16px;font-size:13px;color:var(--green)">✅ Briefing respondido em ' + new Date(briefing.submitted_at).toLocaleString('pt-BR') + '</div>';
+  } else {
+    briefingHtml = '<div class="approval-card" onclick="location.hash=\'#briefing/\'+p.id" style="cursor:pointer">' +
+      '<div><div class="approval-card-title">Preencher Briefing</div>' +
+      '<div class="approval-card-meta">Clique para responder o briefing do projeto</div></div>' +
+      '<div class="approval-card-actions"><span class="pill pill-briefing">Pendente</span></div></div>';
+  }
+  document.getElementById('clientAreaBriefingCard').innerHTML = briefingHtml;
+
+  // Approvals
+  const approvals = await sb.getApprovals(p.id);
+  const visibleApprovals = approvals.filter(a => a.status === 'sent' || a.status === 'done');
+  let approvalsHtml = '';
+  if (!visibleApprovals.length) {
+    approvalsHtml = '<div class="empty-state"><div class="big">⏳</div><p>Nenhuma etapa disponível ainda.<br>A equipe Koalaz entrará em contato em breve.</p></div>';
+  } else {
+    visibleApprovals.forEach(function(a) {
+      var answered = Object.keys(a.votes || {}).length;
+      var total = (a.findings || []).length;
+      var isDone = a.status === 'done';
+      var reviewedStr = a.reviewed_at ? '<div class="approval-card-meta">Respondido em ' + new Date(a.reviewed_at).toLocaleString('pt-BR') + '</div>' : '';
+      var pillClass = isDone ? 'pill-done' : 'pill-sent';
+      var pillLabel = isDone ? 'Conclui\u00ado' : 'Aguardando';
+      var aId = a.id;
+      approvalsHtml += '<div class="approval-card" onclick="location.hash=\'#approval/' + aId + '\'" style="cursor:pointer">' +
+        '<div>' +
+          '<div class="approval-card-title">' + esc(a.title) + '</div>' +
+          '<div class="approval-card-meta">' + total + ' achados \u00b7 ' + answered + '/' + total + ' respondidos</div>' +
+          reviewedStr +
+        '</div>' +
+        '<div class="approval-card-actions">' +
+          '<span class="pill ' + pillClass + '">' + pillLabel + '</span>' +
+        '</div>' +
+      '</div>';
+    
+    });
+  }
+  document.getElementById('clientAreaApprovalsList').innerHTML = approvalsHtml;
+}
+
+// ─── FILE UPLOAD ──────────────────────────────────────────────────────────
+const STORAGE_URL = SUPABASE_URL + '/storage/v1/object/koalaz-files/';
+const STORAGE_HEADERS = {'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY};
+
+// Store pending files per finding card
+const pendingFiles = {};
+
+async function handleFindingFiles(input, fcId) {
+  if (!pendingFiles[fcId]) pendingFiles[fcId] = [];
+  const files = Array.from(input.files);
+  for (const file of files) {
+    const fileData = { name: file.name, file, uploaded: false, url: '' };
+    pendingFiles[fcId].push(fileData);
+    renderFileItem(fcId, fileData);
+  }
+  input.value = '';
+}
+
+function renderFileItem(fcId, fileData) {
+  const fl = document.getElementById('fl_' + fcId);
+  if (!fl) return;
+  const isImg = fileData.name.match(/\.(png|jpg|jpeg|gif|webp)$/i);
+  const item = document.createElement('div');
+  item.className = 'file-item' + (fileData.uploaded ? '' : ' file-uploading');
+  item.dataset.fname = fileData.name;
+  const icon = isImg ? '🖼️' : '📄';
+  item.innerHTML = `<span>${icon}</span><span class="file-item-name">${esc(fileData.name)}</span>${fileData.uploaded ? '' : '<span style="font-size:11px;color:var(--ink3)">pendente</span>'}<button class="file-item-remove" onclick="removeFileItem(this,'${fcId}','${fileData.name}')">✕</button>`;
+  fl.appendChild(item);
+}
+
+function removeFileItem(btn, fcId, fname) {
+  btn.closest('.file-item').remove();
+  if (pendingFiles[fcId]) pendingFiles[fcId] = pendingFiles[fcId].filter(f => f.name !== fname);
+}
+
+async function uploadFindingFiles(fcId) {
+  const files = pendingFiles[fcId] || [];
+  const urls = [];
+  for (const fileData of files) {
+    if (fileData.url) { urls.push(fileData.url); continue; }
+    try {
+      const path = 'findings/' + Date.now() + '_' + fileData.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const r = await fetch(STORAGE_URL + path, {
+        method: 'POST',
+        headers: { ...STORAGE_HEADERS, 'Content-Type': fileData.file.type, 'x-upsert': 'true' },
+        body: fileData.file
+      });
+      if (r.ok) {
+        const url = SUPABASE_URL + '/storage/v1/object/public/koalaz-files/' + path;
+        urls.push(url);
+      }
+    } catch(e) { console.error('Upload error:', e); }
+  }
+  return urls;
+}
+
+async function collectFindingsWithFiles() {
+  const findings = [];
+  const cards = document.querySelectorAll('#approvalFindings .finding-card');
+  for (const card of cards) {
+    const t = card.querySelector('[data-field="title"]').value.trim();
+    const d = card.querySelector('[data-field="desc"]').value.trim();
+    if (!t) continue;
+    const fcId = card.dataset.fcid;
+    const fileUrls = fcId ? await uploadFindingFiles(fcId) : [];
+    findings.push({ id: uid(), title: t, desc: d, files: fileUrls });
+  }
+  return findings;
+}
+
+function openLightbox(url) {
+  document.getElementById('lightboxImg').src = url;
+  document.getElementById('lightbox').classList.add('open');
 }
 
 // ─── HELPERS ───────────────────────────────────────────────────────────────
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function escHtml(s){return esc(s).replace(/\n[-\u2022*] */g,'<br>&bull;&nbsp;').replace(/\n/g,'<br>');}
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2800);}
-document.getElementById('modalOverlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');}));
 </script>
+
+<div class="lightbox" id="lightbox" onclick="document.getElementById('lightbox').classList.remove('open')"><img id="lightboxImg" src="" alt=""></div>
 </body>
 </html>
