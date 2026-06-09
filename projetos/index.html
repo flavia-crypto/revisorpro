@@ -502,6 +502,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
       </div>
       <div class="fg-row">
         <div class="fg"><label>Responsável Koalaz</label><input type="text" id="mResponsible" value="Flávia Azevedo"></div>
+        <div class="fg"><label>Prazo Inicial</label><input type="text" id="mDeadline" placeholder="Ex.: Agosto 2025"></div>
       </div>
       <div class="fg-row">
         <div class="fg">
@@ -732,7 +733,7 @@ let editingProjectId=null;
 function openNewProjectModal(){
   editingProjectId=null;
   document.getElementById('modalProjectTitle').textContent='Novo Projeto';
-  ['mName','mClient','mClientEmail','mClientPassword','mDeadline','mNotes'].forEach(id=>document.getElementById(id).value='');
+  ['mName','mClient','mClientEmail','mClientPassword','mDeadline','mNotes'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('mResponsible').value='Flávia Azevedo';
   document.getElementById('mType').value='';
   document.getElementById('mStatus').value='briefing_pending';
