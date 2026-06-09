@@ -516,7 +516,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
             <option value="completo">Projeto Completo</option>
           </select>
         </div>
-      <div class="fg">
+        <div class="fg">
         <label>Status</label>
         <select id="mStatus">
           <option value="briefing_pending">Briefing pendente</option>
@@ -540,6 +540,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
         </div>
       </div>
     </div>
+    </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal('modalProject')">Cancelar</button>
       <button class="btn btn-primary" id="saveProjectBtn" onclick="saveProject()">Salvar projeto</button>
@@ -556,6 +557,13 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
     </div>
     <div class="modal-body">
       <div class="error-state" id="modalApprovalError"></div>
+      <div class="fg" id="templateSelectorWrap" style="display:none">
+        <label>Template de entrega</label>
+        <select id="aTemplate" onchange="applyDeliveryTemplate(this.value)" style="margin-bottom:0">
+          <option value="">— Começar do zero —</option>
+        </select>
+        <div class="fg-hint">Selecione um template para preencher os achados automaticamente</div>
+      </div>
       <div class="fg"><label>Título da Etapa *</label><input type="text" id="aTitle" placeholder="Ex.: Diagnóstico estratégico — 1ª etapa"></div>
       <div class="fg"><label>Instrução para o cliente</label><textarea id="aContext" placeholder="Contexto ou orientação sobre o que o cliente deve revisar..."></textarea></div>
       <div class="fg">
@@ -588,6 +596,81 @@ const STATUS_CONFIG={
   approved:{label:'Aprovado final',badge:'is-approved',border:'is-approved-border'}
 };
 
+
+// ─── DELIVERY TEMPLATES ────────────────────────────────────────────────────
+const DELIVERY_TEMPLATES = {
+  site: [
+    { label: 'Diagnóstico estratégico', findings: [
+      { title: 'Posicionamento de mercado', desc: '' },
+      { title: 'Posicionamento de comunicação', desc: '' },
+      { title: 'Proposta de reposicionamento', desc: '' },
+      { title: 'Objetivos de negócio', desc: '' }
+    ]},
+    { label: 'Arquitetura do site', findings: [
+      { title: 'Estrutura de páginas', desc: '' },
+      { title: 'Hierarquia de conteúdo', desc: '' },
+      { title: 'Chamadas para ação (CTAs)', desc: '' }
+    ]},
+    { label: 'Textos do site', findings: [
+      { title: 'Home', desc: '' },
+      { title: 'Sobre', desc: '' },
+      { title: 'Serviços', desc: '' },
+      { title: 'Contato', desc: '' }
+    ]},
+    { label: 'Validação de termos (SEO)', findings: [
+      { title: 'Termos principais', desc: '' },
+      { title: 'Termos secundários', desc: '' }
+    ]}
+  ],
+  conteudo: [
+    { label: 'Linha editorial', findings: [
+      { title: 'Pilares de conteúdo', desc: '' },
+      { title: 'Tom de voz', desc: '' },
+      { title: 'Temas prioritários', desc: '' },
+      { title: 'Temas a evitar', desc: '' }
+    ]},
+    { label: 'Calendário editorial', findings: [
+      { title: 'Janeiro', desc: '' },
+      { title: 'Fevereiro', desc: '' },
+      { title: 'Março', desc: '' }
+    ]},
+    { label: 'Aprovação de posts', findings: [
+      { title: 'Post 1', desc: 'Cole o texto aqui' },
+      { title: 'Post 2', desc: 'Cole o texto aqui' },
+      { title: 'Post 3', desc: 'Cole o texto aqui' }
+    ]},
+    { label: 'Aprovação de artes gráficas', findings: [
+      { title: 'Arte 1', desc: '' },
+      { title: 'Arte 2', desc: '' },
+      { title: 'Arte 3', desc: '' }
+    ]}
+  ],
+  marca: [
+    { label: 'Posicionamento da marca', findings: [
+      { title: 'Proposta de valor', desc: '' },
+      { title: 'Público-alvo', desc: '' },
+      { title: 'Diferenciais', desc: '' },
+      { title: 'Tom de voz', desc: '' }
+    ]},
+    { label: 'Identidade visual', findings: [
+      { title: 'Paleta de cores', desc: '' },
+      { title: 'Tipografia', desc: '' },
+      { title: 'Logotipo', desc: '' }
+    ]}
+  ],
+  marketing: [
+    { label: 'Estratégia de aquisição', findings: [
+      { title: 'Canais prioritários', desc: '' },
+      { title: 'Funil de conversão', desc: '' },
+      { title: 'Metas e KPIs', desc: '' }
+    ]},
+    { label: 'Campanha', findings: [
+      { title: 'Conceito da campanha', desc: '' },
+      { title: 'Peças criativas', desc: '' },
+      { title: 'Segmentação', desc: '' }
+    ]}
+  ]
+};
 const PROJECT_TYPE_LABELS={site:'Site Estratégico',marca:'Marca e Autoridade',conteudo:'Conteúdo e Redes',marketing:'Marketing e Receita',completo:'Projeto Completo'};
 const STATUS_LABELS={briefing_pending:'Briefing pendente',briefing_sent:'Briefing enviado',briefing_done:'Briefing respondido',briefing_na:'Briefing n/a',active:'Em andamento',paused:'Pausado',done:'Concluído'};
 const STATUS_PILLS={briefing_pending:'pill-briefing',briefing_sent:'pill-briefing',briefing_done:'pill-briefing',briefing_na:'pill-paused',active:'pill-active',paused:'pill-paused',done:'pill-done'};
@@ -895,12 +978,27 @@ async function sendBriefingEmail(projectId){
 
 // ─── APPROVAL MODAL ────────────────────────────────────────────────────────
 let editingApprovalId=null,currentApprovalProjectId=null;
-function openNewApprovalModal(projectId){
+async function openNewApprovalModal(projectId){
   editingApprovalId=null;currentApprovalProjectId=projectId;
   document.getElementById('modalApprovalTitle').textContent='Nova Etapa de Aprovação';
   document.getElementById('aTitle').value='';document.getElementById('aContext').value='';
   document.getElementById('approvalFindings').innerHTML='';
   document.getElementById('modalApprovalError').classList.remove('on');
+  // Load templates for project type
+  const p = await sb.getProject(projectId);
+  const templates = p && DELIVERY_TEMPLATES[p.project_type] ? DELIVERY_TEMPLATES[p.project_type] : [];
+  const wrap = document.getElementById('templateSelectorWrap');
+  const sel = document.getElementById('aTemplate');
+  if (templates.length) {
+    sel.innerHTML = '<option value="">— Começar do zero —</option>' +
+      templates.map((t,i) => '<option value="'+i+'">'+esc(t.label)+'</option>').join('');
+    wrap.style.display = 'block';
+    // Store templates for this session
+    wrap.dataset.templates = JSON.stringify(templates);
+  } else {
+    wrap.style.display = 'none';
+    sel.innerHTML = '';
+  }
   addApprovalFinding();addApprovalFinding();
   document.getElementById('modalApproval').classList.add('open');
 }
@@ -919,6 +1017,17 @@ function addApprovalFinding(title='',desc='',files=[]){
     <button class="fc-remove" onclick="this.closest('.finding-card').remove();renumberAF()">✕</button>`;
   if(files&&files.length){files.forEach(f=>renderFileItem(fcId,f));}
   document.getElementById('approvalFindings').appendChild(div);renumberAF();
+}
+
+function applyDeliveryTemplate(idx) {
+  if (!idx && idx !== 0) { return; }
+  const wrap = document.getElementById('templateSelectorWrap');
+  const templates = JSON.parse(wrap.dataset.templates || '[]');
+  const template = templates[parseInt(idx)];
+  if (!template) return;
+  document.getElementById('approvalFindings').innerHTML = '';
+  document.getElementById('aTitle').value = template.label;
+  template.findings.forEach(f => addApprovalFinding(f.title, f.desc));
 }
 function renumberAF(){document.querySelectorAll('#approvalFindings .fc-num').forEach((el,i)=>el.textContent=i+1);}
 async function saveApproval(){
