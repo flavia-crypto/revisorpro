@@ -522,6 +522,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
           <option value="briefing_pending">Briefing pendente</option>
           <option value="briefing_sent">Briefing enviado</option>
           <option value="briefing_done">Briefing respondido</option>
+          <option value="briefing_na">Briefing não aplicável</option>
           <option value="active">Em andamento</option>
           <option value="paused">Pausado</option>
           <option value="done">Concluído</option>
@@ -588,8 +589,8 @@ const STATUS_CONFIG={
 };
 
 const PROJECT_TYPE_LABELS={site:'Site Estratégico',marca:'Marca e Autoridade',conteudo:'Conteúdo e Redes',marketing:'Marketing e Receita',completo:'Projeto Completo'};
-const STATUS_LABELS={briefing_pending:'Briefing pendente',briefing_sent:'Briefing enviado',briefing_done:'Briefing respondido',active:'Em andamento',paused:'Pausado',done:'Concluído'};
-const STATUS_PILLS={briefing_pending:'pill-briefing',briefing_sent:'pill-briefing',briefing_done:'pill-briefing',active:'pill-active',paused:'pill-paused',done:'pill-done'};
+const STATUS_LABELS={briefing_pending:'Briefing pendente',briefing_sent:'Briefing enviado',briefing_done:'Briefing respondido',briefing_na:'Briefing n/a',active:'Em andamento',paused:'Pausado',done:'Concluído'};
+const STATUS_PILLS={briefing_pending:'pill-briefing',briefing_sent:'pill-briefing',briefing_done:'pill-briefing',briefing_na:'pill-paused',active:'pill-active',paused:'pill-paused',done:'pill-done'};
 
 const MODULES={
   base:{icon:'📋',title:'Briefing Base',desc:'Dados da empresa, contexto e objetivos',questions:[
@@ -1266,18 +1267,24 @@ async function renderClientArea() {
   document.getElementById('clientAreaSub').textContent = p.client_name + (p.responsible ? ' · ' + p.responsible : '');
 
   // Briefing
-  const briefing = await sb.getBriefing(p.id);
-  const briefingLink = location.origin + location.pathname + '#briefing/' + p.id;
-  let briefingHtml = '';
-  if (briefing && briefing.submitted_at) {
-    briefingHtml = '<div style="background:var(--green-tint);border:1px solid #A8D5B5;border-radius:8px;padding:14px 16px;font-size:13px;color:var(--green)">✅ Briefing respondido em ' + new Date(briefing.submitted_at).toLocaleString('pt-BR') + '</div>';
+  const briefingSection = document.getElementById('clientAreaBriefingSection');
+  const hideStatuses = ['briefing_na','active','done','paused'];
+  if (hideStatuses.includes(p.status)) {
+    briefingSection.style.display = 'none';
   } else {
-    briefingHtml = '<div class="approval-card" onclick="location.hash=\'#briefing/\'+p.id" style="cursor:pointer">' +
-      '<div><div class="approval-card-title">Preencher Briefing</div>' +
-      '<div class="approval-card-meta">Clique para responder o briefing do projeto</div></div>' +
-      '<div class="approval-card-actions"><span class="pill pill-briefing">Pendente</span></div></div>';
+    briefingSection.style.display = 'block';
+    const briefing = await sb.getBriefing(p.id);
+    let briefingHtml = '';
+    if (briefing && briefing.submitted_at) {
+      briefingHtml = '<div style="background:var(--green-tint);border:1px solid #A8D5B5;border-radius:8px;padding:14px 16px;font-size:13px;color:var(--green)">✅ Briefing respondido em ' + new Date(briefing.submitted_at).toLocaleString('pt-BR') + '</div>';
+    } else {
+      briefingHtml = '<div class="approval-card" onclick="location.hash=\'#briefing/'+p.id+'\'" style="cursor:pointer">' +
+        '<div><div class="approval-card-title">Preencher Briefing</div>' +
+        '<div class="approval-card-meta">Clique para responder o briefing do projeto</div></div>' +
+        '<div class="approval-card-actions"><span class="pill pill-briefing">Pendente</span></div></div>';
+    }
+    document.getElementById('clientAreaBriefingCard').innerHTML = briefingHtml;
   }
-  document.getElementById('clientAreaBriefingCard').innerHTML = briefingHtml;
 
   // Approvals
   const approvals = await sb.getApprovals(p.id);
