@@ -1304,6 +1304,15 @@ function renderApprovalFindings(a){
         <div class="edit-panel-title">✏️ Edição interna — ${esc(f.title)}</div>
         <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);display:block;margin-bottom:5px">Versão ajustada</label>
         <textarea id="ep_rev_${f.id}" placeholder="Digite aqui a versão ajustada deste achado...">${stRaw&&typeof stRaw==='object'&&stRaw.koalaz_revision?esc(stRaw.koalaz_revision):''}</textarea>
+        <div class="edit-img-section">
+          <div class="edit-img-section-title">🖼️ Imagens / Opções visuais</div>
+          <div class="img-gallery" id="ep_imgs_${f.id}"></div>
+          <div style="margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+            <button class="add-img-btn" onclick="document.getElementById('ep_file_${f.id}').click()">＋ Adicionar imagem</button>
+            <input type="file" id="ep_file_${f.id}" style="display:none" multiple accept="image/*,.pdf" onchange="handleEditImages(this,'${f.id}')">
+            <span style="font-size:11px;color:var(--ink3)">Cada imagem vira Opção A, B, C...</span>
+          </div>
+        </div>
         <label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);display:block;margin-bottom:5px">Nota interna (não visível ao cliente)</label>
         <textarea class="edit-panel-note" id="ep_note_${f.id}" placeholder="Observações internas da equipe Koalaz...">${stRaw&&typeof stRaw==='object'&&stRaw.koalaz_note?esc(stRaw.koalaz_note):''}</textarea>
         <div style="display:flex;gap:8px;justify-content:flex-end">
