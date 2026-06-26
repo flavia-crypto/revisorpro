@@ -339,6 +339,37 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s}
 .lightbox.open{opacity:1;pointer-events:all}
 .lightbox img{max-width:90vw;max-height:90vh;border-radius:8px;object-fit:contain}
+
+/* KOALAZ EDIT PANEL */
+.edit-panel{background:#F0F7F3;border:1.5px solid #A8D5B5;border-radius:8px;padding:14px 16px;margin:0 18px 14px;display:none}
+.edit-panel.open{display:block;animation:up .2s ease}
+.edit-panel-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.edit-panel textarea{width:100%;border:1.5px solid #A8D5B5;border-radius:7px;padding:9px 11px;font-family:inherit;font-size:13px;color:var(--ink);background:#fff;outline:none;resize:vertical;min-height:100px;margin-bottom:8px}
+.edit-panel textarea:focus{border-color:var(--accent)}
+.edit-panel-note{border-color:var(--line) !important;min-height:60px !important}
+.koalaz-revision{padding:12px 18px;border-top:1px solid #A8D5B5;background:#F0F7F3}
+.koalaz-revision .kr-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);margin-bottom:4px}
+.koalaz-revision .kr-text{font-size:13px;color:var(--ink2);line-height:1.65;white-space:pre-wrap}
+.koalaz-note-block{padding:10px 18px;border-top:1px solid var(--line);background:#F8FBF9}
+.koalaz-note-block .kn-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:3px}
+.koalaz-note-block .kn-text{font-size:13px;color:var(--ink2);line-height:1.6;font-style:italic}
+/* IMAGE GALLERY */
+.img-gallery{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.img-option{position:relative;border-radius:8px;overflow:hidden;border:2px solid var(--line);cursor:pointer}
+.img-option img{width:140px;height:100px;object-fit:cover;display:block}
+.img-option-label{position:absolute;top:6px;left:6px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;letter-spacing:.5px}
+.img-option-remove{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.6);border:none;color:#fff;border-radius:50%;width:20px;height:20px;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.img-option-remove:hover{background:var(--red)}
+.edit-img-section{margin-top:10px;padding-top:10px;border-top:1px solid #A8D5B5}
+.edit-img-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);margin-bottom:8px}
+.add-img-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border:1.5px dashed #A8D5B5;border-radius:7px;background:none;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s}
+.add-img-btn:hover{background:var(--accent-tint);border-color:var(--accent)}
+.client-img-gallery{display:flex;flex-wrap:wrap;gap:10px;padding:14px 22px;border-top:1px solid var(--line);background:#FAFAF8}
+.client-img-option{position:relative;border-radius:8px;overflow:hidden;border:1.5px solid var(--line);cursor:pointer;transition:transform .2s}
+.client-img-option:hover{transform:scale(1.02)}
+.client-img-option img{width:150px;height:100px;object-fit:cover;display:block}
+.client-img-option-label{position:absolute;top:6px;left:6px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+
 </style>
 </head>
 <body>
@@ -422,6 +453,11 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
         <div class="panel-link-box"><input type="text" id="approvalLinkInput" readonly><button class="copy-btn" onclick="copyApprovalLink()">Copiar</button></div>
         <p style="font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:10px">Compartilhe com o cliente. As respostas chegam aqui em tempo real.</p>
         <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center" id="sendApprovalEmailBtn" onclick="sendApprovalEmail()">📧 Enviar por e-mail</button>
+      </div>
+      <div class="panel" id="secondRoundPanel" style="display:none">
+        <div class="panel-title">Edicao Interna e 2a Rodada</div>
+        <p style="font-size:12px;color:var(--ink3);line-height:1.6;margin-bottom:12px">Clique em <strong>Editar</strong> em cada achado para registrar a versao ajustada. Depois gere o link da 2a rodada.</p>
+        <button class="btn btn-purple btn-sm" style="width:100%;justify-content:center" onclick="openSecondRoundModal()">Gerar 2a Rodada</button>
       </div>
       <div class="panel" id="secondRoundPanel" style="display:none">
         <div class="panel-title">✏️ Edição Interna</div>
@@ -620,6 +656,27 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModal('modal2ndRound')">Cancelar</button>
       <button class="btn btn-primary" onclick="createSecondRound()">🚀 Criar 2ª Rodada</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL: SECOND ROUND -->
+<div class="overlay" id="modal2ndRound">
+  <div class="modal">
+    <div class="modal-head">
+      <div><h2>Gerar 2ª Rodada de Aprovacao</h2><p>O cliente vera as versoes ajustadas e podera aprovar ou solicitar novos ajustes</p></div>
+      <button class="modal-close" onclick="closeModal('modal2ndRound')">x</button>
+    </div>
+    <div class="modal-body">
+      <div style="background:var(--accent-tint);border:1px solid #A8D5B5;border-radius:8px;padding:14px 16px;margin-bottom:16px;font-size:13px;color:var(--accent);line-height:1.6">
+        <strong>Como funciona:</strong> O cliente recebera um link com a visao atualizada com o que voce ajustou e o que ele comentou anteriormente. Ele podera entao aprovar, solicitar novo ajuste ou reprovar cada item.
+      </div>
+      <div class="fg"><label>Mensagem introdutoria para o cliente</label><textarea id="round2Intro" style="min-height:90px">Prezados, revisamos todos os pontos com base nas suas observacoes e comentarios. Abaixo voce encontra as versoes atualizadas de cada item. Por favor, analise e nos de o aval para seguirmos.</textarea></div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeModal('modal2ndRound')">Cancelar</button>
+      <button class="btn btn-primary" onclick="createSecondRound()">Criar 2a Rodada</button>
     </div>
   </div>
 </div>
@@ -902,6 +959,16 @@ async function renderDash(){
         </div>
       </div>`;
     }).join('');
+  // Populate edit image galleries
+  (a.findings||[]).forEach(f=>{
+    const stRaw=(statuses||{})[f.id];
+    const imgs=stRaw&&typeof stRaw==='object'&&stRaw.koalaz_images?stRaw.koalaz_images:(f.files||[]);
+    const gallery=document.getElementById('ep_imgs_'+f.id);
+    if(gallery&&imgs.length){
+      const L='ABCDEFGHIJ';
+      gallery.innerHTML=imgs.map(function(url,i){return '<div class="img-option" id="ep_img_'+f.id+'_'+i+'"><img src="'+url+'" onclick="openLightbox(this.src)" alt=""><div class="img-option-label">Opcao '+(L[i]||i+1)+'</div><button class="img-option-remove" onclick="removeEditImage(String(f.id),'+i+')">x</button></div>';}).join('');
+    }
+  });
   }catch(e){document.getElementById('projectsGrid').innerHTML=`<div class="empty-state" style="color:var(--red)">Erro: ${e.message}</div>`;}
 }
 
@@ -1198,6 +1265,7 @@ async function openApprovalDetail(approvalId,projectId){
     document.getElementById('approvalLinkInput').value=link;
     const eb=document.getElementById('sendApprovalEmailBtn');
     eb.style.display=p.client_email?'flex':'none';
+    const srp=document.getElementById('secondRoundPanel');if(srp)srp.style.display=(a.status==='done'||a.status==='revised')?'block':'none';
     if(a.general_comment){document.getElementById('generalCommentPanel').style.display='block';document.getElementById('generalCommentText').textContent='"'+a.general_comment+'"';}
     else document.getElementById('generalCommentPanel').style.display='none';
     document.getElementById('secondRoundPanel').style.display=a.status==='done'?'block':'none';
@@ -1253,6 +1321,7 @@ function renderApprovalFindings(a){
           <button class="btn btn-primary btn-sm" onclick="saveKoalazRevision('${a.id}','${f.id}')">💾 Salvar</button>
         </div>
       </div>
+
       <div class="consultant-actions">
         <label>Status Koalaz:</label>
         <select class="status-select" onchange="updateItemStatus('${a.id}','${f.id}',this.value)">
@@ -1754,6 +1823,96 @@ function openLightbox(url) {
 }
 
 // ─── HELPERS ───────────────────────────────────────────────────────────────
+
+// -- KOALAZ EDIT & 2ND ROUND --
+function toggleEditPanel(fid){const ep=document.getElementById('ep_'+fid);if(ep)ep.classList.toggle('open');}
+
+async function saveKoalazRevision(approvalId,findingId){
+  const revEl=document.getElementById('ep_rev_'+findingId);
+  const noteEl=document.getElementById('ep_note_'+findingId);
+  if(!revEl)return;
+  const revision=revEl.value.trim();
+  const note=noteEl?noteEl.value.trim():'';
+  const gallery=document.getElementById('ep_imgs_'+findingId);
+  const imgs=gallery?Array.from(gallery.querySelectorAll('.img-option img')).map(i=>i.src):[];
+  try{
+    const a=await sb.getApproval(approvalId);
+    const statuses=a.item_statuses||{};
+    const existing=statuses[findingId]||{};
+    const stObj=typeof existing==='object'?existing:{status:existing};
+    statuses[findingId]={...stObj,koalaz_revision:revision,koalaz_note:note,koalaz_images:imgs,koalaz_at:new Date().toISOString()};
+    if(stObj.status==='adjustment'&&revision)statuses[findingId].status='adjusted';
+    await sb.updateApproval(approvalId,{item_statuses:statuses});
+    currentApproval=await sb.getApproval(approvalId);
+    renderApprovalFindings(currentApproval);
+    showToast('Revisao salva!');
+  }catch(e){showToast('Erro: '+e.message);}
+}
+
+async function handleEditImages(input,findingId){
+  const files=Array.from(input.files);
+  const gallery=document.getElementById('ep_imgs_'+findingId);
+  if(!gallery)return;
+  for(const file of files){
+    const path='findings/'+Date.now()+'_'+file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+    try{
+      const r=await fetch(STORAGE_URL+path,{method:'POST',headers:{...STORAGE_HEADERS,'Content-Type':file.type,'x-upsert':'true'},body:file});
+      if(r.ok){
+        const url=SUPABASE_URL+'/storage/v1/object/public/koalaz-files/'+path;
+        const idx=gallery.children.length;
+        const labels='ABCDEFGHIJ';
+        const div=document.createElement('div');div.className='img-option';div.id='ep_img_'+findingId+'_'+idx;
+        div.innerHTML='<img src="'+url+'" onclick="openLightbox(this.src)" alt=""><div class="img-option-label">Opcao '+(labels[idx]||idx+1)+'</div><button class="img-option-remove" onclick="removeEditImage(String(findingId),'+idx+')">x</button>';
+        gallery.appendChild(div);
+        relabelGallery(findingId);
+        showToast('Imagem adicionada!');
+      }
+    }catch(e){showToast('Erro upload: '+e.message);}
+  }
+  input.value='';
+}
+
+function removeEditImage(findingId,idx){
+  const el=document.getElementById('ep_img_'+findingId+'_'+idx);
+  if(el)el.remove();
+  relabelGallery(findingId);
+}
+
+function relabelGallery(findingId){
+  const gallery=document.getElementById('ep_imgs_'+findingId);
+  if(!gallery)return;
+  const labels='ABCDEFGHIJ';
+  Array.from(gallery.querySelectorAll('.img-option')).forEach((el,i)=>{
+    el.id='ep_img_'+findingId+'_'+i;
+    const lbl=el.querySelector('.img-option-label');if(lbl)lbl.textContent='Opcao '+(labels[i]||i+1);
+    const btn=el.querySelector('.img-option-remove');if(btn)btn.setAttribute('onclick',"removeEditImage('"+findingId+"',"+i+")");
+  });
+}
+
+function openLightbox(url){document.getElementById('lightboxImg').src=url;document.getElementById('lightbox').classList.add('open');}
+
+function openSecondRoundModal(){document.getElementById('modal2ndRound').classList.add('open');}
+
+async function createSecondRound(){
+  if(!currentApproval||!currentApprovalProject)return;
+  const intro=document.getElementById('round2Intro').value.trim();
+  const findings2=(currentApproval.findings||[]).map(f=>{
+    const stRaw=(currentApproval.item_statuses||{})[f.id];
+    const revision=stRaw&&typeof stRaw==='object'?stRaw.koalaz_revision:'';
+    const koalazImgs=stRaw&&typeof stRaw==='object'?(stRaw.koalaz_images||[]):[];
+    return {...f,original_desc:f.desc,desc:revision||f.desc,files:koalazImgs.length?koalazImgs:(f.files||[]),koalaz_images:koalazImgs,round1_vote:(currentApproval.votes||{})[f.id]||null,is_round2:true};
+  });
+  try{
+    const newId=uid();
+    await sb.insertApproval({id:newId,project_id:currentApproval.project_id,title:currentApproval.title+' - 2a Rodada',context:intro,findings:findings2,votes:{},item_statuses:{},status:'sent',general_comment:'',parent_approval_id:currentApproval.id});
+    closeModal('modal2ndRound');
+    await sb.updateApproval(currentApproval.id,{status:'revised'});
+    showToast('2a Rodada criada!');
+    openApprovalDetail(newId,currentApprovalProject.id);
+  }catch(e){showToast('Erro: '+e.message);}
+}
+
+
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,7);}
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function escHtml(s){return esc(s).replace(/\n[-\u2022*] */g,'<br>&bull;&nbsp;').replace(/\n/g,'<br>');}
