@@ -959,16 +959,6 @@ async function renderDash(){
         </div>
       </div>`;
     }).join('');
-  // Populate edit image galleries
-  (a.findings||[]).forEach(f=>{
-    const stRaw=(statuses||{})[f.id];
-    const imgs=stRaw&&typeof stRaw==='object'&&stRaw.koalaz_images?stRaw.koalaz_images:(f.files||[]);
-    const gallery=document.getElementById('ep_imgs_'+f.id);
-    if(gallery&&imgs.length){
-      const L='ABCDEFGHIJ';
-      gallery.innerHTML=imgs.map(function(url,i){return '<div class="img-option" id="ep_img_'+f.id+'_'+i+'"><img src="'+url+'" onclick="openLightbox(this.src)" alt=""><div class="img-option-label">Opcao '+(L[i]||i+1)+'</div><button class="img-option-remove" onclick="removeEditImage(String(f.id),'+i+')">x</button></div>';}).join('');
-    }
-  });
   }catch(e){document.getElementById('projectsGrid').innerHTML=`<div class="empty-state" style="color:var(--red)">Erro: ${e.message}</div>`;}
 }
 
@@ -1331,6 +1321,16 @@ function renderApprovalFindings(a){
       </div>
     </div>`;
   }).join('');
+  // Populate edit image galleries
+  (findings||[]).forEach(function(f){
+    var stRaw=(statuses||{})[f.id];
+    var imgs=stRaw&&typeof stRaw==='object'&&stRaw.koalaz_images?stRaw.koalaz_images:(f.files||[]);
+    var gallery=document.getElementById('ep_imgs_'+f.id);
+    if(gallery&&imgs.length){
+      var L='ABCDEFGHIJ';
+      gallery.innerHTML=imgs.map(function(url,i){var btn="<button class=\"img-option-remove\" onclick=\"removeEditImage('"+f.id+"',"+i+")\"\u003ex</button>";return "<div class=\"img-option\" id=\"ep_img_"+f.id+"_"+i+"\"><img src=\""+url+"\" onclick=\"openLightbox(this.src)\" alt=\"\"><div class=\"img-option-label\">Opcao "+(L[i]||i+1)+"</div>"+btn+"</div>";}).join("");
+    }
+  });
   const answered=Object.keys(votes).length;
   const total=findings.length;
   const pct=total?Math.round((answered/total)*100):0;
