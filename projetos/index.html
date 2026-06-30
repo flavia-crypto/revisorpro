@@ -370,6 +370,114 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
 .client-img-option img{width:150px;height:100px;object-fit:cover;display:block}
 .client-img-option-label{position:absolute;top:6px;left:6px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
 
+
+
+/* STRATEGIC DOC */
+#viewStrategicDoc{background:var(--bg)}
+.sdoc-toolbar{background:var(--surface);border-bottom:1px solid var(--line);padding:12px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:50;flex-wrap:wrap}
+.sdoc-body{max-width:860px;margin:0 auto;padding:40px 24px 80px}
+.sdoc-generating{text-align:center;padding:80px 20px;color:var(--ink3)}
+.sdoc-generating .gen-icon{font-size:48px;margin-bottom:16px;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.sdoc-cover{background:linear-gradient(135deg,#3B1F6B 0%,#5A2D8A 50%,#7B3FA8 100%);border-radius:16px;padding:48px 44px;margin-bottom:32px;position:relative;overflow:hidden}
+.sdoc-cover::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(255,140,50,.12);border-radius:50%}
+.sdoc-cover::after{content:'';position:absolute;bottom:-60px;left:-20px;width:160px;height:160px;background:rgba(255,140,50,.08);border-radius:50%}
+.sdoc-cover-logos{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px}
+.sdoc-cover-koalaz{font-family:'Fraunces',serif;font-size:18px;color:#fff;letter-spacing:-.3px}
+.sdoc-cover-koalaz em{font-style:italic;opacity:.5}
+.sdoc-cover-client-logo{max-height:48px;max-width:140px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}
+.sdoc-cover-client-logo-placeholder{background:rgba(255,255,255,.1);border:1.5px dashed rgba(255,255,255,.3);border-radius:8px;padding:10px 18px;font-size:12px;color:rgba(255,255,255,.4);cursor:pointer}
+.sdoc-cover-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,140,50,.9);margin-bottom:12px}
+.sdoc-cover h1{font-family:'Fraunces',serif;font-size:36px;font-weight:500;color:#fff;letter-spacing:-.5px;line-height:1.2;margin-bottom:8px}
+.sdoc-cover-sub{font-size:14px;color:rgba(255,255,255,.6);margin-bottom:28px}
+.sdoc-cover-meta{display:flex;gap:24px;flex-wrap:wrap}
+.sdoc-cover-meta-item{font-size:12px;color:rgba(255,255,255,.5)}
+.sdoc-cover-meta-item strong{color:rgba(255,255,255,.85);display:block;margin-bottom:2px}
+.sdoc-section{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:16px;box-shadow:var(--sh)}
+.sdoc-section-head{padding:16px 20px;background:linear-gradient(90deg,#F8F4FF 0%,var(--surface) 100%);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;cursor:pointer}
+.sdoc-section-icon{font-size:20px;flex-shrink:0}
+.sdoc-section-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#7B3FA8;margin-bottom:2px}
+.sdoc-section-title{font-size:15px;font-weight:600;color:var(--ink)}
+.sdoc-section-body{padding:20px}
+.sdoc-field{margin-bottom:16px}
+.sdoc-field-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--ink3);margin-bottom:6px}
+.sdoc-field-content{font-size:14px;color:var(--ink2);line-height:1.75;border:1.5px solid transparent;border-radius:7px;padding:10px 12px;transition:all .2s;cursor:text;min-height:48px;white-space:pre-wrap}
+.sdoc-field-content:hover{border-color:var(--line);background:var(--bg)}
+.sdoc-field-content:focus{border-color:#7B3FA8;background:#fff;outline:none}
+.sdoc-field-content[contenteditable=true]:empty:before{content:attr(data-placeholder);color:var(--ink4);font-style:italic}
+.sdoc-highlight{background:linear-gradient(135deg,#F8F4FF,#FFF4EA);border-left:3px solid #F08030;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:16px}
+.sdoc-highlight .hl-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:#F08030;margin-bottom:5px}
+.sdoc-highlight .hl-text{font-size:15px;font-weight:600;color:var(--ink);line-height:1.5;font-style:italic}
+.sdoc-terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sdoc-term-item{background:var(--bg);border:1px solid var(--line);border-radius:7px;padding:10px 13px;font-size:13px;color:var(--ink2);cursor:text}
+.sdoc-term-item:focus{border-color:#7B3FA8;background:#fff;outline:none}
+/* PUBLIC VIEW */
+.sdoc-public{font-family:'Instrument Sans',sans-serif;background:#fff;min-height:100vh}
+.sdoc-pub-cover{background:linear-gradient(135deg,#3B1F6B,#7B3FA8);padding:60px 48px;color:#fff}
+.sdoc-pub-body{max-width:780px;margin:0 auto;padding:48px 32px 80px}
+.sdoc-pub-section{margin-bottom:36px}
+.sdoc-pub-section-title{font-family:'Fraunces',serif;font-size:20px;font-weight:500;color:#5A2D8A;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.sdoc-pub-section-title::before{content:'';display:block;width:4px;height:20px;background:#F08030;border-radius:2px}
+.sdoc-pub-field{margin-bottom:14px}
+.sdoc-pub-field-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#7B3FA8;margin-bottom:4px}
+.sdoc-pub-field-text{font-size:14px;color:#3D3D38;line-height:1.75}
+.sdoc-pub-highlight{background:linear-gradient(135deg,#F8F4FF,#FFF4EA);border-left:4px solid #F08030;border-radius:0 10px 10px 0;padding:16px 20px;margin:16px 0}
+.sdoc-pub-highlight-text{font-size:16px;font-weight:600;color:#3B1F6B;line-height:1.5;font-style:italic}
+@media print{
+  .sdoc-toolbar{display:none!important}
+  .sdoc-section-head{cursor:default}
+  .sdoc-body{padding:20px}
+  .sdoc-cover{border-radius:8px}
+}
+
+/* REPORT VIEW */
+#viewReport{background:#fff}
+.report-view{max-width:860px;margin:0 auto;padding:48px 40px 80px;font-family:'Instrument Sans',sans-serif}
+@media print{
+  .report-no-print{display:none!important}
+  #viewReport{background:#fff}
+  .report-view{padding:20px}
+  .report-page-break{page-break-before:always}
+}
+.report-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:40px;padding-bottom:28px;border-bottom:2px solid var(--accent)}
+.report-brand{font-family:'Fraunces',serif;font-size:22px;color:var(--accent);letter-spacing:-.3px}
+.report-brand em{font-style:italic;opacity:.45}
+.report-meta{text-align:right;font-size:12px;color:var(--ink3);line-height:1.8}
+.report-meta strong{color:var(--ink);font-size:13px}
+.report-title{margin-bottom:32px}
+.report-title .eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:8px}
+.report-title h1{font-family:'Fraunces',serif;font-size:32px;font-weight:500;letter-spacing:-.5px;margin-bottom:6px;color:var(--ink)}
+.report-title .subtitle{font-size:14px;color:var(--ink3);line-height:1.6}
+.report-summary{background:var(--accent-tint);border-left:4px solid var(--accent);border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:36px}
+.report-summary h3{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.report-summary-stats{display:flex;gap:24px;flex-wrap:wrap}
+.report-stat{text-align:center}
+.report-stat .n{font-family:'Fraunces',serif;font-size:28px;font-weight:500;line-height:1}
+.report-stat .l{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.report-stat .n.g{color:var(--green)}.report-stat .n.r{color:var(--red)}.report-stat .n.o{color:var(--gold)}.report-stat .n.p{color:var(--purple)}.report-stat .n.b{color:var(--blue)}
+.report-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);margin:32px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.report-item{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin-bottom:12px;break-inside:avoid}
+.report-item-head{padding:14px 18px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;background:#FAFAF8}
+.report-item-head .num{font-size:11px;font-weight:700;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;flex-shrink:0}
+.report-item-title{font-size:15px;font-weight:600;color:var(--ink);flex:1}
+.report-item-body{padding:14px 18px;border-top:1px solid var(--line)}
+.report-item-desc{font-size:13px;color:var(--ink2);line-height:1.7;white-space:pre-wrap}
+.report-item-revised{background:var(--accent-tint);border-radius:6px;padding:11px 14px;margin-top:10px;font-size:13px;color:var(--ink2);line-height:1.7}
+.report-item-revised-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);margin-bottom:4px}
+.report-client-comment{background:var(--gold-tint);border-radius:6px;padding:10px 14px;margin-top:8px;font-size:13px;color:var(--ink2);line-height:1.65;font-style:italic}
+.report-client-comment-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gold);margin-bottom:3px;font-style:normal}
+.report-item-imgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.report-item-imgs img{width:130px;height:88px;object-fit:cover;border-radius:6px;border:1px solid var(--line)}
+.report-item-imgs .img-lbl{font-size:10px;font-weight:700;color:var(--ink3);text-align:center;margin-top:3px}
+.report-footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);text-align:center;font-size:12px;color:var(--ink4)}
+.status-dot{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;flex-shrink:0}
+.sd-agreed{background:var(--green-tint);color:var(--green)}
+.sd-disagreed{background:var(--red-tint);color:var(--red)}
+.sd-adjustment{background:var(--gold-tint);color:var(--gold)}
+.sd-adjusted{background:var(--blue-tint);color:var(--blue)}
+.sd-approved{background:var(--purple-tint);color:var(--purple)}
+.sd-pending{background:#F0EFE9;color:var(--ink3)}
+
 </style>
 </head>
 <body>
@@ -470,6 +578,12 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
         <div id="approveAllWrap" style="display:none;margin-top:12px">
           <button class="btn btn-purple btn-sm" style="width:100%;justify-content:center" onclick="approveAllAdjusted()">✅ Aprovar etapa inteira</button>
           <p style="font-size:11px;color:var(--ink3);margin-top:6px">Aprova todos os itens "Ajustado pela Koalaz"</p>
+        </div>
+        <div style="margin-top:12px">
+          <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center" onclick="generateReport()">📄 Gerar Relatório</button>
+        </div>
+        <div style="margin-top:8px">
+          <button class="btn btn-primary btn-sm" style="width:100%;justify-content:center;background:linear-gradient(135deg,#5A2D8A,#7B3FA8)" onclick="openStrategicDoc()">✨ Síntese Estratégica</button>
         </div>
       </div>
       <div class="panel" id="generalCommentPanel" style="display:none">
@@ -679,6 +793,40 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--bg);color:var(--i
       <button class="btn btn-primary" onclick="createSecondRound()">Criar 2a Rodada</button>
     </div>
   </div>
+</div>
+
+
+
+<!-- STRATEGIC DOC VIEW -->
+<div class="view" id="viewStrategicDoc">
+  <div class="sdoc-toolbar">
+    <button class="btn btn-ghost btn-sm" id="sdocBackBtn">← Voltar</button>
+    <span style="flex:1;font-size:13px;font-weight:600;color:var(--ink3)" id="sdocBackTitle"></span>
+    <button class="btn btn-ghost btn-sm" onclick="regenerateDoc()" id="sdocRegenBtn">✨ Regenerar com IA</button>
+    <button class="btn btn-ghost btn-sm" onclick="copyDocLink()" id="sdocLinkBtn">🔗 Copiar link</button>
+    <button class="btn btn-primary btn-sm" onclick="window.print()">🖨️ Salvar PDF</button>
+  </div>
+  <div class="sdoc-body" id="sdocBody">
+    <div class="sdoc-generating">
+      <div class="gen-icon">✨</div>
+      <p>Gerando documento estratégico com IA...</p>
+    </div>
+  </div>
+</div>
+
+<!-- PUBLIC STRATEGIC DOC VIEW -->
+<div class="view" id="viewPublicDoc">
+  <div id="publicDocBody"></div>
+</div>
+
+<!-- REPORT VIEW -->
+<div class="view" id="viewReport">
+  <div class="report-no-print" style="background:var(--surface);border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:50">
+    <button class="btn btn-ghost btn-sm" id="reportBackBtn">← Voltar</button>
+    <span style="flex:1;font-size:14px;font-weight:600" id="reportBackTitle"></span>
+    <button class="btn btn-primary btn-sm" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+  </div>
+  <div class="report-view" id="reportContent"></div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -913,7 +1061,10 @@ const sb={
   async getApproval(id){const a=await this.req(`${SUPABASE_URL}/rest/v1/approvals?id=eq.${id}`);return a[0]||null;},
   async insertApproval(d){return this.req(`${SUPABASE_URL}/rest/v1/approvals`,{method:'POST',body:JSON.stringify(d)});},
   async updateApproval(id,d){return this.req(`${SUPABASE_URL}/rest/v1/approvals?id=eq.${id}`,{method:'PATCH',body:JSON.stringify(d)});},
-  async deleteApproval(id){return this.req(`${SUPABASE_URL}/rest/v1/approvals?id=eq.${id}`,{method:'DELETE'});}
+  async deleteApproval(id){return this.req(`${SUPABASE_URL}/rest/v1/approvals?id=eq.${id}`,{method:'DELETE'});},
+  async getStrategicDoc(approvalId){const a=await this.req(`${SUPABASE_URL}/rest/v1/strategic_docs?approval_id=eq.${approvalId}`);return a[0]||null;},
+  async getStrategicDocById(id){const a=await this.req(`${SUPABASE_URL}/rest/v1/strategic_docs?id=eq.${id}`);return a[0]||null;},
+  async upsertStrategicDoc(d){return this.req(`${SUPABASE_URL}/rest/v1/strategic_docs`,{method:'POST',headers:{...this.h,'Prefer':'return=representation,resolution=merge-duplicates'},body:JSON.stringify(d)});}
 };
 
 // ─── ROUTING ───────────────────────────────────────────────────────────────
@@ -922,6 +1073,7 @@ function checkRoute(){
   if(hash.startsWith('#briefing/'))loadBriefingView(hash.slice(10));
   else if(hash.startsWith('#approval/'))loadApprovalClientView(hash.slice(10));
   else if(hash.startsWith('#cliente/'))loadClientArea(hash.slice(9));
+  else if(hash.startsWith('#doc/'))loadPublicDoc(hash.slice(5));
   else sessionStorage.getItem('kp_auth')==='1'?(showView('viewDash'),renderDash()):showView('viewLogin');
 }
 window.addEventListener('hashchange',checkRoute);
@@ -1281,7 +1433,7 @@ function renderApprovalFindings(a){
     const clientAt=v&&v.timestamp?v.timestamp:(stRaw&&typeof stRaw==='object'?stRaw.client_at:null);
     return `<div class="df-card ${sc.border}" id="dfc_${f.id}">
       <div class="df-card-head">
-        <div class="df-tag"><span>Achado ${i+1}</span><span class="is-badge ${sc.badge}">${sc.label}</span></div>
+        <div class="df-tag"><span>Item ${i+1}</span><span class="is-badge ${sc.badge}">${sc.label}</span></div>
         <div class="df-title">${esc(f.title)}</div>
         ${f.desc?`<div class="df-desc">${escHtml(f.desc)}</div>`:''}
         ${(f.channel||f.platform||f.date||f.ref)?`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">
@@ -1478,7 +1630,7 @@ async function loadApprovalClientView(id){
       }).join('') + '</div>' : '';
       card.innerHTML = [
         '<div class="cf-body">',
-          '<div class="cf-tag">'+( f.is_round2 ? '2ª Rodada — Item '+(i+1) : 'Achado '+(i+1))+'</div>',
+          '<div class="cf-tag">'+( f.is_round2 ? '2ª Rodada — Item '+(i+1) : 'Item '+(i+1))+'</div>',
           f.is_round2 && f.round1_vote ? '<div style="background:var(--gold-tint);border:1px solid #E8D48A;border-radius:6px;padding:8px 12px;margin-bottom:8px;font-size:12px"><span style="font-weight:700;color:var(--gold)">Sua posição anterior:</span> ' + (f.round1_vote.vote==='agreed'?'✓ Concordou':f.round1_vote.vote==='disagreed'?'✕ Discordou':'⚡ Solicitou ajuste') + (f.round1_vote.comment ? ' — <em>"'+esc(f.round1_vote.comment)+'"</em>' : '') + '</div>' : '',
           '<div class="cf-title">'+esc(f.title)+'</div>',
           (f.channel||f.platform||f.date||f.ref) ? '<div style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0">' +
@@ -1832,6 +1984,401 @@ function openLightbox(url) {
 }
 
 // ─── HELPERS ───────────────────────────────────────────────────────────────
+
+
+
+// -- STRATEGIC DOC --
+let currentStrategicDoc = null;
+
+async function openStrategicDoc() {
+  if (!currentApproval || !currentApprovalProject) return;
+  showView('viewStrategicDoc');
+  document.getElementById('sdocBackBtn').onclick = () => showView('viewApprovalDetail');
+  document.getElementById('sdocBackTitle').textContent = currentApprovalProject.name + ' — Síntese Estratégica';
+
+  // Check if doc already exists
+  let doc = await sb.getStrategicDoc(currentApproval.id);
+  if (doc) {
+    currentStrategicDoc = doc;
+    renderStrategicDoc(doc);
+  } else {
+    await generateStrategicDoc();
+  }
+}
+
+async function generateStrategicDoc() {
+  document.getElementById('sdocBody').innerHTML = '<div class="sdoc-generating"><div class="gen-icon">✨</div><p>A IA está lendo os itens validados e gerando a síntese estratégica...</p><p style="font-size:12px;color:var(--ink4);margin-top:8px">Isso pode levar alguns segundos</p></div>';
+
+  const a = currentApproval;
+  const p = currentApprovalProject;
+  const votes = a.votes || {};
+  const statuses = a.item_statuses || {};
+  const findings = a.findings || [];
+
+  // Build context for AI
+  const itemsText = findings.map((f, i) => {
+    const stRaw = statuses[f.id];
+    const revision = stRaw && typeof stRaw === 'object' ? stRaw.koalaz_revision : '';
+    const vote = votes[f.id] || {};
+    return `ITEM ${i+1}: ${f.title}
+Conteúdo: ${revision || f.desc || ''}
+${vote.comment ? 'Comentário do cliente: ' + vote.comment : ''}`;
+  }).join('\n\n');
+
+  const prompt = `Você é um estrategista de marketing e branding da agência Koalaz. Com base nos itens validados pelo cliente abaixo, gere uma síntese estratégica profissional e coesa em português brasileiro.
+
+Cliente: ${p.client_name}
+Projeto: ${p.name}
+Etapa: ${a.title}
+
+ITENS VALIDADOS:
+${itemsText}
+
+Gere um JSON com a seguinte estrutura exata (sem markdown, apenas JSON puro):
+{
+  "positioning": {
+    "market": "síntese do posicionamento de mercado em 2-3 frases",
+    "phrase": "frase de posicionamento curta e impactante",
+    "manifesto": "frase-chave do manifesto (máximo 6 palavras)",
+    "support_text": "texto de apoio do posicionamento (2-3 frases)"
+  },
+  "business": {
+    "objectives": "síntese dos objetivos de negócio",
+    "specialty": "especialidade central em 1-2 frases",
+    "services": "síntese das modalidades de serviço",
+    "promise": "promessa da marca em 1-2 frases"
+  },
+  "terms": {
+    "admin": ["termo1", "termo2", "termo3", "termo4", "termo5"],
+    "sancionador": ["termo1", "termo2", "termo3", "termo4", "termo5"],
+    "penal": ["termo1", "termo2", "termo3", "termo4", "termo5"],
+    "civel": ["termo1", "termo2", "termo3", "termo4", "termo5"]
+  },
+  "next_steps": "recomendação estratégica de próximos passos em 2-3 frases"
+}`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const data = await response.json();
+    const text = data.content[0].text.trim();
+    const clean = text.replace(/```json|```/g, '').trim();
+    const sections = JSON.parse(clean);
+
+    // Save to Supabase
+    const docId = uid();
+    const docData = {
+      id: docId,
+      approval_id: a.id,
+      project_id: p.id,
+      title: 'Síntese Estratégica — ' + a.title,
+      sections: sections
+    };
+    await sb.upsertStrategicDoc(docData);
+    currentStrategicDoc = docData;
+    renderStrategicDoc(docData);
+    showToast('Síntese gerada com sucesso!');
+  } catch(e) {
+    document.getElementById('sdocBody').innerHTML = '<div class="sdoc-generating"><div class="gen-icon">⚠️</div><p style="color:var(--red)">Erro ao gerar: ' + e.message + '</p><button class="btn btn-primary" onclick="generateStrategicDoc()" style="margin-top:16px">Tentar novamente</button></div>';
+  }
+}
+
+async function regenerateDoc() {
+  if (!confirm('Regenerar com IA? O conteúdo atual será substituído.')) return;
+  await generateStrategicDoc();
+}
+
+function renderStrategicDoc(doc) {
+  const p = currentApprovalProject;
+  const s = doc.sections || {};
+  const pos = s.positioning || {};
+  const biz = s.business || {};
+  const terms = s.terms || {};
+  const now = new Date().toLocaleDateString('pt-BR', {month:'long',year:'numeric'});
+  const clientLogo = p.client_logo_url || '';
+
+  const html = `
+    <div class="sdoc-cover">
+      <div class="sdoc-cover-logos">
+        <div class="sdoc-cover-koalaz">koalaz<em>·</em></div>
+        ${clientLogo ? '<img src="'+clientLogo+'" class="sdoc-cover-client-logo" alt="'+esc(p.client_name)+'">' : '<div class="sdoc-cover-client-logo-placeholder" onclick="uploadClientLogo()">+ Logo do cliente</div>'}
+      </div>
+      <div class="sdoc-cover-label">Síntese Estratégica</div>
+      <h1>${esc(p.client_name)}</h1>
+      <div class="sdoc-cover-sub">${esc(doc.title)}</div>
+      <div class="sdoc-cover-meta">
+        <div class="sdoc-cover-meta-item"><strong>Responsável</strong>${esc(p.responsible||'Equipe Koalaz')}</div>
+        <div class="sdoc-cover-meta-item"><strong>Data</strong>${now}</div>
+        <div class="sdoc-cover-meta-item"><strong>Etapa</strong>Validação estratégica</div>
+      </div>
+    </div>
+
+    <div class="sdoc-section">
+      <div class="sdoc-section-head">
+        <div class="sdoc-section-icon">🎯</div>
+        <div><div class="sdoc-section-label">Identidade estratégica</div><div class="sdoc-section-title">Posicionamento e Marca</div></div>
+      </div>
+      <div class="sdoc-section-body">
+        <div class="sdoc-highlight">
+          <div class="hl-label">Frase de posicionamento</div>
+          <div class="hl-text" contenteditable="true" data-field="positioning.phrase" onblur="saveDocField(this,'positioning','phrase')">${esc(pos.phrase||'')}</div>
+        </div>
+        <div class="sdoc-highlight" style="border-left-color:var(--accent)">
+          <div class="hl-label" style="color:var(--accent)">Manifesto</div>
+          <div class="hl-text" contenteditable="true" data-field="positioning.manifesto" onblur="saveDocField(this,'positioning','manifesto')">${esc(pos.manifesto||'')}</div>
+        </div>
+        <div class="sdoc-field">
+          <div class="sdoc-field-label">Posicionamento de mercado</div>
+          <div class="sdoc-field-content" contenteditable="true" onblur="saveDocField(this,'positioning','market')">${esc(pos.market||'')}</div>
+        </div>
+        <div class="sdoc-field">
+          <div class="sdoc-field-label">Texto de apoio</div>
+          <div class="sdoc-field-content" contenteditable="true" onblur="saveDocField(this,'positioning','support_text')">${esc(pos.support_text||'')}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sdoc-section">
+      <div class="sdoc-section-head">
+        <div class="sdoc-section-icon">🏛️</div>
+        <div><div class="sdoc-section-label">Estrutura de negócio</div><div class="sdoc-section-title">Objetivos, Especialidade e Serviços</div></div>
+      </div>
+      <div class="sdoc-section-body">
+        <div class="sdoc-field">
+          <div class="sdoc-field-label">Objetivos de negócio</div>
+          <div class="sdoc-field-content" contenteditable="true" onblur="saveDocField(this,'business','objectives')">${esc(biz.objectives||'')}</div>
+        </div>
+        <div class="sdoc-field">
+          <div class="sdoc-field-label">Especialidade central</div>
+          <div class="sdoc-field-content" contenteditable="true" onblur="saveDocField(this,'business','specialty')">${esc(biz.specialty||'')}</div>
+        </div>
+        <div class="sdoc-field">
+          <div class="sdoc-field-label">Modalidades de serviço</div>
+          <div class="sdoc-field-content" contenteditable="true" onblur="saveDocField(this,'business','services')">${esc(biz.services||'')}</div>
+        </div>
+        <div class="sdoc-highlight">
+          <div class="hl-label">Promessa da marca</div>
+          <div class="hl-text" contenteditable="true" onblur="saveDocField(this,'business','promise')">${esc(biz.promise||'')}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sdoc-section">
+      <div class="sdoc-section-head">
+        <div class="sdoc-section-icon">🔍</div>
+        <div><div class="sdoc-section-label">Base para SEO</div><div class="sdoc-section-title">Validação de Termos por Área</div></div>
+      </div>
+      <div class="sdoc-section-body">
+        ${[
+          ['admin','Direito Administrativo'],
+          ['sancionador','Dir. Administrativo Sancionador'],
+          ['penal','Direito Penal'],
+          ['civel','Direito Cível']
+        ].map(([key,label])=>`
+          <div class="sdoc-field">
+            <div class="sdoc-field-label">${label}</div>
+            <div class="sdoc-terms-grid">${(terms[key]||[]).map((t,i)=>`<div class="sdoc-term-item" contenteditable="true" onblur="saveTermField(this,'${key}',${i})">${esc(t)}</div>`).join('')}</div>
+          </div>`).join('')}
+      </div>
+    </div>
+
+    <div class="sdoc-section">
+      <div class="sdoc-section-head">
+        <div class="sdoc-section-icon">🚀</div>
+        <div><div class="sdoc-section-label">Próximos passos</div><div class="sdoc-section-title">Recomendações estratégicas</div></div>
+      </div>
+      <div class="sdoc-section-body">
+        <div class="sdoc-field-content" contenteditable="true" onblur="saveDocField(this,'next_steps','text')" style="border:1.5px solid var(--line);border-radius:7px;padding:12px">${esc(s.next_steps||'')}</div>
+      </div>
+    </div>`;
+
+  document.getElementById('sdocBody').innerHTML = html;
+}
+
+async function saveDocField(el, section, field) {
+  if (!currentStrategicDoc) return;
+  const val = el.innerText.trim();
+  const sections = currentStrategicDoc.sections || {};
+  if (section === 'next_steps') {
+    sections.next_steps = val;
+  } else {
+    if (!sections[section]) sections[section] = {};
+    sections[section][field] = val;
+  }
+  currentStrategicDoc.sections = sections;
+  try {
+    await sb.upsertStrategicDoc({ id: currentStrategicDoc.id, approval_id: currentStrategicDoc.approval_id, project_id: currentStrategicDoc.project_id, title: currentStrategicDoc.title, sections });
+    showToast('Salvo!');
+  } catch(e) { showToast('Erro ao salvar: ' + e.message); }
+}
+
+async function saveTermField(el, key, idx) {
+  if (!currentStrategicDoc) return;
+  const val = el.innerText.trim();
+  const sections = currentStrategicDoc.sections || {};
+  if (!sections.terms) sections.terms = {};
+  if (!sections.terms[key]) sections.terms[key] = [];
+  sections.terms[key][idx] = val;
+  currentStrategicDoc.sections = sections;
+  try {
+    await sb.upsertStrategicDoc({ id: currentStrategicDoc.id, approval_id: currentStrategicDoc.approval_id, project_id: currentStrategicDoc.project_id, title: currentStrategicDoc.title, sections });
+    showToast('Salvo!');
+  } catch(e) { showToast('Erro: ' + e.message); }
+}
+
+function copyDocLink() {
+  if (!currentStrategicDoc) return;
+  const link = location.origin + location.pathname + '#doc/' + currentStrategicDoc.id;
+  navigator.clipboard.writeText(link).then(() => showToast('Link copiado!'));
+}
+
+async function loadPublicDoc(docId) {
+  showView('viewPublicDoc');
+  try {
+    const doc = await sb.getStrategicDocById(docId);
+    if (!doc) { document.getElementById('publicDocBody').innerHTML = '<div style="text-align:center;padding:80px;color:#666">Documento não encontrado.</div>'; return; }
+    const p = await sb.getProject(doc.project_id);
+    const s = doc.sections || {};
+    const pos = s.positioning || {};
+    const biz = s.business || {};
+    const terms = s.terms || {};
+    const now = new Date().toLocaleDateString('pt-BR', {month:'long',year:'numeric'});
+    const clientLogo = p ? (p.client_logo_url || '') : '';
+
+    document.getElementById('publicDocBody').innerHTML = `
+      <div class="sdoc-pub-cover">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:40px">
+          <div style="font-family:'Fraunces',serif;font-size:20px;color:#fff;letter-spacing:-.3px">koalaz<em style="font-style:italic;opacity:.45">·</em></div>
+          ${clientLogo ? '<img src="'+clientLogo+'" style="max-height:44px;filter:brightness(0) invert(1);opacity:.85" alt="">' : ''}
+        </div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,140,50,.9);margin-bottom:10px">Síntese Estratégica</div>
+        <div style="font-family:'Fraunces',serif;font-size:38px;font-weight:500;color:#fff;letter-spacing:-.5px;margin-bottom:6px">${esc(p?p.client_name:'')}</div>
+        <div style="font-size:14px;color:rgba(255,255,255,.55);margin-bottom:32px">${esc(doc.title)}</div>
+        ${pos.phrase ? '<div class="sdoc-pub-highlight"><div class="sdoc-pub-highlight-text">"'+esc(pos.phrase)+'"</div></div>' : ''}
+        ${pos.manifesto ? '<div style="font-size:13px;color:rgba(255,140,50,.8);font-style:italic;margin-top:12px">'+esc(pos.manifesto)+'</div>' : ''}
+        <div style="margin-top:28px;font-size:12px;color:rgba(255,255,255,.35)">${now} · Confidencial</div>
+      </div>
+      <div class="sdoc-pub-body">
+        ${pos.market||pos.support_text ? `<div class="sdoc-pub-section">
+          <div class="sdoc-pub-section-title">Posicionamento</div>
+          ${pos.market ? '<div class="sdoc-pub-field"><div class="sdoc-pub-field-label">Posicionamento de mercado</div><div class="sdoc-pub-field-text">'+esc(pos.market)+'</div></div>' : ''}
+          ${pos.support_text ? '<div class="sdoc-pub-field"><div class="sdoc-pub-field-label">Sobre o escritório</div><div class="sdoc-pub-field-text">'+esc(pos.support_text)+'</div></div>' : ''}
+        </div>` : ''}
+        ${biz.objectives||biz.specialty||biz.services||biz.promise ? `<div class="sdoc-pub-section">
+          <div class="sdoc-pub-section-title">Estrutura de negócio</div>
+          ${biz.objectives ? '<div class="sdoc-pub-field"><div class="sdoc-pub-field-label">Objetivos</div><div class="sdoc-pub-field-text">'+esc(biz.objectives)+'</div></div>' : ''}
+          ${biz.specialty ? '<div class="sdoc-pub-field"><div class="sdoc-pub-field-label">Especialidade central</div><div class="sdoc-pub-field-text">'+esc(biz.specialty)+'</div></div>' : ''}
+          ${biz.services ? '<div class="sdoc-pub-field"><div class="sdoc-pub-field-label">Modalidades de serviço</div><div class="sdoc-pub-field-text">'+esc(biz.services)+'</div></div>' : ''}
+          ${biz.promise ? '<div class="sdoc-pub-highlight"><div class="sdoc-pub-highlight-text">'+esc(biz.promise)+'</div></div>' : ''}
+        </div>` : ''}
+        ${Object.keys(terms).length ? `<div class="sdoc-pub-section">
+          <div class="sdoc-pub-section-title">Termos estratégicos por área</div>
+          ${[['admin','Direito Administrativo'],['sancionador','Dir. Adm. Sancionador'],['penal','Direito Penal'],['civel','Direito Cível']].map(([k,l])=>terms[k]&&terms[k].length?'<div class="sdoc-pub-field"><div class="sdoc-pub-field-label">'+l+'</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">'+terms[k].map(t=>'<span style="background:#F8F4FF;border:1px solid #DDD0EE;border-radius:20px;padding:3px 11px;font-size:12px;color:#5A2D8A;font-weight:600">'+esc(t)+'</span>').join('')+'</div></div>':'').join('')}
+        </div>` : ''}
+        ${s.next_steps ? '<div class="sdoc-pub-section"><div class="sdoc-pub-section-title">Próximos passos</div><div class="sdoc-pub-field-text">'+esc(s.next_steps)+'</div></div>' : ''}
+        <div style="margin-top:48px;padding-top:20px;border-top:1px solid #eee;text-align:center;font-size:12px;color:#999">
+          Documento gerado pela plataforma Koalaz · ${now}
+        </div>
+      </div>`;
+  } catch(e) {
+    document.getElementById('publicDocBody').innerHTML = '<div style="text-align:center;padding:80px;color:red">Erro: '+e.message+'</div>';
+  }
+}
+
+// -- REPORT --
+async function generateReport() {
+  if (!currentApproval || !currentApprovalProject) return;
+  const a = currentApproval;
+  const p = currentApprovalProject;
+  const votes = a.votes || {};
+  const statuses = a.item_statuses || {};
+  const findings = a.findings || [];
+
+  const statusConfig = {
+    agreed:    { label: 'Concordou',           cls: 'sd-agreed' },
+    disagreed: { label: 'Discordou',           cls: 'sd-disagreed' },
+    adjustment:{ label: 'Ajuste solicitado',   cls: 'sd-adjustment' },
+    adjusted:  { label: 'Ajustado pela Koalaz',cls: 'sd-adjusted' },
+    approved:  { label: 'Aprovado final',      cls: 'sd-approved' },
+    pending:   { label: 'Pendente',            cls: 'sd-pending' }
+  };
+
+  const countByStatus = (s) => findings.filter(f => {
+    const r = statuses[f.id]; const st = r ? (typeof r === 'object' ? r.status : r) : 'pending'; return st === s;
+  }).length;
+
+  const now = new Date().toLocaleDateString('pt-BR', {day:'2-digit',month:'long',year:'numeric'});
+
+  let itemsHtml = '';
+  findings.forEach((f, i) => {
+    const stRaw = statuses[f.id];
+    const st = stRaw ? (typeof stRaw === 'object' ? stRaw.status : stRaw) : 'pending';
+    const sc = statusConfig[st] || statusConfig.pending;
+    const vote = votes[f.id] || {};
+    const revision = stRaw && typeof stRaw === 'object' ? stRaw.koalaz_revision : '';
+    const koalazImgs = stRaw && typeof stRaw === 'object' ? (stRaw.koalaz_images || []) : [];
+    const displayImgs = koalazImgs.length ? koalazImgs : (f.files || []);
+    const labels = 'ABCDEFGHIJ';
+
+    const imgsHtml = displayImgs.length ? '<div class="report-item-imgs">' + displayImgs.map((url, idx) =>
+      '<div><img src="'+url+'" alt=""><div class="img-lbl">Opcao '+(labels[idx]||idx+1)+'</div></div>'
+    ).join('') + '</div>' : '';
+
+    itemsHtml += '<div class="report-item">' +
+      '<div class="report-item-head">' +
+        '<div>' +
+          '<div class="num">Item ' + (i+1) + '</div>' +
+          '<div class="report-item-title">' + esc(f.title) + '</div>' +
+        '</div>' +
+        '<span class="status-dot ' + sc.cls + '">' + sc.label + '</span>' +
+      '</div>' +
+      '<div class="report-item-body">' +
+        '<div class="report-item-desc">' + esc(f.desc || '') + '</div>' +
+        (vote.comment ? '<div class="report-client-comment"><div class="report-client-comment-label">Comentario do cliente</div>' + esc(vote.comment) + '</div>' : '') +
+        (revision ? '<div class="report-item-revised"><div class="report-item-revised-label">Versao ajustada pela Koalaz</div>' + esc(revision) + '</div>' : '') +
+        imgsHtml +
+      '</div>' +
+    '</div>';
+  });
+
+  const html = '<div class="report-header">' +
+    '<div class="report-brand">koalaz<em>.</em></div>' +
+    '<div class="report-meta"><strong>' + esc(p.name) + '</strong><br>' + esc(p.client_name) + '<br>' + now + '</div>' +
+  '</div>' +
+  '<div class="report-title">' +
+    '<div class="eyebrow">Relatorio de Aprovacao</div>' +
+    '<h1>' + esc(a.title) + '</h1>' +
+    '<div class="subtitle">' + esc(a.context || '') + '</div>' +
+  '</div>' +
+  '<div class="report-summary">' +
+    '<h3>Resumo da etapa</h3>' +
+    '<div class="report-summary-stats">' +
+      '<div class="report-stat"><div class="n">' + findings.length + '</div><div class="l">Total</div></div>' +
+      '<div class="report-stat"><div class="n g">' + countByStatus('agreed') + '</div><div class="l">Concordou</div></div>' +
+      '<div class="report-stat"><div class="n o">' + countByStatus('adjustment') + '</div><div class="l">Ajustes</div></div>' +
+      '<div class="report-stat"><div class="n b">' + countByStatus('adjusted') + '</div><div class="l">Ajustados</div></div>' +
+      '<div class="report-stat"><div class="n p">' + countByStatus('approved') + '</div><div class="l">Aprovados</div></div>' +
+      '<div class="report-stat"><div class="n r">' + countByStatus('disagreed') + '</div><div class="l">Discordou</div></div>' +
+    '</div>' +
+  '</div>' +
+  '<div class="report-section-title">Itens da etapa</div>' +
+  itemsHtml +
+  '<div class="report-footer">Documento gerado pela plataforma Koalaz &mdash; ' + now + '</div>';
+
+  document.getElementById('reportContent').innerHTML = html;
+  document.getElementById('reportBackTitle').textContent = a.title;
+  document.getElementById('reportBackBtn').onclick = () => {
+    showView('viewApprovalDetail');
+  };
+  showView('viewReport');
+}
 
 // -- KOALAZ EDIT & 2ND ROUND --
 function toggleEditPanel(fid){const ep=document.getElementById('ep_'+fid);if(ep)ep.classList.toggle('open');}
