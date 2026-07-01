@@ -2058,23 +2058,14 @@ Gere um JSON com a seguinte estrutura exata (sem markdown, apenas JSON puro):
 }`;
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const response = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 2000,
-        messages: [{ role: 'user', content: prompt }]
-      })
+      body: JSON.stringify({ type: 'generate_strategic_doc', prompt: prompt })
     });
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error?.message || 'API error ' + response.status);
-    if (!data.content || !data.content[0]) throw new Error('Resposta vazia da API');
-    const text = data.content[0].text.trim();
+    if (data.error) throw new Error(data.error);
+    if (!data.text) throw new Error('Resposta vazia do servidor');
+    const text = data.text.trim();
     const clean = text.replace(/```json|```/g, '').trim();
     let sections;
     try { sections = JSON.parse(clean); }
